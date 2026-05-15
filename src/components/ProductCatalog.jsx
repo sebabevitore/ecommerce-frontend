@@ -10,14 +10,13 @@ const ProductCatalog = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(`${API}/api/products`)
+    fetch(`${API}/api/productos`)
       .then(res => {
         if (!res.ok) throw new Error('Error al cargar productos')
         return res.json()
       })
       .then(data => {
-        const lista = Array.isArray(data) ? data : data.products || []
-        setProductos(lista)
+        setProductos(Array.isArray(data) ? data : []);
         setLoading(false)
       })
       .catch(err => {
@@ -36,16 +35,9 @@ const ProductCatalog = () => {
       <div className="product-grid">
         {productos.map(producto => (
           <ProductCard
-            key={producto.id}
-            nombre={producto.name}
-            precio={producto.price}
-            image={producto.image}
-            freeShipping={producto.freeShipping}
-            isPromo={producto.isPromo}
-          >
-            <p className="producto-categoria">{producto.category}</p>
-            <p className="producto-descripcion">{producto.description}</p>
-            <p className="producto-stock">Stock: {producto.stock}</p>
+            key={producto.id} 
+            nombre={producto.nombre}
+            precio={producto.precio}>
           </ProductCard>
         ))}
       </div>

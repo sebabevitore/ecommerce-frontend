@@ -19,10 +19,15 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.message || 'Credenciales inválidas')
-      localStorage.setItem('token', data.token)
+
+      const data = await res.text()
+
+      if (!res.ok) throw new Error(data || 'Credenciales inválidas')
+
+      localStorage.setItem('token', data)
+
       navigate('/')
+
     } catch (err) {
       setError(err.message)
     }

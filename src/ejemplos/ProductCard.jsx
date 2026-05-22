@@ -1,7 +1,8 @@
-import React from 'react';
+
+import { Link } from 'react-router-dom'
 import './ProductCard.css';
 
-const ProductCard = ({nombre,precio,children,imagen, freeShipping, isPromo}) => {
+const ProductCard = ({id, nombre, precio, children, imagen, freeShipping, isPromo}) => {
   return (
     <div className="product-card">
       <div className="product-image-container">
@@ -16,6 +17,10 @@ const ProductCard = ({nombre,precio,children,imagen, freeShipping, isPromo}) => 
 
       {freeShipping && <span className="badge">✈️ Envío Gratis</span>}
       {isPromo && <span className="badge-promo">🔥 Promo</span>}
+
+      <Link to={`/products/${id}`} className="btn-details">
+                Ver Detalles
+      </Link>
 
       <div className="extra">
         {children}

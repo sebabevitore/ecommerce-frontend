@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect} from 'react'
 import ProductCard from '../ejemplos/ProductCard'
 import './ProductCatalog.css'
 
@@ -48,10 +48,15 @@ const ProductCatalog = () => {
             key={producto.id} 
             nombre={producto.nombre}
             precio={formatearPrecio(producto.precio)}
-            imagen={producto.imagen}>
+            imagen={producto.imagenUrl}
+            id={producto.id}
+            freeShipping={producto.freeShipping}
+            isPromo={producto.isPromo}>
           </ProductCard>
+          
         ))}
       </div>
+
     </div>
   )
 }

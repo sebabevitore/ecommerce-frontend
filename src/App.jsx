@@ -3,6 +3,8 @@ import ProductCatalog from './components/ProductCatalog'
 import Login from './components/Login'
 import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
+import ProductDetail from './components/ProductDetail'
+
 import './App.css'
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
 
       <main className="main-content">
         <Routes>
+          <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/" element={<ProductCatalog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

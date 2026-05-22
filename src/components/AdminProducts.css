@@ -1,0 +1,185 @@
+.admin-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-container h2 {
+  text-align: center;
+  color: #1a1a2e;
+  margin-bottom: 30px;
+}
+
+.admin-form {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-form h3 {
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.admin-form input,
+.admin-form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  background-color: white; 
+  color: #333;
+  width: 100%; 
+  box-sizing: border-box; 
+  cursor: pointer;
+}
+
+.admin-form input:focus,
+.admin-form select:focus {
+  border-color: #e94560;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-actions button[type="submit"] {
+  background: #e94560;
+  color: white;
+}
+
+.form-actions button[type="submit"]:hover {
+  background: #d63850;
+}
+
+.form-actions button[type="button"] {
+  background: #ddd;
+  color: #333;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #ccc;
+}
+
+.admin-table {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.admin-table h3 {
+  color: #1a1a2e;
+  margin-bottom: 16px;
+}
+
+/* Estructura fija de tabla para que se respeten los anchos */
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; 
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+}
+
+.admin-table tr:hover {
+  background: #f8f9fa;
+}
+
+/* 🌟 MEDIDAS FIJAS POR COLUMNA (Cabecera y Celda comparten la misma grilla) */
+.admin-table th:nth-child(1), .admin-table td:nth-child(1) { width: 10%; } /* Imagen */
+.admin-table th:nth-child(2), .admin-table td:nth-child(2) { width: 35%; } /* Nombre */
+.admin-table th:nth-child(3), .admin-table td:nth-child(3) { width: 15%; } /* Precio */
+.admin-table th:nth-child(4), .admin-table td:nth-child(4) { width: 15%; } /* Categoría */
+.admin-table th:nth-child(5), .admin-table td:nth-child(5) { width: 10%; } /* Stock */
+.admin-table th:nth-child(6), .admin-table td:nth-child(6) { width: 15%; } /* Acciones */
+
+/* Recorte del texto del nombre para mantener la simetría */
+.admin-table td:nth-child(2) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 🌟 CORRECCIÓN CRUCIAL PARA EL TD DE ACCIONES:
+   Mantenemos el td como una celda de tabla y usamos inline-flex para los botones internos */
+.admin-table td.actions {
+  display: table-cell !important; /* Mantiene la celda alineada con la barra gris */
+  white-space: nowrap;
+}
+
+/* Alineamos los botones adentro de la celda sin romper el formato td */
+.admin-table td.actions button {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.btn-edit, .btn-delete {
+  padding: 6px 7px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+  
+}
+
+.btn-edit {
+  background: #3498db;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #2980b9;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .admin-table table {
+    font-size: 14px;
+  }
+  .admin-table th, .admin-table td {
+    padding: 8px;
+  }
+}

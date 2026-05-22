@@ -27,6 +27,16 @@ const ProductCatalog = () => {
 
   if (loading) return <p className="loading">Cargando productos...</p>
   if (error) return <p className="error">Error: {error}</p>
+  
+  const formatearPrecio = (numero) => {
+    if (numero === undefined || numero === null) return '0';
+  
+    // Usa el formateador oficial de Argentina sobre el número real que viene de la BD
+    return Number(numero).toLocaleString('es-AR', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+    });
+  }
 
   return (
     <div className="catalog-container">
@@ -37,7 +47,8 @@ const ProductCatalog = () => {
           <ProductCard
             key={producto.id} 
             nombre={producto.nombre}
-            precio={producto.precio}>
+            precio={formatearPrecio(producto.precio)}
+            imagen={producto.imagen}>
           </ProductCard>
         ))}
       </div>

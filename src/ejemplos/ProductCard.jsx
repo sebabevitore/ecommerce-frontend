@@ -1,12 +1,12 @@
 import React from 'react';
 import './ProductCard.css';
 
-const ProductCard = ({nombre,precio,children,image, freeShipping, isPromo}) => {
+const ProductCard = ({nombre,precio,children,imagen, freeShipping, isPromo}) => {
   return (
     <div className="product-card">
       <div className="product-image-container">
         <img 
-          src={image} 
+          src={imagen} 
           alt={`${nombre}'s product`}
           className="card__image"
         />

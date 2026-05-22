@@ -5,7 +5,7 @@ import './Form.css'
 const API = 'http://localhost:8080'
 
 const Register = () => {
-  const [name, setName] = useState('')
+  const [nombre, setNombre] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
@@ -23,12 +23,25 @@ const Register = () => {
       const res = await fetch(`${API}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ nombre, apellido: '', email, password })
       })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.message || 'Error al registrarse')
-      localStorage.setItem('token', data.token)
-      navigate('/')
+
+      // Primero leemos la respuesta como TEXTO para evitar que rompa el JSON
+      const data = await res.text()
+
+
+      if (!res.ok) {
+        // Si el backend tiró error (ej: EmailException), mostramos ese texto
+       throw new Error(data || 'Error al registrarse')
+      }
+
+      // Si todo salió bien:
+      alert(data) // Va a mostrar el cartel de "Usuario registrado exitosamente"
+    
+      // Como tu backend de registro NO genera token (solo lo hace el login),
+      // mandamos al usuario a la pantalla de login para que inicie sesión.
+      navigate('/login')
+    
     } catch (err) {
       setError(err.message)
     }
@@ -42,8 +55,8 @@ const Register = () => {
         <input
           type="text"
           placeholder="Nombre completo"
-          value={name}
-          onChange={e => setName(e.target.value)}
+          value={nombre}
+          onChange={e => setNombre(e.target.value)}
           required
         />
         <input

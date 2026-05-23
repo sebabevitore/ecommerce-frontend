@@ -1,75 +1,83 @@
 .form-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 60px;
+  align-items: center;
+  min-height: 80vh;
 }
 
 .form {
   background: white;
-  padding: 40px;
+  padding: 3rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1.5rem;
 }
 
 .form h2 {
-  text-align: center;
-  color: #1a1a2e;
-  margin-bottom: 8px;
+  text-align: left;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
 .form input {
-  padding: 12px;
-  border: 1px solid #ddd;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.2s;
+  font-size: 1rem;
+  transition: border-color 0.2s, ring 0.2s;
+  background: #fdfdfd;
 }
 
 .form input:focus {
-  border-color: #e94560;
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .form button {
-  padding: 12px;
-  background: #e94560;
+  padding: 0.875rem;
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: opacity 0.2s;
+  margin-top: 0.5rem;
 }
 
 .form button:hover {
-  background: #d63850;
+  opacity: 0.9;
 }
 
 .form-error {
-  color: #e94560;
-  text-align: center;
-  font-size: 14px;
+  color: #ef4444;
+  background: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .form-link {
-  text-align: center;
-  font-size: 14px;
-  color: #888;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
 }
 
 .form-link a {
-  color: #e94560;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
-}
-
-.form-link a:hover {
-  text-decoration: underline;
 }

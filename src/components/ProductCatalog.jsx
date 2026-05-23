@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react'
 import ProductCard from './ProductCard'
 import "../style/ProductCatalog.css"
-import "../style/CategoryList.css"
+
 import CategoryList from './CategoryList';
 
 const API = 'http://localhost:8080'

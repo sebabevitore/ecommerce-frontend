@@ -73,13 +73,14 @@
 
 @media (max-width: 768px) {
   .product-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en mobile para que no se vean gigantes */
+    gap: 12px; /* Espacio más reducido */
   }
 }
 
 @media (max-width: 480px) {
   .product-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* Seguimos con 2 columnas */
+    gap: 10px;
   }
 }

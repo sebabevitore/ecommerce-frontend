@@ -94,3 +94,33 @@
 .btn-details:hover {
     opacity: 0.9;
 }
+
+/* --- RESPONSIVE / MOBILE --- */
+@media (max-width: 600px) {
+    .product-card {
+        padding: 0.75rem; /* Menos padding interno */
+    }
+
+    .product-title {
+        font-size: 0.9rem; /* Fuente más pequeña */
+        margin: 0.25rem 0;
+    }
+
+    .product-price {
+        font-size: 1rem;
+        margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .btn-details {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        width: 100%;
+    }
+
+    .badge, .badge-promo {
+        top: 8px;
+        left: 8px;
+        padding: 2px 8px;
+        font-size: 0.65rem;
+    }
+}

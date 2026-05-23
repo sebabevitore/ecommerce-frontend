@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import '../components/ProductDetail.css'
+import '../style/ProductDetail.css'
 
 const API = 'http://localhost:8080'
 

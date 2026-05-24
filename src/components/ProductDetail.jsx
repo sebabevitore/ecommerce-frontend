@@ -43,7 +43,7 @@ function ProductDetail() {
       </Link>
       <div className="product-detail">
         <div className="product-image">
-          <img src={product.imagen || `https://via.placeholder.com/400?text=${product.nombre}`} alt={product.nombre} />
+          <img src={product.imagenUrl || `https://via.placeholder.com/400?text=${product.nombre}`} alt={product.nombre} />
         </div>
         <div className="product-description">
           <h1>{product.nombre}</h1>

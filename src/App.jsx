@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
 import ProductDetail from './components/ProductDetail'
+import Carrito from './components/Carrito'
 
 import './App.css'
 
@@ -13,10 +14,14 @@ function App() {
       <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
-          <Link to="/">Inicio</Link>
-          <Link to="/login">Iniciar Sesión</Link>
-          <Link to="/register">Registrarse</Link>
-          <Link to="/admin">Admin</Link>
+          <Link to="/"><i className="fa-solid fa-house" style={{color: 'rgb(26, 26, 26)'}}></i> Inicio</Link>
+          <Link to="/login"><i className="fa-solid fa-circle-user" style={{color: 'rgb(26, 26, 26)'}}></i> Iniciar Sesión</Link>
+          <Link to="/register"><i className="fa-solid fa-users" style={{color: 'rgb(26, 26, 26)'}}></i> Registrarse</Link>
+          <Link to="/admin"><i className="fa-solid fa-key" style={{color: 'rgb(26, 26, 26)'}}></i> Admin</Link>
+          <Link to="/carrito">
+            <i className="fa-solid fa-cart-shopping" style={{color: 'rgb(26, 26, 26)'}}></i> Carrito
+          </Link>
+
         </div>
       </nav>
 
@@ -27,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminProducts />} />
+          <Route path="/carrito" element={<Carrito />} />
         </Routes>
       </main>
 

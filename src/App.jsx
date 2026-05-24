@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom'
+import Home from './components/home'
 import ProductCatalog from './components/ProductCatalog'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -27,8 +28,9 @@ function App() {
 
       <main className="main-content">
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalogo" element={<ProductCatalog />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/" element={<ProductCatalog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminProducts />} />

@@ -29,7 +29,7 @@ function ProductDetail() {
     return (
       <div className="product-detail-container">
         <h1>Producto no encontrado</h1>
-        <Link to="/" className="btn-back">
+        <Link to="/catalogo" className="btn-back">
           Volver a Productos
         </Link>
       </div>
@@ -38,7 +38,7 @@ function ProductDetail() {
 
   return (
     <div className="product-detail-container">
-      <Link to="/" className="btn-back">
+      <Link to="/catalogo" className="btn-back">
         ← Volver a Productos
       </Link>
       <div className="product-detail">

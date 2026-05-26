@@ -24,9 +24,17 @@ const Login = () => {
 
       if (!res.ok) throw new Error(data || 'Credenciales inválidas')
 
-      localStorage.setItem('token', data)
+      localStorage.setItem('jwt_token', data)
+      localStorage.setItem('user_role', 'USER');
 
-      navigate('/')
+      window.location.href = '/';
+      // Al usar window.location.href = '/', obligamos 
+      // al navegador a recargar la página completa. Esto garantiza que:
+      // El Header vuelva a leer el localStorage.
+      // Como ahora el token está guardado como jwt_token, 
+      // el Header lo encontrará y cambiará mágicamente los
+      // botones de "Iniciar Sesión" por los de "Carrito" y "Cerrar Sesión".
+      //antes estaba navigate('/')
 
     } catch (err) {
       setError(err.message)

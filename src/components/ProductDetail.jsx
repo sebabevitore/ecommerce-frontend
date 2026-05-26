@@ -20,7 +20,7 @@ function ProductDetail() {
         console.error(err)
         setLoading(false)
       })
-  }, [id]) 
+  }, [id])
 
 
   if (loading) return <p>Cargando...</p>
@@ -43,7 +43,18 @@ function ProductDetail() {
       </Link>
       <div className="product-detail">
         <div className="product-image">
-          <img src={product.imagen || `https://via.placeholder.com/400?text=${product.nombre}`} alt={product.nombre} />
+          {/* <img src={product.imagen || `https://via.placeholder.com/400?text=${product.nombre}`} alt={product.nombre} /> */}
+          {/* encodeURIComponent: Esto limpia el texto para que la URL sea válida. */}
+          <img
+            src={product.imagen || `https://placehold.co/400?text=${encodeURIComponent(product.nombre)}`}
+            alt={product.nombre}
+            onError={(e) => {
+              e.target.onerror = null;
+              // Usamos una imagen de stock global que sabemos que siempre funciona
+              e.target.src = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400';
+            }}
+          />
+
         </div>
         <div className="product-description">
           <h1>{product.nombre}</h1>

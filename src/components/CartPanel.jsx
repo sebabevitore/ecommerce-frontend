@@ -124,7 +124,7 @@ const Carrito = () => {
     finally { setLoading(false); }
   };
 
-  // NUEVA FUNCIONALIDAD: Eliminar
+  // Eliminar
   const eliminarItem = async (itemId) => {
     const res = await fetch(`${API_URL}/items/${itemId}`, {
       method: 'DELETE',
@@ -133,11 +133,27 @@ const Carrito = () => {
     if (res.ok) fetchCarrito(); // Recargamos para ver cambios
   };
 
-  // NUEVA FUNCIONALIDAD: Checkout
-  const realizarCheckout = async () => {
-    const res = await fetch(`${API_URL}/checkout`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }});
-    if (res.ok) { alert("¡Compra exitosa!"); setCartItems([]); setTotalCarrito(0); }
-  };
+  // Checkout
+const realizarCheckout = async () => {
+  try {
+    const res = await fetch(`${API_URL}/checkout`, { 
+      method: 'POST', 
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (res.ok) {
+      alert("¡Compra exitosa! Stock descontado.");
+      setCartItems([]);
+      setTotalCarrito(0);
+    } else {
+      // validar stock
+      const errorMsg = await res.text();
+      alert("Error en la compra: " + errorMsg); // Ej: "Stock insuficiente para Producto X"
+    }
+  } catch (err) {
+    alert("Error de conexión con el servidor");
+  }
+};
 
   if (loading) return <p>Cargando...</p>;
   if (!token) return (

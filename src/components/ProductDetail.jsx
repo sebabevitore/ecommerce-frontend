@@ -36,6 +36,38 @@ function ProductDetail() {
     )
   }
 
+  const agregarAlCarrito = async () => {
+    const token = localStorage.getItem('jwt_token');
+
+    if (!token) {
+      alert("Debes iniciar sesión para agregar productos al carrito");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API}/api/carrito/items`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ 
+          id_producto: product.id, 
+          cantidad: 1 
+        })
+      });
+
+      if (response.ok) {
+        alert("Producto agregado al carrito con éxito");
+      } else {
+        const errorMsg = await response.text();
+        alert("Error al agregar: " + errorMsg);
+      }
+    } catch (err) {
+      console.error("Error de conexión:", err);
+    }
+  };
+
   return (
     <div className="product-detail-container">
       <Link to="/" className="btn-back">
@@ -60,7 +92,9 @@ function ProductDetail() {
           <h1>{product.nombre}</h1>
           <p className="description">{product.descripcion}</p>
           <p className="price">${product.precio}</p>
-          <button className="btn-add-cart">Agregar al Carrito</button>
+          <button className="btn-add-cart" onClick={agregarAlCarrito}>
+            Agregar al Carrito
+          </button>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
 import ProductDetail from './components/ProductDetail'
+import UserOrders from './components/UserOrders'
 
 import './App.css'
 
@@ -14,6 +15,7 @@ function App() {
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
           <Link to="/">Inicio</Link>
+          <Link to="/mis-pedidos">Mis pedidos</Link>
           <Link to="/login">Iniciar Sesión</Link>
           <Link to="/register">Registrarse</Link>
           <Link to="/admin">Admin</Link>
@@ -27,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminProducts />} />
+          <Route path="/mis-pedidos" element={<UserOrders />} />
         </Routes>
       </main>
 

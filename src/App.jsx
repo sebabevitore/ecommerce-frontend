@@ -5,12 +5,19 @@ import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
 import ProductDetail from './components/ProductDetail'
 import Carrito from './components/Carrito'
+import { FavoriteProvider } from './hooks/context/FavoriteProvider.jsx';
+import FavoritesList from './components/FavoriteList' 
+import CartPage from './hooks/useContext/CartPage.jsx'
 
 import './App.css'
+import { CartProvider } from './hooks/useContext/CartContext.jsx'
+// import ProductList from './ProductList.jsx';
+// import CartSummary from './CartSummary.jsx';
 
 function App() {
   return (
-    <>
+    <CartProvider> 
+    <FavoriteProvider>
       <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
@@ -39,7 +46,8 @@ function App() {
       <footer className="footer">
         <p>API TPO</p>
       </footer>
-    </>
+    </FavoriteProvider>
+  </CartProvider>
   )
 }
 

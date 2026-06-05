@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './AdminProducts.css'
+import '../style/AdminProducts.css';
 
 const API = 'http://localhost:8080'
 

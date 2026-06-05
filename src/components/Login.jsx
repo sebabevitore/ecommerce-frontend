@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import './Form.css'
+import '../style/Form.css';
 
 const API = 'http://localhost:8080'
 

@@ -5,12 +5,15 @@ import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
 import ProductDetail from './components/ProductDetail'
 import UserOrders from './components/UserOrders'
+import Carrito from './components/Carrito'
+import { FavoriteProvider } from './hooks/context/FavoriteProvider.jsx';
+import FavoritesList from './components/FavoriteList' 
 
 import './App.css'
 
 function App() {
   return (
-    <>
+    <FavoriteProvider>
       <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
@@ -36,7 +39,7 @@ function App() {
       <footer className="footer">
         <p>API TPO</p>
       </footer>
-    </>
+    </FavoriteProvider>
   )
 }
 

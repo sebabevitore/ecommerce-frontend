@@ -5,14 +5,14 @@ import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
 import ProductDetail from './components/ProductDetail'
 import Carrito from './components/Carrito'
-import { FavoriteProvider } from './hooks/context/FavoriteProvider.jsx';
 import FavoritesList from './components/FavoriteList' 
+import { BrowserRouter } from 'react-router-dom'
 
 import './App.css'
 
 function App() {
   return (
-    <FavoriteProvider>
+    <BrowserRouter>
       <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
@@ -26,7 +26,6 @@ function App() {
           <Link to="/favorites">
             <i className="fa-solid fa-heart" style={{color: 'rgb(26, 26, 26)'}}></i> Favoritos
           </Link>
-
         </div>
       </nav>
 
@@ -45,7 +44,7 @@ function App() {
       <footer className="footer">
         <p>API TPO</p>
       </footer>
-    </FavoriteProvider>
+    </BrowserRouter>
   )
 }
 

@@ -3,7 +3,9 @@ import React, { useState, useContext, createContext } from 'react';
 
 const FavoriteContext = createContext();
 
-
+// POR SI NECESITAN VER ALGO DE COMO FUNCIONA UN CONTEXT, 
+// PERO LA LOGICA DE FAVORITOS AHORA ESTA EN EL SLICE DE REDUX, 
+// ASI QUE NO SE USA ESTE PROVIDER EN NINGUNA PARTE DE LA APP
 
 export function useFavorite() {
   const context = useContext(FavoriteContext);

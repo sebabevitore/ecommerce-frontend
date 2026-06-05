@@ -1,17 +1,21 @@
 
-import { Link } from 'react-router-dom'
 import '../style/ProductCard.css';
-import {useFavorite} from '../hooks/context/FavoriteProvider.jsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
+import { Link } from 'react-router-dom'
 
 const ProductCard = ({producto, precioFormateado}) => {
-  const { favoriteItems, addToFavorites } = useFavorite()
+  const dispatch = useDispatch()
+  const favoriteItems = useSelector(state => state.favorite.items)
 
   const isFavorite = favoriteItems.some(item => item.id === producto.id)
 
   const handleAddToFavorite = () => {
-    // Si ya es favorito, no hacemos nada por ahora (o podrías implementar remove)
     if (!isFavorite) {
-      addToFavorites(producto)
+      dispatch(addToFavorite(producto))
+    }
+    else {
+      dispatch(removeFavorite(producto.id))
     }
   }
 

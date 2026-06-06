@@ -1,23 +1,20 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ProductCatalog from './components/ProductCatalog'
 import Login from './components/Login'
 import Register from './components/Register'
 import AdminProducts from './components/AdminProducts'
 import ProductDetail from './components/ProductDetail'
 import Carrito from './components/Carrito'
-import { FavoriteProvider } from './hooks/context/FavoriteProvider.jsx';
 import FavoritesList from './components/FavoriteList' 
-import CartPage from './hooks/useContext/CartPage.jsx'
-
+import Checkout from './components/Checkout'
 import './App.css'
-import { CartProvider } from './hooks/useContext/CartContext.jsx'
+
 // import ProductList from './ProductList.jsx';
 // import CartSummary from './CartSummary.jsx';
 
 function App() {
   return (
-    <CartProvider> 
-    <FavoriteProvider>
+    <BrowserRouter>
       <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
@@ -28,7 +25,9 @@ function App() {
           <Link to="/carrito">
             <i className="fa-solid fa-cart-shopping" style={{color: 'rgb(26, 26, 26)'}}></i> Carrito
           </Link>
-
+          <Link to="/favorites">
+            <i className="fa-solid fa-heart" style={{color: 'rgb(26, 26, 26)'}}></i> Favoritos
+          </Link>
         </div>
       </nav>
 
@@ -40,14 +39,15 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminProducts />} />
           <Route path="/carrito" element={<Carrito />} />
+          <Route path="/favorites" element={<FavoritesList />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
 
       <footer className="footer">
         <p>API TPO</p>
       </footer>
-    </FavoriteProvider>
-  </CartProvider>
+    </BrowserRouter>
   )
 }
 

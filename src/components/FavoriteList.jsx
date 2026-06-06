@@ -1,10 +1,13 @@
 // src/components/FavoritesList.jsx
-import { useFavorite } from '../hooks/context/FavoriteProvider'
 import ProductCard from './ProductCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
 import "../style/ProductCatalog.css" // Reutilizamos estilos de la grilla
 
+
 const FavoritesList = () => {
-  const { favoriteItems } = useFavorite()
+  const favoriteItems = useSelector(state => state.favorite.items)
+  const dispatch = useDispatch()
 
   // Función para formatear el precio (igual que en Catalog)
   const formatearPrecio = (numero) => {
@@ -16,7 +19,7 @@ const FavoritesList = () => {
 
   return (
     <div className="catalog-container">
-      <h2>Mis Favoritos ❤️</h2>
+      <h2>Mis favoritos</h2>
       <div className="product-grid">
         {favoriteItems.length === 0 ? (
           <p>Aún no tienes productos favoritos.</p>

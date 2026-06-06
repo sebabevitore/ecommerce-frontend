@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import '../style/ProductDetail.css'
-import { useCart } from '../hooks/useContext/CartContext.jsx';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/slices/cartSlice';
 
 const API = 'http://localhost:8080'
 
@@ -9,8 +10,9 @@ function ProductDetail() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
-  const { addToCart } = useCart();
   const [cantidad, setCantidad] = useState(1);
+
+const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(`${API}/api/productos/${id}`)
@@ -38,6 +40,10 @@ function ProductDetail() {
       </div>
     )
   }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ producto: product, cantidad: cantidad }));
+  };
 
   return (
     <div className="product-detail-container">
@@ -76,7 +82,7 @@ function ProductDetail() {
           {/* pasamos la cantidad seleccionada */}
           <button 
             className="btn-add-to-cart" 
-            onClick={() => addToCart(product, cantidad)} 
+            onClick={handleAddToCart} 
             style={{
               backgroundColor: '#2D3277', color: 'white', padding: '1rem',
               border: 'none', borderRadius: '4px', cursor: 'pointer',

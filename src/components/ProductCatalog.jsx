@@ -1,37 +1,41 @@
-import { useState, useEffect} from 'react'
+import { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductos, setCategorias, setLoading, setError } from '../store/slices/productosSlice';
+import { setSelectedCategory } from '../store/slices/productosSlice';
 import ProductCard from './ProductCard'
 import "../style/ProductCatalog.css"
+
 
 import CategoryList from './CategoryList';
 
 const API = 'http://localhost:8080'
 
 const ProductCatalog = () => {
-  const [productos, setProductos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [categorias, setCategorias] = useState([])
-  const [selectedCategory, setSelectedCategory] = useState(null)
+  const dispatch = useDispatch();
+  const { items: productos, categorias, loading, error, selectedCategory } = useSelector(state => state.products);
 
+  const handleCategorySelect = (categoryId) => {
+  dispatch(setSelectedCategory(categoryId));
+};
 
   // Función unificada para traer productos y categorías de forma eficiente
   const fetchProductsAndCategories = async () => {
     try {
-      // 1. Traer Productos
+      dispatch(setLoading(true));
       const resProd = await fetch(`${API}/api/productos`)
       const dataProd = await resProd.json()
-      setProductos(Array.isArray(dataProd) ? dataProd : dataProd.products || [])
+      dispatch(setProductos(Array.isArray(dataProd) ? dataProd : dataProd.products || []))
 
       // 2. Traer Categorías
       const resCat = await fetch(`${API}/api/categorias`)
       if (!resCat.ok) throw new Error('Error al cargar categorías')
       const dataCat = await resCat.json()
-      setCategorias(dataCat)
+      dispatch(setCategorias(dataCat))
 
     } catch (err) {
-      setError(err.message || 'Error al cargar datos')
+      dispatch(setError(err.message || 'Error al cargar datos'))
     } finally {
-      setLoading(false)
+      dispatch(setLoading(false))
     }
   }
     // Un solo useEffect para la carga inicial
@@ -57,7 +61,7 @@ const categoriaEncontrada = selectedCategory
   ? categorias.find(cat => cat.id === selectedCategory) 
   : null;
 
-// 2. Ahora filtramos los productos de forma súper rápida
+// 2. Ahora filtramos los productos
 const productosFiltrados = categoriaEncontrada
   ? productos.filter(producto => {
       return producto.categorias && producto.categorias.includes(categoriaEncontrada.nombre);
@@ -70,7 +74,7 @@ const productosFiltrados = categoriaEncontrada
       <div className="catalog-layout">
         <CategoryList 
           categories={categorias} 
-          onCategorySelect={setSelectedCategory} 
+          onCategorySelect={handleCategorySelect}
           selectedCategory={selectedCategory} 
         />
 
@@ -81,8 +85,7 @@ const productosFiltrados = categoriaEncontrada
               <ProductCard
                 key={producto.id} 
                 producto={producto}
-                precioFormateado={formatearPrecio(producto.precio)}
-                >
+                precioFormateado={formatearPrecio(producto.precio)}>
               </ProductCard>
             ))}
           </div>

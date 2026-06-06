@@ -1,15 +1,27 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
 import React from 'react';
-import { useCart } from '../hooks/useContext/CartContext';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart, updateQuantity, clearCart } from '../store/slices/cartSlice';
 import defaultImage from '../assets/imgXdefault.jpg';
 
-
 const Carrito = () => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.items);
 
-  const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart();
+  // 1. Renombramos las funciones con "handle..."
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
-  // .reduce() es un metodo de js recorre todos los items, multiplica precio * cantidad, y lo va sumando al 'total' (que empieza en 0).
+  const handleUpdateQuantity = (id, cantidad) => {
+    dispatch(updateQuantity({ id: id, cantidad: cantidad })); 
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart()); 
+  };
+
+  // .reduce() recorre todos los items, multiplica precio * cantidad, y lo va sumando al 'total'
   const totalCompra = cartItems.reduce((total, item) => {
     return total + (item.precio * (item.quantity || 1));
   }, 0);
@@ -17,19 +29,11 @@ const Carrito = () => {
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
       <h1>Carrito de Compras</h1>
-      {/* Renderizado condicional con operador lógico AND (&&) */}
-      {/* Si la condición (cartItems.length > 0) es verdadera, se renderiza el elemento <p>. */}
-      {/* Si es falsa, no se renderiza nada. */}
-      {/* true && true -> true */}
-      {/* false && true -> false */}
+      
       {cartItems.length > 0 && (
         <p>Tienes {cartItems.length} productos en el carrito</p>
       )}
 
-      {/* Renderizado condicional con operador ternario */}
-      {/* Si el carrito está vacío (cartItems.length === 0), muestra un mensaje. */}
-      {/* De lo contrario (? significa 'entonces'), muestra la lista de productos (: significa 'si no'). */}
-      {/* func ? true : false */}
       {cartItems.length === 0 ? (
         <p>Tu carrito está vacío</p>
       ) : (
@@ -50,12 +54,7 @@ const Carrito = () => {
                 <img
                   src={item.imagenUrl || item.imagen || defaultImage}
                   alt={item.nombre}
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    objectFit: 'cover',
-                    borderRadius: '4px'
-                  }}
+                  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '4px' }}
                 />
                 <div>
                   <h3 style={{ margin: '0 0 0.5rem 0' }}>{item.nombre}</h3>
@@ -63,7 +62,7 @@ const Carrito = () => {
                   {/* botones para sumar y restar cantidad */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px', margin: '10px 0' }}>
                     <button
-                      onClick={() => updateQuantity(item.id, -1)}
+                      onClick={() => handleUpdateQuantity(item.id, -1)} 
                       style={{ padding: '5px 10px', cursor: 'pointer', borderRadius: '4px', border: '1px solid #ccc' }}
                     >
                       -
@@ -74,7 +73,7 @@ const Carrito = () => {
                     </span>
 
                     <button
-                      onClick={() => updateQuantity(item.id, 1)}
+                      onClick={() => handleUpdateQuantity(item.id, 1)} 
                       style={{ padding: '5px 10px', cursor: 'pointer', borderRadius: '4px', border: '1px solid #ccc' }}
                     >
                       +
@@ -85,15 +84,12 @@ const Carrito = () => {
                     Subtotal: ${(item.precio * (item.quantity || 1)).toLocaleString('es-AR')}
                   </p>
                 </div>
+                
                 <button
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => handleRemoveFromCart(item.id)} 
                   style={{
-                    padding: '0.5rem',
-                    background: 'none',
-                    border: '1px solid #ff4444',
-                    color: '#ff4444',
-                    borderRadius: '4px',
-                    cursor: 'pointer'
+                    padding: '0.5rem', background: 'none', border: '1px solid #ff4444',
+                    color: '#ff4444', borderRadius: '4px', cursor: 'pointer'
                   }}
                 >
                   Eliminar
@@ -103,6 +99,7 @@ const Carrito = () => {
           </div>
         </>
       )}
+      
       <div style={{
         backgroundColor: '#f9f9f9', padding: '2rem', borderRadius: '8px',
         marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end'
@@ -113,7 +110,7 @@ const Carrito = () => {
 
         <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
           <button
-            onClick={clearCart}
+            onClick={handleClearCart} 
             style={{ padding: '0.5rem 1rem', backgroundColor: 'transparent', border: '1px solid #ff4444', color: '#ff4444', borderRadius: '4px', cursor: 'pointer' }}
           >
             Vaciar Carrito
@@ -131,5 +128,3 @@ const Carrito = () => {
 };
 
 export default Carrito;
-
-

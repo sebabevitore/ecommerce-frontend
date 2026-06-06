@@ -95,6 +95,37 @@
     opacity: 0.9;
 }
 
+.btn-favorite {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: #666;
+  z-index: 10;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.1);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.btn-favorite.active {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
 /* --- RESPONSIVE / MOBILE --- */
 @media (max-width: 600px) {
     .product-card {

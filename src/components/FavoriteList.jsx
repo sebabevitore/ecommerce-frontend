@@ -1,4 +1,3 @@
-// src/components/FavoritesList.jsx
 import React, { useEffect } from 'react';
 import ProductCard from './ProductCard'
 import { useDispatch, useSelector } from 'react-redux'

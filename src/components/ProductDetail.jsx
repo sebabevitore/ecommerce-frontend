@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import '../style/ProductDetail.css'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/slices/cartSlice';
 
 const API = 'http://localhost:8080'
 
@@ -8,6 +10,9 @@ function ProductDetail() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [cantidad, setCantidad] = useState(1);
+
+const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(`${API}/api/productos/${id}`)
@@ -36,6 +41,10 @@ function ProductDetail() {
     )
   }
 
+  const handleAddToCart = () => {
+    dispatch(addToCart({ producto: product, cantidad: cantidad }));
+  };
+
   return (
     <div className="product-detail-container">
       <Link to="/" className="btn-back">
@@ -49,7 +58,39 @@ function ProductDetail() {
           <h1>{product.nombre}</h1>
           <p className="description">{product.descripcion}</p>
           <p className="price">${product.precio}</p>
-          <button className="btn-add-cart">Agregar al Carrito</button>
+          
+          {/* NUEVO: Controles de cantidad */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
+            <span style={{ fontWeight: 'bold' }}>Cantidad:</span>
+            <button 
+              onClick={() => setCantidad(c => Math.max(1, c - 1))}
+              style={{ padding: '5px 15px', fontSize: '1.2rem', cursor: 'pointer' }}
+            >
+              -
+            </button>
+            <span style={{ fontSize: '1.2rem', minWidth: '30px', textAlign: 'center' }}>
+              {cantidad}
+            </span>
+            <button 
+              onClick={() => setCantidad(c => c + 1)}
+              style={{ padding: '5px 15px', fontSize: '1.2rem', cursor: 'pointer' }}
+            >
+              +
+            </button>
+          </div>
+          
+          {/* pasamos la cantidad seleccionada */}
+          <button 
+            className="btn-add-to-cart" 
+            onClick={handleAddToCart} 
+            style={{
+              backgroundColor: '#2D3277', color: 'white', padding: '1rem',
+              border: 'none', borderRadius: '4px', cursor: 'pointer',
+              width: '100%', fontSize: '1.1rem', fontWeight: 'bold'
+            }}
+          >
+            Agregar al Carrito
+          </button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ProductCatalog from './components/ProductCatalog'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -7,9 +7,11 @@ import ProductDetail from './components/ProductDetail'
 import UserOrders from './components/UserOrders'
 import Carrito from './components/Carrito'
 import FavoritesList from './components/FavoriteList' 
-import { BrowserRouter } from 'react-router-dom'
-
+import Checkout from './components/Checkout'
 import './App.css'
+
+// import ProductList from './ProductList.jsx';
+// import CartSummary from './CartSummary.jsx';
 
 function App() {
   return (
@@ -42,7 +44,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AdminProducts />} />
-          <Route path="/mis-pedidos" element={<UserOrders />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/favorites" element={<FavoritesList />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
 

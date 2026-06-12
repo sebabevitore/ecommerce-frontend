@@ -1,64 +1,98 @@
-import { useState, useEffect} from 'react'
-import ProductCard from '../ejemplos/ProductCard'
-import './ProductCatalog.css'
-
-const API = 'http://localhost:8080'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductsAsync, setSelectedCategory } from '../store/slices/productosSlice';
+import { fetchCategoriesAsync } from '../store/slices/categoriaSlice';
+import ProductCard from './ProductCard';
+import CategoryList from './CategoryList';
+import "../style/ProductCatalog.css";
 
 const ProductCatalog = () => {
-  const [productos, setProductos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    fetch(`${API}/api/productos`)
-      .then(res => {
-        if (!res.ok) throw new Error('Error al cargar productos')
-        return res.json()
-      })
-      .then(data => {
-        setProductos(Array.isArray(data) ? data : []);
-        setLoading(false)
-      })
-      .catch(err => {
-        setError(err.message)
-        setLoading(false)
-      })
-  }, [])
-
-  if (loading) return <p className="loading">Cargando productos...</p>
-  if (error) return <p className="error">Error: {error}</p>
+  const dispatch = useDispatch();
   
+  const { 
+    items: productos, 
+    loading: prodLoading, 
+    error: prodError, 
+    selectedCategory 
+  } = useSelector(state => state.products);
+
+  const { 
+    items: categorias, 
+    loading: catLoading, 
+    error: catError 
+  } = useSelector(state => state.categories);
+
+  useEffect(() => { 
+    dispatch(fetchProductsAsync());
+    dispatch(fetchCategoriesAsync());
+  }, [dispatch]);
+
+  const handleCategorySelect = (categoryId) => {
+    dispatch(setSelectedCategory(categoryId));
+  };
+
   const formatearPrecio = (numero) => {
     if (numero === undefined || numero === null) return '0';
-  
-    // Usa el formateador oficial de Argentina sobre el número real que viene de la BD
     return Number(numero).toLocaleString('es-AR', {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
     });
+  }
+
+  // Filtrado
+  const categoriaEncontrada = selectedCategory 
+    ? categorias.find(cat => cat.id === selectedCategory || cat.id_categoria === selectedCategory) 
+    : null;
+
+  const productosFiltrados = categoriaEncontrada
+    ? productos.filter(producto => {
+        return producto.categorias && producto.categorias.includes(categoriaEncontrada.nombre);
+      })
+    : productos;
+
+  // Manejo de carga de cualquiera de los dos
+  if (prodLoading || catLoading) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p className="loading">Cargando catálogo...</p>
+      </div>
+    );
+  }
+
+  // Manejo de error de cualquiera de los dos
+  if (prodError || catError) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p className="error" style={{ color: '#ff4444' }}>Error: {prodError || catError}</p>
+      </div>
+    );
   }
 
   return (
     <div className="catalog-container">
       <h2>Catálogo de Productos</h2>
-      {productos.length === 0 && <p>No hay productos disponibles.</p>}
-      <div className="product-grid">
-        {productos.map(producto => (
-          <ProductCard
-            key={producto.id} 
-            nombre={producto.nombre}
-            precio={formatearPrecio(producto.precio)}
-            imagen={producto.imagenUrl}
-            id={producto.id}
-            freeShipping={producto.freeShipping}
-            isPromo={producto.isPromo}>
-          </ProductCard>
-          
-        ))}
-      </div>
+      <div className="catalog-layout">
+        <CategoryList 
+          categories={categorias} 
+          onCategorySelect={handleCategorySelect}
+          selectedCategory={selectedCategory} 
+        />
 
+        <div className="catalog-main">
+          <div className="product-grid">
+            {productosFiltrados.length === 0 && <p>No hay productos disponibles para esta categoría.</p>}
+            {productosFiltrados.map(producto => (
+              <ProductCard
+                key={producto.id} 
+                producto={producto}
+                precioFormateado={formatearPrecio(producto.precio)}>
+              </ProductCard>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
-export default ProductCatalog
+export default ProductCatalog;

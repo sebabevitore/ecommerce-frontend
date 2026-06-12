@@ -1,10 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+
+// createAsyncThunk crear acciones asincrónicas, genera las acciones pending, fulfilled y rejected para manejar el estado de la petición
+export const fetchFavoriteItems = createAsyncThunk(
+  // 'cart/fetchFavoriteItems' es el tipo de acción que se genera automáticamente para identificar esta acción asincrónica en los reducers
+  'cart/fetchFavoriteItems',
+  async () => {
+    const response = await fetch('http://localhost:8080/api/favoritos', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      },
+      credentials: 'include',
+      mode: 'cors'
+    });
+    if (!response.ok) {
+      throw new Error('Error al obtener el carrito');
+    }
+    const data = await response.json();
+    return data;
+  }
+);
 
 const favoriteSlice = createSlice({
     name: 'favorite',
     initialState: {
         items: [],
+        loading: false,
+        error: null
     },
     
 
@@ -26,7 +51,31 @@ const favoriteSlice = createSlice({
         clearFavorites: (state) => {
             state.items = [];
         }
-    }
+    },
+
+  // extraReducers maneja las acciones generadas por createAsyncThunk (fetchCartItems) para actualizar el estado de carga y error al obtener los items del carrito desde la API
+  // reducers acciones externas
+  // builder es un objeto que permite agregar casos para manejar las acciones generadas por createAsyncThunk
+  extraReducers: (builder) => {
+    builder
+    //fetchFavoriteItems genera tres acciones automáticamente: pending (cuando la petición está en curso), 
+    // fulfilled (cuando la petición se completa exitosamente) y rejected (cuando la petición falla)
+      .addCase(fetchFavoriteItems.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      //action en este caso trae el payload con los items del carrito obtenidos desde la API. También se actualiza el estado de carga y error.
+      .addCase(fetchFavoriteItems.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      // action en este caso trae el error generado al intentar obtener los items del carrito desde la API. También se actualiza el estado de carga y error.
+      .addCase(fetchFavoriteItems.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
 });
 
 export const { addToFavorite, removeFavorite, clearFavorites } = favoriteSlice.actions;

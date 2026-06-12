@@ -1,30 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity, clearCart } from '../store/slices/cartSlice';
+import { useSelector, useDispatch, useEffect } from 'react-redux';
+import { 
+  removeCartItemAsync, 
+  updateQuantityAsync, 
+  clearCartAsync, 
+  fetchCartItems 
+} from '../store/slices/cartSlice';
 import defaultImage from '../assets/imgXdefault.jpg';
 
 const Carrito = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart.items);
+  const loading = useSelector(state => state.cart.loading); 
+  const error = useSelector(state => state.cart.error);
 
-  // 1. Renombramos las funciones con "handle..."
   const handleRemoveFromCart = (id) => {
-    dispatch(removeFromCart(id));
+    dispatch(removeCartItemAsync(id));
   };
 
   const handleUpdateQuantity = (id, cantidad) => {
-    dispatch(updateQuantity({ id: id, cantidad: cantidad })); 
+    dispatch(updateQuantityAsync({ id: id, cantidad: cantidad })); 
   };
 
   const handleClearCart = () => {
-    dispatch(clearCart()); 
-  };
-
+    dispatch(clearCartAsync());
   // .reduce() recorre todos los items, multiplica precio * cantidad, y lo va sumando al 'total'
   const totalCompra = cartItems.reduce((total, item) => {
     return total + (item.precio * (item.quantity || 1));
   }, 0);
+
+  useEffect(() => {
+    dispatch(fetchCartItems());
+    // dispatch esta en el array de dependencias para evitar warnings de React, aunque en este caso no es necesario porque dispatch no cambia, pero es una buena práctica incluirlo.
+  }, [dispatch]);
+
+  //const total = calculateTotal();
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
@@ -113,7 +124,7 @@ const Carrito = () => {
             onClick={handleClearCart} 
             style={{ padding: '0.5rem 1rem', backgroundColor: 'transparent', border: '1px solid #ff4444', color: '#ff4444', borderRadius: '4px', cursor: 'pointer' }}
           >
-            Vaciar Carrito
+            Vaciar Carrito  
           </button>
           <Link to="/" style={{ backgroundColor: '#ccc', color: '#333', padding: '0.5rem 1rem', border: 'none', borderRadius: '4px', cursor: 'pointer', textDecoration: 'none' }}>
             Seguir comprando
@@ -126,5 +137,5 @@ const Carrito = () => {
     </div>
   );
 };
-
-export default Carrito;
+}
+export default Carrito; 

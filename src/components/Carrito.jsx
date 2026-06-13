@@ -169,7 +169,7 @@ const Carrito = () => {
             onClick={handleClearCart} 
             style={{ padding: '0.5rem 1rem', backgroundColor: 'transparent', border: '1px solid #ff4444', color: '#ff4444', borderRadius: '4px', cursor: 'pointer' }}
           >
-            Vaciar Carrito
+            Vaciar Carrito  
           </button>
           <Link to="/" style={{ backgroundColor: '#ccc', color: '#333', padding: '0.5rem 1rem', border: 'none', borderRadius: '4px', cursor: 'pointer', textDecoration: 'none' }}>
             Seguir comprando

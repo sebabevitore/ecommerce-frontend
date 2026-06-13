@@ -7,15 +7,18 @@ import ProductDetail from './components/ProductDetail'
 import Carrito from './components/Carrito'
 import FavoritesList from './components/FavoriteList' 
 import Checkout from './components/Checkout'
+import Navbar from './components/Navbar'
 import './App.css'
 
+import { fetchCartItems } from './store/slices/cartSlice';
 // import ProductList from './ProductList.jsx';
 // import CartSummary from './CartSummary.jsx';
 
 function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar">
+    <Navbar></Navbar>
+      {/* <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
           <Link to="/"><i className="fa-solid fa-house" style={{color: 'rgb(26, 26, 26)'}}></i> Inicio</Link>
@@ -29,7 +32,7 @@ function App() {
             <i className="fa-solid fa-heart" style={{color: 'rgb(26, 26, 26)'}}></i> Favoritos
           </Link>
         </div>
-      </nav>
+      </nav> */}
 
       <main className="main-content">
         <Routes>

@@ -42,7 +42,8 @@ const dispatch = useDispatch();
   }
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ producto: product, cantidad: cantidad }));
+    console.log(product)
+    dispatch(addToCart({ productoId: product.id, cantidad: cantidad }));
   };
 
   return (

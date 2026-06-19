@@ -36,7 +36,7 @@ const Register = () => {
           apellido: apellido, 
           email: email, 
           password: password,
-          fecha_nacimiento: fechaNacimiento, // Enviamos con el guion bajo como pide tu BD
+          fechaNacimiento: fechaNacimiento, // Enviamos con el guion bajo como pide tu BD
           sexo: sexo 
         })
       })
@@ -103,9 +103,9 @@ const Register = () => {
           required
         >
           <option value="" disabled>Seleccione sexo</option>
-          <option value="M">Masculino</option>
-          <option value="F">Femenino</option>
-          <option value="X">Otro</option>
+          <option value="MASCULINO">Masculino</option>
+          <option value="FEMENINO">Femenino</option>
+          <option value="OTRO">Otro</option>
         </select>
 
         <input

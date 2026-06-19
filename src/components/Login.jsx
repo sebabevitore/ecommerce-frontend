@@ -1,86 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, clearError } from '../store/slices/authSlice';
-import '../style/Form.css'; 
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import '../style/Form.css';
+
+const API = 'http://localhost:8080'
 
 const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  
-  // Obtenemos el estado desde tu nuevo authSlice
-  const { isAuthenticated, isLoading, error } = useSelector(state => state.auth);
-  
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
-  });
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
-  // Limpiar posibles errores si el usuario cambia de página y vuelve
-  useEffect(() => {
-    dispatch(clearError());
-  }, [dispatch]);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    try {
+      const res = await fetch(`${API}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
 
-  const handleChange = (e) => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value
-    });
-  };
+      const data = await res.text()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser(credentials));
-  };
+      if (!res.ok) throw new Error(data || 'Credenciales inválidas')
 
-  // Redirigir al inicio cuando isAuthenticated cambie a true
-  useEffect(() => {
-    if (isAuthenticated) {
-      setCredentials({ email: '', password: '' });
-      navigate('/');
+      localStorage.setItem('token', data)
+
+      navigate('/')
+
+    } catch (err) {
+      setError(err.message)
     }
-  }, [isAuthenticated, navigate]);
+  }
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit} className="form">
         <h2>Iniciar Sesión</h2>
-        
-        {/* Mostramos el error que viene de Redux */}
         {error && <p className="form-error">{error}</p>}
-        
         <input
           type="email"
-          id="email"
-          name="email"
           placeholder="Email"
-          value={credentials.email}
-          onChange={handleChange}
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           required
-          disabled={isLoading}
         />
-        
         <input
           type="password"
-          id="password"
-          name="password"
           placeholder="Contraseña"
-          value={credentials.password}
-          onChange={handleChange}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           required
-          disabled={isLoading}
         />
-        
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Ingresando...' : 'Ingresar'}
-        </button>
-        
+        <button type="submit">Ingresar</button>
         <p className="form-link">
           ¿No tenés cuenta? <Link to="/register">Registrate</Link>
         </p>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

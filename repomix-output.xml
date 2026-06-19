@@ -1,0 +1,4665 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+assets/
+  imgXdefault.jpg
+  react.svg
+public/
+  favicon.svg
+  icons.svg
+src/
+  assets/
+    imgXdefault.jpg
+  components/
+    AdminProducts.jsx
+    Carrito.jsx
+    CategoryList.jsx
+    Checkout.jsx
+    FavoriteList.jsx
+    Login.jsx
+    LoginForm.jsx
+    LoginJWTContext.jsx
+    Navbar.jsx
+    ProductCard.jsx
+    ProductCatalog.jsx
+    ProductDetail.jsx
+    ProductList.jsx
+    ProductListAxios.jsx
+    ProtectedRoute.jsx
+    Register.jsx
+  ejemplos/
+    react-hook-form-login/
+      LoginForm.css
+      LoginForm.jsx
+  features/
+    auth/
+      context/
+        AuthContext.jsx
+      services/
+        authService.js
+  formularios/
+    FormularioPago.jsx
+    FormularioPagoReactForm.jsx
+    FormularioValidado.jsx
+  hooks/
+    context/
+      FavoriteProvider.jsx
+    useContext/
+      CartContext.jsx
+      CartPage.jsx
+      CartSummary.jsx
+      ProductList.jsx
+    CartContextExample.jsx
+    EcommerceExamples.jsx
+    FollowButton.jsx
+    ProductFilter.jsx
+    UseEffectExample.jsx
+    UseStateExample.jsx
+  store/
+    slices/
+      cartSlice.js
+      categoriaSlice.js
+      favoriteSlice.js
+      productosSlice.js
+    index.js
+  style/
+    AdminProducts.css
+    CartRedux.styles.js
+    CategoryList.css
+    Form.css
+    ProductCard.css
+    ProductCatalog.css
+    ProductDetail.css
+  App.css
+  App.jsx
+  index.css
+  main.jsx
+.gitignore
+eslint.config.js
+index.html
+package.json
+README.md
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="public/favicon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" fill="none" viewBox="0 0 48 46"><path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z" style="fill:#863bff;fill:color(display-p3 .5252 .23 1);fill-opacity:1"/><mask id="a" width="48" height="46" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z" style="fill:#000;fill-opacity:1"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#ede6ff" rx="5.508" ry="14.704" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -4.47 31.516)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#ede6ff" rx="10.399" ry="29.851" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -39.328 7.883)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#7e14ff" rx="5.508" ry="30.487" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -25.913 -14.639)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -32.644 -3.334)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -34.34 30.47)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#ede6ff" rx="14.072" ry="22.078" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="rotate(93.35 24.506 48.493)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx=".387" cy="8.972" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(39.51 .387 8.972)"/></g><g filter="url(#k)"><ellipse cx="47.523" cy="-6.092" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 47.523 -6.092)"/></g><g filter="url(#l)"><ellipse cx="41.412" cy="6.333" fill="#47bfff" rx="5.971" ry="9.665" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 41.412 6.333)"/></g><g filter="url(#m)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#n)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#o)"><ellipse cx="35.651" cy="29.907" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 35.651 29.907)"/></g><g filter="url(#p)"><ellipse cx="38.418" cy="32.4" fill="#47bfff" rx="5.971" ry="15.297" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 38.418 32.4)"/></g></g><defs><filter id="b" width="60.045" height="41.654" x="-19.77" y="16.149" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-54.613" y="-7.533" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-49.64" y="2.03" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-45.045" y="20.029" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-43.513" y="21.178" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="15.756" y="-17.901" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-27.636" y="-22.853" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="20.116" y="-38.415" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="24.641" y="-11.323" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="8.244" y="-2.416" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="18.713" y="10.588" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="public/icons.svg">
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="bluesky-icon" viewBox="0 0 16 17">
+    <g clip-path="url(#bluesky-clip)"><path fill="#08060d" d="M7.75 7.735c-.693-1.348-2.58-3.86-4.334-5.097-1.68-1.187-2.32-.981-2.74-.79C.188 2.065.1 2.812.1 3.251s.241 3.602.398 4.13c.52 1.744 2.367 2.333 4.07 2.145-2.495.37-4.71 1.278-1.805 4.512 3.196 3.309 4.38-.71 4.987-2.746.608 2.036 1.307 5.91 4.93 2.746 2.72-2.746.747-4.143-1.747-4.512 1.702.189 3.55-.4 4.07-2.145.156-.528.397-3.691.397-4.13s-.088-1.186-.575-1.406c-.42-.19-1.06-.395-2.741.79-1.755 1.24-3.64 3.752-4.334 5.099"/></g>
+    <defs><clipPath id="bluesky-clip"><path fill="#fff" d="M.1.85h15.3v15.3H.1z"/></clipPath></defs>
+  </symbol>
+  <symbol id="discord-icon" viewBox="0 0 20 19">
+    <path fill="#08060d" d="M16.224 3.768a14.5 14.5 0 0 0-3.67-1.153c-.158.286-.343.67-.47.976a13.5 13.5 0 0 0-4.067 0c-.128-.306-.317-.69-.476-.976A14.4 14.4 0 0 0 3.868 3.77C1.546 7.28.916 10.703 1.231 14.077a14.7 14.7 0 0 0 4.5 2.306q.545-.748.965-1.587a9.5 9.5 0 0 1-1.518-.74q.191-.14.372-.293c2.927 1.369 6.107 1.369 8.999 0q.183.152.372.294-.723.437-1.52.74.418.838.963 1.588a14.6 14.6 0 0 0 4.504-2.308c.37-3.911-.63-7.302-2.644-10.309m-9.13 8.234c-.878 0-1.599-.82-1.599-1.82 0-.998.705-1.82 1.6-1.82.894 0 1.614.82 1.599 1.82.001 1-.705 1.82-1.6 1.82m5.91 0c-.878 0-1.599-.82-1.599-1.82 0-.998.705-1.82 1.6-1.82.893 0 1.614.82 1.599 1.82 0 1-.706 1.82-1.6 1.82"/>
+  </symbol>
+  <symbol id="documentation-icon" viewBox="0 0 21 20">
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="m15.5 13.333 1.533 1.322c.645.555.967.833.967 1.178s-.322.623-.967 1.179L15.5 18.333m-3.333-5-1.534 1.322c-.644.555-.966.833-.966 1.178s.322.623.966 1.179l1.534 1.321"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M17.167 10.836v-4.32c0-1.41 0-2.117-.224-2.68-.359-.906-1.118-1.621-2.08-1.96-.599-.21-1.349-.21-2.848-.21-2.623 0-3.935 0-4.983.369-1.684.591-3.013 1.842-3.641 3.428C3 6.449 3 7.684 3 10.154v2.122c0 2.558 0 3.838.706 4.726q.306.383.713.671c.76.536 1.79.64 3.581.66"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M3 10a2.78 2.78 0 0 1 2.778-2.778c.555 0 1.209.097 1.748-.047.48-.129.854-.503.982-.982.145-.54.048-1.194.048-1.749a2.78 2.78 0 0 1 2.777-2.777"/>
+  </symbol>
+  <symbol id="github-icon" viewBox="0 0 19 19">
+    <path fill="#08060d" fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/>
+  </symbol>
+  <symbol id="social-icon" viewBox="0 0 20 20">
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M12.5 6.667a4.167 4.167 0 1 0-8.334 0 4.167 4.167 0 0 0 8.334 0"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M2.5 16.667a5.833 5.833 0 0 1 8.75-5.053m3.837.474.513 1.035c.07.144.257.282.414.309l.93.155c.596.1.736.536.307.965l-.723.73a.64.64 0 0 0-.152.531l.207.903c.164.715-.213.991-.84.618l-.872-.52a.63.63 0 0 0-.577 0l-.872.52c-.624.373-1.003.094-.84-.618l.207-.903a.64.64 0 0 0-.152-.532l-.723-.729c-.426-.43-.289-.864.306-.964l.93-.156a.64.64 0 0 0 .412-.31l.513-1.034c.28-.562.735-.562 1.012 0"/>
+  </symbol>
+  <symbol id="x-icon" viewBox="0 0 19 19">
+    <path fill="#08060d" fill-rule="evenodd" d="M1.893 1.98c.052.072 1.245 1.769 2.653 3.77l2.892 4.114c.183.261.333.48.333.486s-.068.089-.152.183l-.522.593-.765.867-3.597 4.087c-.375.426-.734.834-.798.905a1 1 0 0 0-.118.148c0 .01.236.017.664.017h.663l.729-.83c.4-.457.796-.906.879-.999a692 692 0 0 0 1.794-2.038c.034-.037.301-.34.594-.675l.551-.624.345-.392a7 7 0 0 1 .34-.374c.006 0 .93 1.306 2.052 2.903l2.084 2.965.045.063h2.275c1.87 0 2.273-.003 2.266-.021-.008-.02-1.098-1.572-3.894-5.547-2.013-2.862-2.28-3.246-2.273-3.266.008-.019.282-.332 2.085-2.38l2-2.274 1.567-1.782c.022-.028-.016-.03-.65-.03h-.674l-.3.342a871 871 0 0 1-1.782 2.025c-.067.075-.405.458-.75.852a100 100 0 0 1-.803.91c-.148.172-.299.344-.99 1.127-.304.343-.32.358-.345.327-.015-.019-.904-1.282-1.976-2.808L6.365 1.85H1.8zm1.782.91 8.078 11.294c.772 1.08 1.413 1.973 1.425 1.984.016.017.241.02 1.05.017l1.03-.004-2.694-3.766L7.796 5.75 5.722 2.852l-1.039-.004-1.039-.004z" clip-rule="evenodd"/>
+  </symbol>
+</svg>
+</file>
+
+<file path="src/components/CategoryList.jsx">
+import '../style/CategoryList.css';
+
+
+const CategoryList = ({ categories, onCategorySelect, selectedCategory }) => {
+
+    return (
+        <aside className="sidebar">
+            <h3>Categorías</h3>
+            <ul className="category-list">
+                <li 
+                    className={`category-all ${!selectedCategory ? 'active' : ''}`} 
+                    onClick={() => onCategorySelect(null)}
+                >
+                    Todos los productos
+                </li>
+
+                {categories.map(cat => (
+                <li 
+                    key={cat.id} 
+                    className={selectedCategory === cat.id ? 'active' : ''}
+                    onClick={() => onCategorySelect(cat.id)}
+                >
+                    {cat.nombre}
+                </li>
+                ))}
+
+            </ul>
+        </aside>
+
+    )
+
+
+}
+
+export default CategoryList;
+</file>
+
+<file path="src/components/Checkout.jsx">
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearCart } from '../store/slices/cartSlice';
+
+//FALTA VALIDAR STOCK Y CREAR PEDIDO EN BD
+
+const Checkout = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  // Traemos los items del carrito desde Redux
+  const cartItems = useSelector(state => state.cart.items);
+
+  // total a pagar
+  const totalCompra = cartItems.reduce((total, item) => {
+    return total + (item.precio * (item.quantity || 1));
+  }, 0);
+
+  const handleConfirmarCompra = () => {
+    // FALTA DESCONTAR STOCK Y CREAR PEDIDO EN BD
+
+    alert('¡Compra confirmada con éxito! 🎉');
+    
+    // Vaciamos el carrito
+    dispatch(clearCart());
+    
+    // Redirigimos al usuario a la página principal
+    navigate('/');
+  };
+
+  //si carrito vacio
+  if (cartItems.length === 0) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <h2>No tienes productos para comprar</h2>
+        <Link to="/">Volver a la tienda</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+      <h1 style={{ textAlign: 'center', color: '#2D3277', marginBottom: '2rem' }}>
+        Resumen de tu Compra
+      </h1>
+      
+      {/* TARJETA DE RESUMEN */}
+      <div style={{ backgroundColor: '#f9f9f9', padding: '2rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+        
+        {/* LISTA DE PRODUCTOS */}
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          {cartItems.map(item => (
+            <li 
+              key={item.id} 
+              style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', borderBottom: '1px solid #ddd', paddingBottom: '0.5rem' }}
+            >
+              <span>
+                <strong style={{ color: '#2D3277' }}>{item.quantity}x</strong> {item.nombre}
+              </span>
+              <span style={{ fontWeight: 'bold' }}>
+                ${(item.precio * item.quantity).toLocaleString('es-AR')}
+              </span>
+            </li>
+          ))}
+        </ul>
+        
+        {/* TOTAL */}
+        <h2 style={{ textAlign: 'right', marginTop: '2rem', color: '#2D3277', borderTop: '2px solid #ccc', paddingTop: '1rem' }}>
+          Total a pagar: ${totalCompra.toLocaleString('es-AR')}
+        </h2>
+
+        {/* BOTONERA */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
+          <Link 
+            to="/carrito" 
+            style={{
+              padding: '0.8rem 1.5rem',
+              textDecoration: 'none',
+              color: '#333',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              fontWeight: 'bold'
+            }}
+          >
+            ← Volver al carrito
+          </Link>
+          
+          <button
+            onClick={handleConfirmarCompra}
+            style={{
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              padding: '0.8rem 2rem',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '1.1rem'
+            }}
+          >
+            Confirmar Compra
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default Checkout;
+</file>
+
+<file path="src/components/LoginForm.jsx">
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = async (event) => {
+    event.preventDefault(); // Evita la recarga de la página por defecto
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post('/api/login', {
+        username: username,
+        password: password,
+      });
+
+      // Si la autenticación es exitosa, el servidor podría devolver un token o información del usuario
+      console.log('Inicio de sesión exitoso:', response.data);
+      setLoggedIn(true);
+      // Aquí podrías guardar el token en el almacenamiento local, actualizar el estado global, etc.
+
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error.response ? error.response.data : error.message);
+      setError(error.response?.data?.message || 'Error al iniciar sesión. Por favor, inténtalo de nuevo.');
+      setLoggedIn(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loggedIn) {
+    return <p>¡Has iniciado sesión correctamente!</p>;
+  }
+
+  return (
+    <form onSubmit={handleLogin}>
+      <h2>Iniciar Sesión</h2>
+      <div>
+        <label htmlFor="username">Usuario:</label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit" disabled={loading}>
+        {loading ? 'Iniciando Sesión...' : 'Iniciar Sesión'}
+      </button>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </form>
+  );
+};
+
+export default LoginForm;
+</file>
+
+<file path="src/components/LoginJWTContext.jsx">
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../features/auth/context/AuthContext';
+
+const LoginJWTContext = () => {
+  const navigate = useNavigate();
+  const { login, loading, error } = useAuth();
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await login(credentials);
+    if (success) {
+      navigate('/checkout');
+    }
+  };
+
+  return (
+    <div style={{ 
+      padding: '2rem',
+      maxWidth: '400px',
+      margin: '0 auto',
+      marginTop: '2rem'
+    }}>
+      <h1 style={{ marginBottom: '1.5rem' }}>Iniciar Sesión</h1>
+      {error && (
+        <div style={{
+          padding: '0.75rem',
+          marginBottom: '1rem',
+          backgroundColor: '#fee2e2',
+          color: '#dc2626',
+          borderRadius: '4px'
+        }}>
+          {error}
+        </div>
+      )}
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div>
+          <label 
+            htmlFor="email" 
+            style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem',
+              fontWeight: '500'
+            }}
+          >
+            Correo electrónico
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              borderRadius: '4px',
+              border: '1px solid #ccc'
+            }}
+          />
+        </div>
+        
+        <div>
+          <label 
+            htmlFor="password"
+            style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem',
+              fontWeight: '500'
+            }}
+          >
+            Contraseña
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+            required
+            disabled={loading}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              borderRadius: '4px',
+              border: '1px solid #ccc'
+            }}
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            backgroundColor: '#2D3277',
+            color: 'white',
+            padding: '0.75rem 1rem',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: loading ? 'not-allowed' : 'pointer',
+            fontSize: '1rem',
+            marginTop: '1rem',
+            opacity: loading ? 0.7 : 1
+          }}
+        >
+          {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginJWTContext;
+</file>
+
+<file path="src/components/Navbar.jsx">
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
+import { fetchCartItems, clearCart } from '../store/slices/cartSlice';
+//import './Navbarr.css';
+
+const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  
+  const [token, setToken] = useState(localStorage.getItem('token')); 
+// Cada vez que cambies de ruta o se recargue la página, el Navbar verifica la sesión
+  useEffect(() => {
+    const tokenActual = localStorage.getItem('token');
+    setToken(tokenActual); 
+
+    // 💡 SI EL USUARIO ESTÁ LOGUEADO: Traemos su carrito del backend de forma inmediata
+    if (tokenActual) {
+      dispatch(fetchCartItems());
+    }
+  }, [location, dispatch]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_role');
+    setToken(null); 
+    
+    // 💡 LIMPIEZA: Borramos el carrito de la memoria de Redux para que no quede el del usuario anterior
+    dispatch(clearCart()); 
+    
+    navigate('/login'); 
+  };
+
+  return (
+    <nav className="navbar">
+      <Link to="/" className="nav-brand">E-commerce-UADE</Link>
+      <div className="nav-links">
+        
+        {/* INICIO: Siempre visible */}
+        <Link to="/">
+          <i className="fa-solid fa-house" style={{ color: 'rgb(26, 26, 26)' }}></i> Inicio
+        </Link>
+        
+        {/* RENDERIZADO CONDICIONAL */}
+        {token ? (
+          <>
+            {/* Vistas protegidas para usuarios logueados */}
+            <Link to="/admin">
+              <i className="fa-solid fa-key" style={{ color: 'rgb(26, 26, 26)' }}></i> Admin
+            </Link>
+            
+            <Link to="/carrito">
+              <i className="fa-solid fa-cart-shopping" style={{ color: 'rgb(26, 26, 26)' }}></i> Carrito
+            </Link>
+            
+            <Link to="/favorites">
+              <i className="fa-solid fa-heart" style={{ color: 'rgb(26, 26, 26)' }}></i> Favoritos
+            </Link>
+            
+            <button onClick={handleLogout} className="logout-btn" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+              <i className="fa-solid fa-arrow-right-from-bracket" style={{ color: 'rgb(26, 26, 26)', marginRight: '5px' }}></i> 
+              Cerrar Sesión
+            </button>
+          </>
+        ) : (
+          <>
+            {/* Vistas para visitas o usuarios no logueados */}
+            <Link to="/login">
+              <i className="fa-solid fa-circle-user" style={{ color: 'rgb(26, 26, 26)' }}></i> Iniciar Sesión
+            </Link>
+            
+            <Link to="/register">
+              <i className="fa-solid fa-users" style={{ color: 'rgb(26, 26, 26)' }}></i> Registrarse
+            </Link>
+          </>
+        )}
+
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
+</file>
+
+<file path="src/components/ProductListAxios.jsx">
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import defaultImage from '../assets/imgXdefault.jpg';
+
+// Configuración del interceptor
+axios.interceptors.request.use(
+  (config) => {
+    // para que funcione previamente debemos guardar el token en el localStorage al iniciar sesión
+    // Por ejemplo:  localStorage.setItem('authToken', token);    
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// agregar encabezados comunes
+axios.interceptors.request.use(
+    (config) => {
+      config.headers['Content-Type'] = 'application/json';
+      config.headers['Accept-Language'] = localStorage.getItem('language') || 'es';
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+
+// manejo errores
+import axios from 'axios';
+// import { logoutUser } from './auth'; // Supongamos que tienes una función para cerrar sesión
+// import { mostrarMensajeError } from './ui'; // Supongamos que tienes una función para mostrar errores
+
+axios.interceptors.response.use(
+  (response) => {
+    // Devolver la respuesta sin modificaciones si es exitosa
+    return response;
+  },
+  (error) => {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      // logoutUser();
+      // mostrarMensajeError('Tu sesión ha expirado. Por favor, inicia sesión de nuevo.');
+      console.error('Error de autenticación:', error.response.data);
+      // Puedes también intentar refrescar el token aquí si implementaste esa lógica
+    }
+    return Promise.reject(error);
+  }
+);  
+
+const ProductListAxios = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/productos');
+
+        setProducts(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message || 'Error al cargar los productos');
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <div>Cargando productos...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <h1>Lista de Productos (Axios)</h1>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem', padding: '1rem' }}>
+        {products.map(product => (
+          <Link 
+            to={`/products/${product.id}`} 
+            key={product.id}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <div style={{ 
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              padding: '1rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+              transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+              ':hover': {
+                transform: 'translateY(-5px)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }
+            }}>
+              <img 
+                src={product.imagen || defaultImage}
+                alt={product.nombre}
+                style={{ 
+                  width: '100%',
+                  height: '200px',
+                  objectFit: 'cover',
+                  borderRadius: '4px'
+                }}
+              />
+              <h3 style={{ margin: '0.5rem 0' }}>{product.nombre}</h3>
+              <p style={{ color: '#2D3277', fontSize: '1.25rem', fontWeight: 'bold', margin: '0' }}>
+                ${product.precio.toLocaleString('es-AR')}
+              </p>
+              <p style={{ color: '#666', margin: '0' }}>{product.descripcion}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ProductListAxios;
+</file>
+
+<file path="src/components/ProtectedRoute.jsx">
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../features/auth/context/AuthContext';
+
+const ProtectedRoute = ({ children }) => {
+  //traigo del contexto (o información global) los datos del usuario, si está autenticado, sus datos, etc.
+  // const { isAuthenticated, loading } = useAuth();
+
+  // if (loading) {
+  //   return <div>Cargando...</div>;
+  // }
+
+  //hardcodeado provisoriamente, luego mediante jwt en java veremos si están logueado
+  //para ver un ejemplo AuthContext, 
+  const isAuthenticated = true;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+};
+
+export default ProtectedRoute;
+</file>
+
+<file path="src/ejemplos/react-hook-form-login/LoginForm.css">
+.form-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #e53e3e; /* Rojo para errores */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #2D3277; /* Azul */
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #4a51a2;
+}
+</file>
+
+<file path="src/ejemplos/react-hook-form-login/LoginForm.jsx">
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import './LoginForm.css';
+
+// --- Explicación: Componentes Controlados vs. No Controlados ---
+// React tradicionalmente usa "componentes controlados", donde el estado de React
+// es la única fuente de verdad para los inputs del formulario. Cada cambio en un
+// input actualiza el estado con useState.
+//
+// React Hook Form, por defecto, usa "componentes no controlados". Esto significa
+// que el DOM maneja el estado del input directamente (como en HTML normal). React Hook Form
+// lee el valor solo cuando es necesario (al validar o enviar). Esto mejora el rendimiento
+// al evitar re-renders en cada pulsación de tecla.
+
+const LoginForm = () => {
+  // --- Explicación: React Hook Form ---
+  // `useForm` es el hook principal de la librería. Nos proporciona métodos y estado
+  // para manejar el formulario de manera eficiente.
+  const {
+    register, // `register` nos permite "registrar" un input en React Hook Form.
+              // Lo vincula para validación y seguimiento de su valor.
+    handleSubmit, // `handleSubmit` es una función que envuelve nuestro propio manejador de envío.
+                  // Se encarga de ejecutar primero la validación del formulario.
+                  // Si la validación es exitosa, llama a nuestra función `onSubmit` con los datos del formulario.
+    formState: { errors }, // `formState` contiene información sobre el estado del formulario.
+                         // `errors` es un objeto que contendrá los errores de validación de cada campo.
+  } = useForm();
+
+  // Esta función se ejecutará solo si el formulario es válido.
+  const onSubmit = (data) => {
+    console.log('Datos del formulario enviados:', data);
+    // Aquí iría la lógica para enviar los datos a un servidor.
+    alert(`Login exitoso para el usuario: ${data.email}`);
+  };
+
+  return (
+    <div className="form-container">
+      <h2>Login con React Hook Form</h2>
+      {/* `handleSubmit` previene el comportamiento por defecto del formulario y ejecuta la validación */}
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            // --- Explicación: Validación de Datos ---
+            // El hook `register` recibe un segundo argumento con las reglas de validación.
+            {...register('email', {
+              required: 'El email es obligatorio', // Regla: el campo no puede estar vacío.
+              pattern: { // Regla: el valor debe coincidir con una expresión regular.
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: 'El formato del email no es válido', // Mensaje de error si el patrón no coincide.
+              },
+            })}
+          />
+          {/* --- Explicación: Manejo de Errores y Feedback ---
+              // El objeto `errors` contiene una entrada por cada campo que no pasó la validación.
+              // Aquí comprobamos si existe `errors.email`. Si es así, mostramos el mensaje de error
+              // que definimos en las reglas de validación. Esto da feedback inmediato al usuario. */}
+          {errors.email && <p className="error-message">{errors.email.message}</p>}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">Contraseña</label>
+          <input
+            id="password"
+            type="password"
+            {...register('password', {
+              required: 'La contraseña es obligatoria',
+              minLength: {
+                value: 6, // Regla: la contraseña debe tener al menos 6 caracteres.
+                message: 'La contraseña debe tener al menos 6 caracteres',
+              },
+            })}
+          />
+          {errors.password && <p className="error-message">{errors.password.message}</p>}
+        </div>
+
+        <button type="submit" className="submit-button">Iniciar Sesión</button>
+      </form>
+    </div>
+  );
+};
+
+export default LoginForm;
+</file>
+
+<file path="src/features/auth/context/AuthContext.jsx">
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { authService } from '../services/authService';
+
+const AuthContext = createContext(null);
+
+export const AuthProvider = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true); // Start with loading true
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      authService.getCurrentUser(storedToken)
+        .then(userData => {
+          if (userData) {
+            setUser(userData);
+            setIsAuthenticated(true);
+          }
+        })
+        .catch(err => {
+          // Handle error, maybe token is invalid
+          localStorage.removeItem('token');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  const login = async (credentials) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await authService.login(credentials);
+      if (data.token) {
+        setToken(data.token);
+        localStorage.setItem('token', data.token);
+        setIsAuthenticated(true);
+        setUser(data.user || null);
+        return true;
+      }
+      return false;
+    } catch (err) {
+      setError(err.message || 'Error al iniciar sesión');
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider 
+      value={{ 
+        isAuthenticated, 
+        user, 
+        token,
+        loading, 
+        error, 
+        login, 
+        logout 
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth debe ser usado dentro de un AuthProvider');
+  }
+  return context;
+};
+</file>
+
+<file path="src/features/auth/services/authService.js">
+// No necesitamos una URL de API para esta simulación.
+
+export const authService = {
+  /**
+   * Simula una función de login.
+   * @param {object} credentials - Objeto con email y password.
+   * @returns {Promise<object>} - Promesa que resuelve con el usuario y un token falso si es exitoso.
+   * @throws {Error} - Lanza un error si las credenciales son incorrectas.
+   */
+  login: async (credentials) => {
+    console.log('Simulando login con:', credentials);
+
+    // Simulamos una pequeña demora de red para que parezca más real.
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // --- Lógica de la simulación ---
+    // Comprobamos las credenciales contra valores fijos.
+    // Usuario: user@example.com
+    // Contraseña: password
+    if (credentials.email === 'user@example.com' && credentials.password === 'password') {
+      // Si las credenciales son correctas, devolvemos un usuario y un token falsos.
+      const fakeUser = {
+        id: 1,
+        nombre: 'Usuario de Prueba',
+        email: 'user@example.com',
+      };
+      const fakeToken = 'fake-jwt-token-for-simulation-12345';
+      
+      console.log('Login simulado ¡exitoso!');
+      return { user: fakeUser, token: fakeToken };
+    } else {
+      // Si las credenciales son incorrectas, lanzamos un error, como haría un servidor real.
+      console.log('Login simulado ¡fallido!');
+      throw new Error('Usuario o contraseña incorrectos.');
+    }
+  },
+
+  /**
+   * Simula la obtención del usuario actual a partir de un token.
+   */
+  getCurrentUser: async (token) => {
+    // Para esta simulación, si el token es el que generamos, devolvemos el usuario.
+    if (token === 'fake-jwt-token-for-simulation-12345') {
+      return {
+        id: 1,
+        nombre: 'Usuario de Prueba',
+        email: 'user@example.com',
+      };
+    }
+    // Si el token no es válido (o no hay), no devolveemos nada.
+    return null;
+  }
+};
+</file>
+
+<file path="src/formularios/FormularioPago.jsx">
+import React, { useState } from 'react';
+
+// formulario validado, valida si la contraseña es vacío y tienen el formato correcto
+function FormularioPago() {
+  const [email, setEmail] = useState('');
+  const [errorEmail, setErrorEmail] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Expresión regular para validar el formato de un email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleEmailChange = (e) => {
+    const nuevoEmail = e.target.value;
+    setEmail(nuevoEmail);
+
+    // Lógica de validación
+    if (nuevoEmail.trim() === '') {
+      setErrorEmail('El correo electrónico es obligatorio.');
+      setIsFormValid(false);
+    } else if (!emailRegex.test(nuevoEmail)) {
+      setErrorEmail('Por favor, ingresa un correo electrónico válido.');
+      setIsFormValid(false);
+    } else {
+      setErrorEmail('');
+      setIsFormValid(true);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isFormValid) {
+      alert(`Compra completada. Se enviará una confirmación a: ${email}`);
+    } else {
+      alert('Por favor, corrige los errores del formulario para continuar.');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Datos de Facturación</h2>
+      <div>
+        <label>
+          Correo Electrónico:
+          <input
+            type="text"
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </label>
+        {errorEmail && <p style={{ color: 'red' }}>{errorEmail}</p>}
+      </div>
+      <button type="submit" disabled={!isFormValid}>
+        Comprar
+      </button>
+    </form>
+  );
+}
+
+export default FormularioPago;
+</file>
+
+<file path="src/formularios/FormularioPagoReactForm.jsx">
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
+// Tipo de datos del formulario (opcional pero recomendado para TypeScript)
+// type FormInputs = {
+//   email: string;
+// };
+
+function FormularioPagoReactForm() {
+  // 1. Inicializamos React Hook Form
+  const { // Desestructuramos los métodos y objetos que nos provee el hook useForm.
+    register, // 'register' es una función para registrar inputs en el formulario.
+    handleSubmit, // 'handleSubmit' es una función que envuelve nuestro manejador de envío para gestionar la validación.
+    formState: { errors } // 'formState' contiene el estado del formulario, y de él extraemos 'errors', un objeto con los errores de validación.
+  } = useForm(); // Ejecutamos el hook useForm para obtener la instancia del formulario.
+
+  // 2. Función que se ejecuta al enviar el formulario si la validación es exitosa
+  const onSubmit = (data) => { // 'data' es un objeto que contiene los valores de los campos del formulario ya validados.
+    alert(`Compra completada para el email: ${data.email}`); // Muestra una alerta de éxito con el email proporcionado.
+    console.log(data); // Imprime en la consola el objeto con los datos del formulario.
+  };
+
+  return ( 
+    <form onSubmit={handleSubmit(onSubmit)}> {/* Al enviar el formulario, se llama a handleSubmit, que a su vez llamará a nuestro 'onSubmit' si no hay errores. */}
+      <h2>Datos de Contacto</h2> 
+      <div> 
+        <label>
+          Correo Electrónico:
+          <input // El campo de entrada para el email.
+            type="email" // Define el tipo de input, ayudando a la validación del navegador.
+            placeholder="ejemplo@correo.com" // Texto de ejemplo que se muestra cuando el campo está vacío.
+            // 3. Registramos el input y sus reglas de validación
+            {...register("email", { 
+              required: "El email es obligatorio", 
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "El formato del email no es válido"
+              } 
+            })} 
+            // Usamos el spread operator para pasar las props que 'register' necesita (onChange, onBlur, name, ref).
+            // {
+            //   name: "email", // El nombre que le pasaste
+            //   onChange: (e) => { /* una función para manejar cambios */ },
+            //   onBlur: (e) => { /* una función para manejar cuando sales del campo */ },
+            //   ref: { /* una referencia interna que usa la librería */ }
+            // }
+            // El primer argumento "email" es el nombre del campo.
+            // El segundo argumento es un objeto de configuración para las reglas de validación. 'required: true' significa que no puede estar vacío.
+          />
+        </label>
+        {/* 4. Mostramos un mensaje de error si existe */}
+        {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>} {/* Renderizado condicional: Si el objeto 'errors' tiene una propiedad 'email' (porque falló la validación), se renderiza este párrafo. */}
+      </div>
+
+      <button type="submit"> {/* Un botón de tipo 'submit' que dispara el evento onSubmit del formulario. */}
+        Comprar
+      </button>
+    </form>
+  );
+}
+
+export default FormularioPagoReactForm; // Exporta el componente para poder usarlo en otras partes de la aplicación.
+</file>
+
+<file path="src/formularios/FormularioValidado.jsx">
+import React, { useState } from 'react';
+
+// componente controlados logitud contraseña
+function FormularioValidado() {
+  // 1. Estado para los datos del formulario
+  const [datosRegistro, setDatosRegistro] = useState({
+    nombreUsuario: '',
+    contrasena: '',
+  });
+
+  // 2. Estado para el mensaje de error de validación
+  const [errorContrasena, setErrorContrasena] = useState('');
+
+  // 3. Manejador de cambios mejorado
+  const handleInputChange = (e) => { // Define la función que se ejecuta cada vez que un input cambia. 'e' es el evento.
+    const { name, value } = e.target; // Desestructura el nombre y el valor del input que originó el evento.
+    
+    // Actualizamos el estado del formulario
+    setDatosRegistro({ // Llama a la función para actualizar el estado del formulario.
+      ...datosRegistro, // Copia todas las propiedades actuales del estado para no perder datos.
+      [name]: value, // Actualiza la propiedad específica que cambió (ej: 'nombreUsuario' o 'contrasena').
+    });
+    
+    // 4. Lógica de control: Validamos la contraseña en tiempo real
+    if (name === 'contrasena') { // Comprueba si el campo que cambió es el de la contraseña.
+      if (value.length < 6) { // Si la longitud de la nueva contraseña es menor a 6 caracteres...
+        // Si la contraseña es muy corta, establecemos el estado del error
+        setErrorContrasena('La contraseña debe tener al menos 6 caracteres.'); // Actualiza el estado de error con un mensaje.
+      } else { // Si la contraseña tiene 6 o más caracteres...
+        // Si es válida, limpiamos el estado del error
+        setErrorContrasena(''); // Limpia el estado de error estableciéndolo como una cadena vacía.
+      }
+    }
+  };
+
+  // 5. Manejador de envío
+  const handleSubmit = (e) => { // Define la función que se ejecuta cuando se envía el formulario.
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario (que es recargar la página).
+    // Podemos evitar el envío si hay un error
+    if (errorContrasena) { // Comprueba si existe algún mensaje en el estado de error de la contraseña.
+      alert('Por favor, corrige los errores del formulario.'); // Si hay un error, muestra una alerta al usuario.
+      return; // Detiene la ejecución de la función para que el formulario no se envíe.
+    }
+    console.log('Datos enviados:', datosRegistro); // Si no hay errores, muestra los datos del formulario en la consola.
+    alert('¡Registro exitoso!'); // Muestra una alerta de éxito.
+  };
+
+  return ( 
+    <form onSubmit={handleSubmit}> 
+      <div> 
+        <label> 
+          Nombre de Usuario:
+          <input // Elemento de entrada de texto.
+            type="text" // Especifica que es un campo de texto.
+            name="nombreUsuario" // Nombre del campo, debe coincidir con la clave en el estado 'datosRegistro'.
+            value={datosRegistro.nombreUsuario} // El valor del input está controlado por el estado.
+            onChange={handleInputChange} // Llama a handleInputChange cada vez que el valor del input cambia.
+          />
+        </label>
+      </div>
+      <div> 
+        <label>
+          Contraseña:
+          <input // Elemento de entrada de texto para la contraseña.
+            type="password" // Especifica que es un campo de contraseña (oculta los caracteres).
+            name="contrasena" // Nombre del campo, debe coincidir con la clave en el estado.
+            value={datosRegistro.contrasena} // El valor del input está controlado por el estado.
+            onChange={handleInputChange} // Llama a handleInputChange cada vez que el valor del input cambia.
+          />
+          {/* 6. Renderizado condicional: Mostramos el error si existe */}
+          {errorContrasena && ( // Si 'errorContrasena' no es una cadena vacía (es "truthy")...
+            <p style={{ color: 'red', fontSize: '12px' }}>{errorContrasena}</p> // ...entonces renderiza este párrafo con el mensaje de error.
+          )}
+        </label>
+      </div>
+      <button type="submit">Registrar</button> {/* Botón que, al ser presionado, dispara el evento 'submit' del formulario. */}
+    </form>
+  );
+}
+
+export default FormularioValidado; // Exporta el componente para que pueda ser importado y utilizado en otras partes de la aplicación.
+</file>
+
+<file path="src/hooks/useContext/CartContext.jsx">
+// Importamos las herramientas necesarias de React.
+// Se importa 'React' para la funcionalidad base, 'useState' para manejar el estado del carrito,
+// 'useContext' para consumir el contexto en otros componentes, y 'createContext' para crear el contexto.
+import React, { useState, useContext, createContext } from 'react';
+
+// --- 1. CREACIÓN DEL CONTEXTO ---
+// Aquí se crea el "canal" o "túnel" de datos que compartirá la información del carrito.
+// Se exporta para que el Provider pueda usarlo.
+const CartContext = createContext();
+
+// --- 2. CUSTOM HOOK (Hook Personalizado) para consumir el contexto ---
+// Esta función es una abstracción para hacer más fácil y limpio el uso del contexto en otros componentes.
+// En lugar de importar `useContext` y `CartContext` en cada componente, solo importarán `useCart`.
+export function useCart() {
+  // El hook `useContext` se suscribe al `CartContext` y lee su valor actual.
+  const context = useContext(CartContext);
+  // Esta es una validación de seguridad. Si un componente intenta usar `useCart()` pero no está envuelto por el `CartProvider`, el `context` será `undefined`.  
+  // En ese caso, lanzamos un error claro para que el desarrollador sepa qué está mal.
+  if (context === undefined) {
+    throw new Error('useCart debe ser usado dentro de un CartProvider');
+  }
+
+  // Si todo está bien, devolvemos el valor del contexto (que contendrá el estado y las funciones del carrito).
+  return context;
+}
+
+// --- 3. CREACIÓN DEL PROVEEDOR (PROVIDER) ---
+// Este es un componente de React cuya única misión es "proveer" el 
+// estado y las funciones del carrito  a todos los componentes hijos 
+// que estén envueltos por él.
+export function CartProvider({ children }) {
+  // Usamos `useState` para crear y manejar el estado del carrito.
+  // `cartItems` es la variable que contiene el array de productos. Inicia como un array vacío `[]`.
+  // `setCartItems` es la función que usamos para actualizar `cartItems`.
+  // cartItems es el estado que contiene los productos que el usuario ha agregado al carrito. Inicialmente es un array vacío.
+  const [cartItems, setCartItems] = useState([]);
+  // const [cantItems, setCantItems] = useState(0);
+
+  // Esta es la función que los componentes usarán para agregar un producto al carrito.
+const addToCart = (product, quantityToAdd = 1) => {
+    
+    // Llamamos a la función de actualización del estado.
+    // Usamos una función `(prevItems => ...)` para asegurarnos de que estamos trabajando con el estado más reciente.
+    // `[...prevItems, product]` crea un NUEVO array, copiando los items anteriores y añadiendo el nuevo.
+    // Es crucial no mutar el estado directamente (ej. `prevItems.push(product)`).
+    // React detecta cambios comparando la referencia del objeto, no el contenido. Si usas push, modifica el array en memoria pero la referencia sigue siendo la misma, así que React no sabe que algo cambió y no re-renderiza.
+    
+    setCartItems(prevItems => { // <-- ABRIMOS LLAVES AQUÍ para poner lógica de varias líneas
+
+      // PRIMERO: Buscamos si el producto ya existe en la lista
+      const itemExists = prevItems.find(item => item.id === product.id);
+      
+      if (itemExists) {
+        // SEGUNDO: Si existe, creamos una nueva lista mapeando los items y sumando la cantidad al correcto
+        return prevItems.map(item => 
+          item.id === product.id 
+            ? { ...item, quantity: (item.quantity || 1) + quantityToAdd }
+            : item
+        );
+      }
+      
+      // TERCERO: Si no existe, lo agregamos como nuevo con la propiedad "quantity"
+      return [...prevItems, { ...product, quantity: quantityToAdd }];
+      
+      // Cuando pasas una función callback a setCartItems(), React te pasa como argumento el valor actual del estado: prevItems
+    }); 
+
+    // Un mensaje en la consola para confirmar que la acción se realizó.    
+    // fuera de setCartItems para que se ejecute siempre.
+    console.log(`${product.nombre} agregado al carrito con cantidad: ${quantityToAdd}!`);
+  };
+
+const removeFromCart = (productId) => {
+  // Usamos el método .filter() de los arrays en JavaScript.
+  // Esto crea un NUEVO array dejando afuera al producto cuyo ID coincida con el que queremos borrar.
+  setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+  console.log(`Producto con ID ${productId} eliminado`);
+};
+
+  const updateQuantity = (productId, amount) => {
+    setCartItems(prevItems => {
+      // mapeamos y actualizamos las cantidades sumando o restando
+      const itemsActualizados = prevItems.map(item => {
+        if (item.id === productId) {
+          // Si amount es 1 suma, si es -1 resta.
+          const nuevaCantidad = (item.quantity || 1) + amount;
+          return { ...item, quantity: nuevaCantidad };
+        }
+        return item;
+      });
+
+      // usamos .filter() para quedarnos solo con los productos 
+      // cuya cantidad sea mayor a 0. Si un producto llegó a 0, se elimina automáticamente.
+      return itemsActualizados.filter(item => item.quantity > 0);
+    });
+  };
+
+// Vaciar todo el carrito
+  const clearCart = () => {
+    setCartItems([]);
+    console.log("Carrito vaciado");
+  };
+
+// Creamos un objeto que contiene todo lo que queremos que sea accesible globalmente.
+// En este caso, es el array de items y la función para agregar más.
+const value = { cartItems, addToCart, removeFromCart, updateQuantity, clearCart };
+
+// El componente `CartProvider` renderiza el `Provider` de nuestro contexto.
+// La prop `value` es la más importante: pasa el objeto { cartItems, addToCart } a todos los componentes dentro.
+// `{children}` renderiza cualquier componente que esté anidado dentro de `<CartProvider>`.
+return (
+  // CartProvider Provee el contexto (value), y renderizar los componentes hijos (children) que lo consumen.Renderizar lo que está dentro (children)
+  <CartContext.Provider value={value}>{children}</CartContext.Provider>
+);
+}
+</file>
+
+<file path="src/hooks/useContext/CartPage.jsx">
+// Importamos React.
+import React from 'react';
+
+// --- 1. IMPORTACIÓN DE COMPONENTES Y CONTEXTO ---
+// Importamos el Provider que envolverá nuestra página para darle acceso al estado global.
+import { CartProvider } from './CartContext.jsx';
+// Importamos los componentes que consumirán el contexto.
+import ProductList from './ProductList.jsx';
+import CartSummary from './CartSummary.jsx';
+
+// --- 2. COMPONENTE PRINCIPAL (PÁGINA) QUE UNE TODO ---
+// Este componente actúa como una "página" que organiza la estructura.
+const CartPage = () => {
+// function CartPage() {
+  return (
+    // Envolvemos toda la página con nuestro `CartProvider`.
+    // Ahora, cualquier componente hijo (ProductList, CartSummary, etc.) puede usar
+    // el hook `useCart()` para acceder al estado del carrito.
+    <CartProvider>
+
+      <h1>Mi Tienda (Ejemplo de useContext)</h1>
+      <p>Agrega productos al carrito y verás cómo se actualiza el resumen en la esquina superior derecha, ¡sin pasar props!</p>
+      {/* Renderizamos los componentes consumidores. */}
+      <ProductList />
+      <CartSummary />
+
+    </CartProvider>
+  );
+}
+
+export default CartPage;
+</file>
+
+<file path="src/hooks/useContext/CartSummary.jsx">
+// Importamos React.
+import React from 'react';
+// Importamos nuestro custom hook 'useCart' para acceder al contexto del carrito.
+import { useCart } from './CartContext.jsx';
+
+// --- COMPONENTE CONSUMIDOR: EL ÍCONO/RESUMEN DEL CARRITO ---
+// Este componente es responsable únicamente de mostrar el resumen del carrito.
+function CartSummary() {
+  // Usamos el hook 'useCart' para obtener el estado `cartItems` del contexto.
+  const { cartItems } = useCart();
+
+  // Renderizamos un resumen del carrito.
+  return (
+    <div style={{ position: 'fixed', top: '10px', right: '10px', border: '2px solid black', padding: '10px', background: 'lightblue' }}>
+      <h3>🛒 Carrito</h3>
+      {/* Mostramos la cantidad de items en el carrito. */}
+      <p>Items: {cartItems.length}</p>
+      <ul>
+        {/* Mostramos los nombres de los primeros 5 items en el carrito */}
+        {cartItems.slice(0, 5).map((item, index) => (
+          <li key={index}>{item.nombre}</li>
+        ))}
+        {cartItems.length > 5 && <li>...y más</li>}
+      </ul>
+    </div>
+  );
+}
+
+// Exportamos el componente para que pueda ser usado en otras partes de la aplicación.
+export default CartSummary;
+</file>
+
+<file path="src/hooks/useContext/ProductList.jsx">
+// Importamos React y los hooks necesarios.
+import React, { useState, useEffect } from 'react';
+// Importamos nuestro custom hook 'useCart' para acceder al contexto del carrito.
+import { useCart } from './CartContext.jsx';
+
+
+// --- COMPONENTE CONSUMIDOR: LISTA DE PRODUCTOS ---
+// Este componente es responsable únicamente de mostrar la lista de productos.
+function ProductList() {
+  // Usamos el hook 'useCart' para obtener la función 'addToCart' del contexto.
+  // Ya no necesitamos `useContext` directamente, lo que hace el código más limpio.
+  const { addToCart } = useCart();
+
+
+  // Estado local de este componente para manejar la lista de productos de la API.
+  const [productos, setProductos] = useState([]);
+
+  // `useEffect` para cargar los productos desde json-server una sola vez.
+  useEffect(() => {
+    fetch('http://localhost:3000/productos')
+      .then(res => res.json())
+      .then(data => setProductos(data));
+  }, []); // El array vacío asegura que se ejecute solo al montar el componente.
+
+  // Renderizamos la lista de productos.
+  return (
+    <div style={{ padding: '20px' , backgroundColor: '#f0f0f0', borderRadius: '10px', border: '1px solid #ccc'}}>
+      <h2>Productos Disponibles - ProductList</h2>
+      {productos.map(product => (
+        <div key={product.id} style={{ border: '1px solid #eee', padding: '10px', margin: '5px' }}>
+          <span>{product.nombre} - ${product.precio}</span>
+          {/* Al hacer clic, llamamos a la función `addToCart` que obtuvimos del contexto. */}
+          <button onClick={() => addToCart(product)} style={{ marginLeft: '10px' }}>
+            Agregar al Carrito
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Exportamos el componente para que pueda ser usado en otras partes de la aplicación.
+export default ProductList;
+</file>
+
+<file path="src/hooks/CartContextExample.jsx">
+// Importamos las herramientas necesarias de React.
+import React, { useState, useEffect, useContext, createContext } from 'react';
+
+// --- 1. CREACIÓN DEL CONTEXTO ---
+// `createContext` crea un objeto de contexto. Piensa en él como un "túnel" de datos global.
+// Lo que pongamos en el 'Provider' (proveedor) estará disponible para cualquier componente
+// que esté dentro y que use 'useContext' para "escuchar" este túnel.
+const CartContext = createContext();
+
+// --- 2. CREACIÓN DEL PROVEEDOR (PROVIDER) ---
+// El proveedor es un componente que "provee" el valor del contexto a sus hijos.
+// Usará `useState` para manejar la lógica del estado del carrito.
+function CartProvider({ children }) {
+  // Estado para guardar los productos que están en el carrito. Inicia como un array vacío.
+  const [cartItems, setCartItems] = useState([]);
+
+  // Función para agregar un producto al carrito.
+  const addToCart = (product) => {
+    // Actualizamos el estado del carrito.
+    // Creamos un nuevo array con los items anteriores (...prevItems) y el nuevo producto.
+    setCartItems(prevItems => [...prevItems, product]);
+    console.log(`${product.nombre} agregado al carrito!`);
+  };
+
+  // Este es el objeto 'value' que será accesible para todos los componentes consumidores.
+  // Contiene tanto el estado (los items) como las funciones para modificarlo (addToCart).
+  const value = {
+    cartItems,
+    addToCart,
+  };
+
+  // El componente Provider de nuestro contexto envuelve a los componentes hijos ('children').
+  // Todo lo que esté dentro de <CartContext.Provider> podrá acceder al 'value'.
+  return (
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+// --- 3. COMPONENTE CONSUMIDOR: LISTA DE PRODUCTOS ---
+// Este componente mostrará los productos y usará el contexto para agregar al carrito.
+function ProductList() {
+  // `useContext` es el hook que nos permite "conectar" con el contexto.
+  // Le pasamos el objeto de contexto (CartContext) y nos devuelve el 'value' que el Provider está proveyendo.
+  // Desestructuramos para obtener directamente la función `addToCart`.
+  const { addToCart } = useContext(CartContext);
+
+  // Estado local de este componente para manejar la lista de productos de la API.
+  const [productos, setProductos] = useState([]);
+
+  // `useEffect` para cargar los productos desde json-server una sola vez.
+  useEffect(() => {
+    fetch('http://localhost:3000/productos')
+      .then(res => res.json())
+      .then(data => setProductos(data));
+  }, []); // El array vacío asegura que se ejecute solo al montar el componente.
+
+  // Renderizamos la lista de productos.
+  return (
+    <div>
+      <h2>Productos Disponibles</h2>
+      {productos.map(product => (
+        <div key={product.id} style={{ border: '1px solid #eee', padding: '10px', margin: '5px' }}>
+          <span>{product.nombre} - ${product.precio}</span>
+          {/* Al hacer clic, llamamos a la función `addToCart` que obtuvimos del contexto. */}
+          <button onClick={() => addToCart(product)} style={{ marginLeft: '10px' }}>
+            Agregar al Carrito
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// --- 4. OTRO COMPONENTE CONSUMIDOR: EL ÍCONO/RESUMEN DEL CARRITO ---
+// Este componente puede estar en cualquier otro lugar de la app y también accederá al carrito.
+function CartSummary() {
+  // Nos conectamos al mismo contexto para obtener el estado `cartItems`.
+  const { cartItems } = useContext(CartContext);
+
+  // Renderizamos un resumen del carrito.
+  return (
+    <div style={{ position: 'fixed', top: '10px', right: '10px', border: '2px solid black', padding: '10px', background: 'white' }}>
+      <h3>🛒 Carrito</h3>
+      {/* Mostramos la cantidad de items en el carrito. */}
+      <p>Items: {cartItems.length}</p>
+      <ul>
+        {/* Mostramos los nombres de los primeros 5 items en el carrito */}
+        {cartItems.slice(0, 5).map((item, index) => (
+          <li key={index}>{item.nombre}</li>
+        ))}
+        {cartItems.length > 5 && <li>...y más</li>}
+      </ul>
+    </div>
+  );
+}
+
+// --- 5. COMPONENTE PRINCIPAL QUE UNE TODO ---
+// Este es el componente que exportaremos y usaremos en nuestra aplicación.
+function EcommerceWithContext() {
+  return (
+    // 1. Envolvemos toda la aplicación (o la parte que lo necesite) con nuestro `CartProvider`.
+    <CartProvider>
+      <h1>Mi Tienda (Ejemplo de useContext)</h1>
+      <p>Agrega productos al carrito y verás cómo se actualiza el resumen en la esquina superior derecha, ¡sin pasar props!</p>
+
+      {/* 2. Renderizamos los componentes consumidores. */}
+      {/* Ambos componentes están "desconectados" en el árbol de componentes, */}
+      {/* pero ambos pueden hablar con el mismo estado global gracias al contexto. */}
+      <ProductList />
+      <CartSummary />
+
+    </CartProvider>
+  );
+}
+
+export default EcommerceWithContext;
+</file>
+
+<file path="src/hooks/EcommerceExamples.jsx">
+// Importamos React y los hooks que vamos a utilizar.
+import React, { useState } from 'react';
+
+// --- Datos de ejemplo (simulando una respuesta de API) ---
+const productosIniciales = [
+  { id: 1, nombre: 'Celular Samsung S23', precio: 1500 },
+  { id: 2, nombre: 'Notebook Gamer Asus', precio: 2500 },
+  { id: 3, nombre: 'Teclado Mecánico Redragon', precio: 150 },
+  { id: 4, nombre: 'Monitor Curvo Samsung 27"', precio: 800 },
+];
+
+// --- Componente para una tarjeta de producto individual ---
+function TarjetaProducto({ producto, onAgregarAlCarrito }) {
+  // CASO DE USO 1: Contador de cantidad para un producto.
+  // Cada tarjeta de producto tiene su propio estado de cantidad, independiente de las demás.
+  const [cantidad, setCantidad] = useState(1);
+
+  // Función para incrementar la cantidad.
+  const incrementar = () => {
+    setCantidad(cantidad + 1);
+  };
+
+  // Función para decrementar, con un límite de 1.
+  const decrementar = () => {
+    if (cantidad > 1) {
+      setCantidad(cantidad - 1);
+    }
+  };
+
+  return (
+    <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', width: '200px' }}>
+      <h4>{producto.nombre}</h4>
+      <p>Precio: ${producto.precio}</p>
+      <div>
+        <button onClick={decrementar}>-</button>
+        <span style={{ margin: '0 10px' }}>{cantidad}</span>
+        <button onClick={incrementar}>+</button>
+      </div>
+      <button onClick={() => onAgregarAlCarrito(producto, cantidad)} style={{ marginTop: '10px' }}>
+        Agregar al carrito
+      </button>
+    </div>
+  );
+}
+
+// --- Componente principal que simula la página de e-commerce ---
+function PaginaEcommerce() {
+  // CASO DE USO 2: Manejar el término de búsqueda de un input.
+  // 'terminoBusqueda' guardará lo que el usuario escribe en la barra de búsqueda.
+  const [terminoBusqueda, setTerminoBusqueda] = useState('');
+
+  // CASO DE USO 3: Manejar una lista de objetos, como un carrito de compras.
+  // 'carrito' es un array que contendrá los productos que el usuario agregue.
+  const [carrito, setCarrito] = useState([]);
+
+  // CASO DE USO 4: Controlar la visibilidad de un elemento (como el carrito).
+  // 'mostrarCarrito' es un booleano que usaremos para mostrar u ocultar el resumen del carrito.
+  const [mostrarCarrito, setMostrarCarrito] = useState(true);
+
+  // Función para manejar los cambios en el input de búsqueda.
+  const handleBusqueda = (event) => {
+    // Actualizamos el estado 'terminoBusqueda' con el valor del input.
+    setTerminoBusqueda(event.target.value);
+  };
+
+  // Función para agregar un producto y su cantidad al carrito.
+  const agregarAlCarrito = (producto, cantidad) => {
+    // Actualizamos el estado 'carrito'.
+    // Usamos el operador "spread" (...) para crear una nueva copia del array
+    // y le añadimos el nuevo producto. React necesita un nuevo array para detectar el cambio.
+    setCarrito([...carrito, { ...producto, cantidad }]);
+    alert(`${cantidad} x ${producto.nombre} agregado(s) al carrito!`);
+  };
+
+  // Filtramos los productos basándonos en el término de búsqueda.
+  const productosFiltrados = productosIniciales.filter((p) =>
+    p.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h1>Tienda de Ejemplo - Mercado Libre</h1>
+
+      {/* --- Barra de Búsqueda --- */}
+      <input
+        type="text"
+        placeholder="Buscar productos..."
+        value={terminoBusqueda} // El valor del input está ligado al estado.
+        onChange={handleBusqueda} // La función se llama en cada cambio.
+        style={{ width: '100%', padding: '8px', marginBottom: '20px' }}
+      />
+
+      {/* --- Lista de Productos --- */}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {productosFiltrados.map((producto) => (
+          <TarjetaProducto
+            key={producto.id}
+            producto={producto}
+            onAgregarAlCarrito={agregarAlCarrito}
+          />
+        ))}
+      </div>
+
+      {/* --- Carrito de Compras --- */}
+      <div style={{ marginTop: '30px', borderTop: '2px solid black' }}>
+        <h2>
+          Resumen del Carrito ({carrito.length} items)
+          {/* Botón para mostrar/ocultar el detalle del carrito */}
+          <button onClick={() => setMostrarCarrito(!mostrarCarrito)} style={{ marginLeft: '10px' }}>
+            {mostrarCarrito ? 'Ocultar' : 'Mostrar'}
+          </button>
+        </h2>
+        {/* Renderizado condicional basado en el estado 'mostrarCarrito' */}
+        {mostrarCarrito && (
+          <ul>
+            {carrito.map((item, index) => (
+              <li key={index}>{item.cantidad} x {item.nombre} - ${item.precio * item.cantidad}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default PaginaEcommerce;
+</file>
+
+<file path="src/hooks/FollowButton.jsx">
+// Importamos React y el hook useState para poder usar estado en el componente.
+import React, { useState } from 'react';
+
+// Definimos el componente funcional FollowButton.
+function FollowButton() {
+  // 1. INICIALIZACIÓN DEL ESTADO
+  // Usamos useState para crear una variable de estado llamada 'isFollowing'.
+  // Su valor inicial es 'false', lo que significa que al principio no se está siguiendo.
+  // 'setIsFollowing' es la función que usaremos para cambiar el valor de 'isFollowing'.
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  // 2. LÓGICA CONDICIONAL BASADA EN EL ESTADO
+  // Determinamos el texto del botón basándonos en el valor de 'isFollowing'.
+  // Si 'isFollowing' es true, el texto será 'Dejar de Seguir'. Si es false, será 'Seguir'.
+  const text = isFollowing ? 'Dejar de Seguir' : 'Seguir';
+
+  // Determinamos el estilo del botón.
+  // Si 'isFollowing' es true, el color será rojo. Si es false, será verde.
+  const buttonStyles = {
+    backgroundColor: isFollowing ? '#dc3545' : '#28a745', // Rojo para "Dejar de Seguir", Verde para "Seguir"
+    color: 'white',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '9999px', // Para hacerlo redondeado como el de Twitter
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    transition: 'background-color 0.3s ease' // Añadimos una transición suave
+  };
+
+  // 3. MANEJADOR DE EVENTOS
+  // Esta función se llamará cada vez que el usuario haga clic en el botón.
+  const handleClick = () => {
+    // Usamos la función 'setIsFollowing' para actualizar el estado.
+    // Le pasamos el valor contrario al actual (!isFollowing).
+    // Si era 'false', se convertirá en 'true', y viceversa.
+    // React volverá a renderizar el componente con el nuevo estado.
+    setIsFollowing(!isFollowing);
+  };
+
+  // 4. RENDERIZADO DEL COMPONENTE
+  // Devolvemos el elemento JSX que se mostrará en la pantalla.
+  return (
+    <button onClick={handleClick} style={buttonStyles}>
+      {text}
+    </button>
+  );
+}
+
+// Exportamos el componente para que pueda ser usado en otras partes de la aplicación.
+export default FollowButton;
+</file>
+
+<file path="src/hooks/ProductFilter.jsx">
+// Importamos React y los hooks que vamos a utilizar: useState y useEffect.
+import React, { useState, useEffect } from 'react';
+
+// Definimos un componente funcional llamado ProductFilter.
+const ProductFilter = () => {
+// function ProductFilter() {
+  // --- ESTADOS DEL COMPONENTE ---
+
+  // Estado para almacenar la lista de productos que obtenemos de la API.
+  const [productos, setProductos] = useState([]);
+
+  // Estado para manejar la categoría seleccionada. 'Todos' será el valor inicial.
+  const [categoria, setCategoria] = useState('Todos');
+  // const [precio, setPrecio] = useState(0);
+
+  // Estado para mostrar un mensaje de "cargando" mientras se hace la petición.
+  const [cargando, setCargando] = useState(true);
+
+  // Estado para almacenar cualquier error que ocurra.
+  const [error, setError] = useState(null);
+
+  // --- EFECTO SECUNDARIO (useEffect) ---
+
+  // Usamos useEffect para buscar los productos.
+  // Este efecto se ejecutará la primera vez que el componente se monte,
+  // y luego se volverá a ejecutar CADA VEZ que el valor de 'categoria' cambie.
+  useEffect(() => {
+    // Definimos la función asíncrona que hará la llamada a la API.
+    const obtenerProductosPorCategoria = async () => {
+      // Antes de cada nueva búsqueda, reiniciamos los estados.
+      setCargando(true);
+      setError(null);
+
+      try {
+        // Construimos la URL dinámicamente.
+        // Si la categoría es 'Todos', traemos todos los productos.
+        // Si no, filtramos por la categoría seleccionada usando los query params de json-server.
+        const url = categoria === 'Todos'
+          ? 'http://localhost:3000/productos'
+          : `http://localhost:3000/productos?categoria=${categoria}`;
+
+        // Hacemos la petición a la API.
+        const respuesta = await fetch(url);
+
+        // Si la respuesta no es exitosa, lanzamos un error.
+        if (!respuesta.ok) {
+          throw new Error('Error al obtener los datos de los productos.');
+        }
+
+        // Convertimos la respuesta a JSON.
+        const data = await respuesta.json();
+
+        // Actualizamos el estado con los nuevos productos.
+        setProductos(data);
+      } catch (err) {
+        // Si hay un error, lo guardamos en el estado.
+        setError(err.message);
+      } finally {
+        // Al final (haya éxito o error), dejamos de cargar.
+        setCargando(false);
+      }
+    };
+
+    // Llamamos a la función para que se ejecute.
+    obtenerProductosPorCategoria();
+
+  // 2. ARRAY DE DEPENDENCIAS: [categoria]
+  // Este es el punto clave. Al poner 'categoria' aquí, le decimos a React:
+  // "Vuelve a ejecutar este efecto si y solo si el valor de la variable 'categoria' ha cambiado".
+  }, [categoria]);
+
+  // --- RENDERIZADO DEL COMPONENTE ---
+
+  // Si está cargando, mostramos un mensaje.
+  if (cargando) return <div>Cargando productos...</div>;
+
+  // Si hubo un error, lo mostramos.
+  if (error) return <div>Error: {error}</div>;
+
+  // Si todo está bien, mostramos los botones de filtro y la lista de productos.
+  return (
+    <div>
+      <h1>Filtro de Productos</h1>
+      <div>
+        {/* Cada botón actualiza el estado 'categoria', lo que disparará el useEffect. */}
+        <button onClick={() => setCategoria('Todos')}>Todos</button>
+        <button onClick={() => setCategoria('Anteojos')}>Anteojos</button>
+        <button onClick={() => setCategoria('Fotografía')}>Fotografía</button>
+        <button onClick={() => setCategoria('Notebooks')}>Notebooks</button>
+        <button onClick={() => setCategoria('Tecnología')}>Tecnología</button>
+      </div>
+      <div>
+        {/* <input type="number" name="precio" placeholder="Precio" id="" onChange={(e) => setPrecio(e.target.value)} /> */}
+      </div>
+      <h2 style={{ marginTop: '20px' }}>Categoría: {categoria}</h2>
+      <ul>
+        {/* Mapeamos y mostramos los productos filtrados. */}
+        {productos.map(producto => (
+          <li key={producto.id}>
+            {producto.nombre} - ${producto.precio}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default ProductFilter;
+</file>
+
+<file path="src/hooks/UseEffectExample.jsx">
+// Importamos React y los hooks que vamos a utilizar: useState y useEffect.
+import React, { useState, useEffect } from 'react';
+
+// Definimos un componente funcional llamado ListaDeProductos.
+const ListaDeProductos = () => {
+// function ListaDeProductos() {
+  // CASO DE USO: MANEJAR DATOS DE UNA API
+
+  // 1. Definimos los estados que necesitará nuestro componente.
+
+  // 'productos' guardará la lista de productos que recibamos de la API.
+  // Inicializa como un array vacío porque esperamos una lista.
+  const [productos, setProductos] = useState([]);
+
+  // 'cargando' nos ayudará a mostrar un mensaje mientras se obtienen los datos.
+  // Inicializa en 'true' porque al montar el componente, empezamos a cargar.
+  const [cargando, setCargando] = useState(true);
+
+  // 'error' guardará cualquier error que ocurra durante la llamada a la API.
+  // Inicializa en 'null' porque al principio no hay errores.
+  const [error, setError] = useState(null);
+
+  // 2. Usamos el hook useEffect para ejecutar código después de que el componente se renderice.
+  // Este es el lugar ideal para hacer llamadas a APIs, suscripciones, etc.
+  useEffect(() => {
+    // La función que pasamos a useEffect se ejecutará después del primer renderizado.
+
+    // Definimos una función asíncrona para poder usar 'await' con fetch.
+    const obtenerProductos = async () => {
+      try {
+        // Hacemos la petición a la API de nuestro json-server.
+        const respuesta = await fetch('http://localhost:3000/productos');
+
+        // Si la respuesta no es exitosa (ej: error 404 o 500), lanzamos un error.
+        if (!respuesta.ok) {
+          throw new Error('Error al obtener los datos de los productos.');
+        }
+
+        // Convertimos la respuesta a formato JSON.
+        const data = await respuesta.json();
+
+        // Actualizamos el estado 'productos' con los datos recibidos.
+        setProductos(data);
+      } catch (err) {
+        // Si ocurre cualquier error en el bloque 'try', lo capturamos aquí.
+        // Actualizamos el estado 'error' con el mensaje del error.
+        setError(err.message);
+      } finally {
+        // El bloque 'finally' se ejecuta siempre, tanto si hubo éxito como si hubo error.
+        // Dejamos de mostrar el mensaje de "cargando".
+        setCargando(false);
+      }
+    };
+
+    // Llamamos a la función que acabamos de definir.
+    obtenerProductos();
+
+  // 3. El array de dependencias vacío `[]` es MUY IMPORTANTE.
+  // Significa que el efecto se ejecutará SOLAMENTE UNA VEZ, justo después de que se renderiza el componente
+  // Si no lo pusiéramos, el efecto se ejecutaría en cada re-renderizado, creando un bucle infinito.
+  }, []);
+
+  // 4. Renderizamos la UI basándonos en el estado actual.
+
+  // Si 'cargando' es true, mostramos un mensaje de carga.
+  if (cargando) {
+    return <div>Cargando productos...</div>;
+  }
+
+  // Si hay un 'error', mostramos el mensaje de error.
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  // Si todo fue bien, mostramos la lista de productos.
+  return (
+    <div>
+      <h1>Lista de Productos</h1>
+      <ul>
+        {/* Mapeamos el array de 'productos' para renderizar un <li> por cada uno. */}
+        {productos.map(producto => (
+          <li style={{ marginBottom: '10px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }} key={producto.id}>
+            {producto.nombre} - ${producto.precio}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// Exportamos el componente para poder usarlo en otros archivos.
+export default ListaDeProductos;
+</file>
+
+<file path="src/hooks/UseStateExample.jsx">
+// Importamos 'React' para poder usar JSX y las funcionalidades de la librería.
+import React, { useState } from 'react'; // Importamos el hook 'useState' desde React. Este hook nos permite añadir estado a nuestros componentes funcionales.
+
+// Definimos un componente funcional de React llamado 'Contador'.
+// una buena práctica es hacer constante en lugar function
+const Contador = () => {
+  // function Contador() {
+  // Aquí es donde usamos el hook 'useState'.
+  // 'useState(0)' inicializa una variable de estado. El '0' que pasamos como argumento es el valor inicial.
+  // 'useState' devuelve un array con dos elementos que extraemos usando desestructuración:
+  // 1. 'contador': Es la variable que contiene el valor actual del estado (inicialmente será 0).
+  // 2. 'setContador': Es la función que usaremos para actualizar el valor de 'contador'.
+  const [contador, setContador] = useState(0);
+  const [camera, setCamera] = useState(false);
+  
+
+
+  const toggleCamera = () => {
+    setCamera(!camera);
+  }
+
+
+  // const [mic, setMic] = useState(true);
+
+  // Esta es la función que se ejecutará cuando el usuario haga clic en el botón.
+  const incrementarContador = () => {
+    // Llamamos a la función 'setContador' para actualizar el estado.
+    // Le pasamos el nuevo valor que queremos que tenga la variable 'contador'.
+    // En este caso, es el valor actual de 'contador' más 1.
+    // ¡Importante! Cuando 'setContador' es llamada, React sabe que el estado ha cambiado
+    // y volverá a renderizar (dibujar) este componente 'Contador' en la pantalla,
+    // pero esta vez con el nuevo valor de 'contador'.
+    setContador(contador + 1);
+  };
+
+  // El componente devuelve el código JSX que se mostrará en la pantalla.
+  return (
+    <div>
+      <div style={{ border: '1px solid black', padding: '10px', borderRadius: '5px' }}>
+        {/* Un div contenedor para nuestros elementos. */}
+        {/* Mostramos el valor actual de nuestra variable de estado 'contador' dentro de una etiqueta <p>. */}
+        <div>
+          <p>Contador: {contador}</p>
+          {/* Creamos un botón. Cuando se hace clic en él (evento onClick), se llama a la función 'incrementarContador'. */}
+          <button onClick={incrementarContador} style={{ marginRight: '10px', border: '1px solid black', padding: '5px', borderRadius: '5px' }}>Incrementar</button>
+        </div>
+
+      </div>
+
+      <div style={{ border: '1px solid black', padding: '10px', borderRadius: '5px' }}>
+        <div>
+          <div style={{ marginTop: '10px', background: camera ? 'lightgreen' : 'lightcoral', padding: '5px', borderRadius: '5px' }}>
+            Cámara: {camera ? 'on' : 'off'}
+          </div>
+          <button onClick={toggleCamera}>Toggle Cámara</button>
+        </div>
+      </div>
+    </div>
+
+
+  );
+}
+
+// Exportamos el componente 'Contador' para que pueda ser utilizado en otros archivos de nuestra aplicación.
+export default Contador;
+</file>
+
+<file path="src/store/slices/categoriaSlice.js">
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchCategoriesAsync = createAsyncThunk(
+  'categories/fetchCategories',
+  async () => {
+    const response = await fetch('http://localhost:8080/api/categorias', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors'
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al obtener las categorías');
+    }
+
+    return await response.json();
+  }
+);
+
+const categoriaSlice = createSlice({
+  name: 'categories',
+  initialState: {
+    items: [], 
+    loading: false,
+    error: null
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCategoriesAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchCategoriesAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
+});
+
+export default categoriaSlice.reducer;
+</file>
+
+<file path="src/style/CartRedux.styles.js">
+// Estilos del componente CartRedux
+export const styles = {
+  container: {
+    padding: '2rem',
+    maxWidth: '1200px',
+    margin: '0 auto'
+  },
+  itemsContainer: {
+    marginBottom: '2rem'
+  },
+  itemCard: {
+    display: 'grid',
+    gridTemplateColumns: '100px 1fr auto',
+    gap: '1rem',
+    alignItems: 'center',
+    padding: '1rem',
+    borderBottom: '1px solid #eee'
+  },
+  itemImage: {
+    width: '100px',
+    height: '100px',
+    objectFit: 'cover',
+    borderRadius: '4px'
+  },
+  itemTitle: {
+    margin: '0 0 0.5rem 0'
+  },
+  itemPrice: {
+    margin: '0.5rem 0',
+    color: '#2D3277',
+    fontWeight: 'bold'
+  },
+  removeButton: {
+    padding: '0.5rem',
+    background: 'none',
+    border: '1px solid #ff4444',
+    color: '#ff4444',
+    borderRadius: '4px',
+    cursor: 'pointer'
+  },
+  totalContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '1rem',
+    backgroundColor: '#f9f9f9',
+    borderRadius: '4px',
+    marginBottom: '1rem'
+  },
+  clearButton: {
+    padding: '0.5rem 1rem',
+    backgroundColor: '#ff4444',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer'
+  },
+  linksContainer: {
+    display: 'flex',
+    gap: '1rem'
+  },
+  linkBase: {
+    color: 'white',
+    padding: '0.5rem 1rem',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    textDecoration: 'none'
+  },
+  shoppingLink: {
+    backgroundColor: '#2D3277',
+    color: 'white',
+    padding: '0.5rem 1rem',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    textDecoration: 'none'
+  },
+  checkoutLink: {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: '0.5rem 1rem',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    textDecoration: 'none'
+  }
+};
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
+])
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+<file path="src/store/slices/cartSlice.js">
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+const API_URL = 'http://localhost:8080/api/carrito';
+
+const getAuthHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    //le agrega Bearer antes del token
+    'Authorization': token ? `Bearer ${token}` : ''
+}};
+
+
+// ACCIONES ASINCRÓNICAS (THUNKS)
+
+// Traer el carrito del backend 
+export const fetchCartItems = createAsyncThunk(
+    'cart/fetchCartItems',
+    async () => {
+        const response = await fetch(API_URL, {
+            method: 'GET',
+            headers: getAuthHeaders(),
+        });
+        if (!response.ok) throw new Error('Error al obtener el carrito');
+        // El backend devuelve { items: [...], total: 0.0 }
+        return await response.json();
+    }
+);
+
+// Agregar item
+export const addToCart = createAsyncThunk(
+    'cart/addToCart',
+    async ({ productoId, cantidad }) => {
+        const response = await fetch(`${API_URL}/items`, {
+            method: 'POST',
+            headers: getAuthHeaders(),
+            // mandamos id_producto tal como lo pide ItemCarritoRequest.java
+            body: JSON.stringify({ id_producto: productoId, cantidad: cantidad })
+        });
+        if (!response.ok) throw new Error('Error al agregar producto');
+        return await response.json();
+    }
+);
+//actualizar cantidad (sumar o restar)
+export const updateQuantity = createAsyncThunk(
+    'cart/updateQuantity',
+    async ({ itemId, cantidad, productoId }) => {
+        const response = await fetch(`${API_URL}/items/${itemId}`, {
+            method: 'PUT',
+            headers: getAuthHeaders(),
+            // segun body del DTO
+            body: JSON.stringify({ id_producto: productoId, cantidad: cantidad })
+        });
+        if (!response.ok) throw new Error('Error al actualizar cantidad');
+        return await response.json();
+    }
+);
+
+// Eliminar un producto por completo
+export const removeFromCart = createAsyncThunk(
+    'cart/removeFromCart',
+    async (itemId) => {
+        const response = await fetch(`${API_URL}/items/${itemId}`, {
+            method: 'DELETE',
+            headers: getAuthHeaders(),
+        });
+        if (!response.ok) throw new Error('Error al eliminar producto');
+        return await response.json();
+    }
+);
+
+export const clearCart = createAsyncThunk(
+    'cart/clearCart',
+    async () => {
+        const response = await fetch(API_URL, {
+            method: 'DELETE',
+            headers: getAuthHeaders(),
+        });
+        if (!response.ok) throw new Error('Error al vaciar el carrito');
+        // Como tu controller devuelve ResponseEntity.noContent() (vacío), nosotros retornamos la estructura inicial limpia
+        return { items: [], total: 0 };
+    }
+);
+
+
+// SLICE (ESTADO Y REDUCERS)
+
+const cartSlice = createSlice({
+    name: 'cart',
+    initialState: {
+        items: [],
+        loading: false,
+        error: null
+    },
+    reducers: {
+        // si no manejamos nada local, no hay nada
+    },
+    extraReducers: (builder) => {
+        builder
+            //TRAER CARRITO
+            .addCase(fetchCartItems.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchCartItems.fulfilled, (state, action) => {
+                // action.payload es el CarritoResponse.java entero
+                state.items = action.payload.items;
+                state.total = action.payload.total;
+                state.loading = false;
+            })
+
+            // action en este caso trae el error generado al intentar obtener los items del carrito desde la API. También se actualiza el estado de carga y error.
+            .addCase(fetchCartItems.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+
+            // AGREGAR, MODIFICAR O BORRAR ITEM
+            //todos estos métodos devuelven un CarritoResponse actualizado:
+            .addCase(addToCart.fulfilled, (state, action) => {
+                state.items = action.payload.items;
+                state.total = action.payload.total;
+            })
+        .addCase(updateQuantity.fulfilled, (state, action) => {
+            state.items = action.payload.items;
+            state.total = action.payload.total;
+        })
+        .addCase(removeFromCart.fulfilled, (state, action) => {
+            state.items = action.payload.items;
+            state.total = action.payload.total;
+        })
+
+        //VACIAR CARRITO
+        .addCase(clearCart.fulfilled, (state, action) => {
+            state.items = action.payload.items; // Estará vacío
+            state.total = action.payload.total; // Será 0
+        });
+}
+});
+
+// ya no exportamos acciones normales (actions), ahora todo se maneja mediante los Thunks 
+export default cartSlice.reducer;
+</file>
+
+<file path="src/store/slices/productosSlice.js">
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchProductsAsync = createAsyncThunk(
+  'products/fetchProducts',
+  async () => {
+    const response = await fetch('http://localhost:8080/api/productos', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors'
+    });
+
+    if (!response.ok) throw new Error('Error al obtener los productos');
+
+    const data = await response.json();
+    return Array.isArray(data) ? data : data.products || []; 
+  }
+);
+
+const productSlice = createSlice({
+  name: 'products',
+  initialState: {
+    items: [],
+    loading: false,
+    error: null,
+    selectedCategory: null, // Mantenemos esto aquí porque es el "filtro activo" de la vista de productos
+  },
+  reducers: {
+    setSelectedCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProductsAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProductsAsync.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchProductsAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
+});
+
+export const { setSelectedCategory } = productSlice.actions;
+export default productSlice.reducer;
+</file>
+
+<file path="src/style/AdminProducts.css">
+.admin-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-container h2 {
+  text-align: left;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.admin-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.admin-form h3 {
+  grid-column: 1 / -1;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.admin-form input,
+.admin-form select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: #fdfdfd;
+}
+
+.admin-form input:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-actions button[type="submit"] {
+  background: var(--primary);
+  color: white;
+}
+
+.form-actions button[type="button"] {
+  background: #f3f4f6;
+  color: var(--text-muted);
+}
+
+.admin-table {
+  background: white;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.admin-table h3 {
+  padding: 1.5rem;
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  background: #f9fafb;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.btn-edit, .btn-delete {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  color: var(--accent);
+}
+
+.btn-edit:hover {
+  background: #eff6ff;
+  border-color: var(--accent);
+}
+
+.btn-delete {
+  color: #ef4444;
+}
+
+.btn-delete:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem;
+}
+</file>
+
+<file path="src/style/CategoryList.css">
+.catalog-container {
+  padding: 1rem 0;
+}
+
+.catalog-container h2 {
+  text-align: left;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar h3 {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list li {
+  padding: 0.625rem 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  padding-left: 0;
+}
+
+.category-list li:hover {
+  color: var(--primary);
+  padding-left: 0.5rem;
+}
+
+.category-list li.active {
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+  border-left: 2px solid var(--accent) !important;
+  padding-left: 1rem !important;
+}
+
+
+.category-all {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 1px solid var(--border);
+  font-weight: 700 !important;
+  color: var(--primary) !important;
+  text-transform: uppercase;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.025em;
+}
+
+.category-all.active {
+  border-left: none !important;
+  padding-left: 0 !important;
+  color: var(--accent) !important;
+}
+
+.catalog-main {
+  min-width: 0;
+}
+
+/* --- RESPONSIVE / MOBILE --- */
+@media (max-width: 900px) {
+  .catalog-layout {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 2rem;
+  }
+
+  .sidebar {
+    position: static; /* Deja de estar fijo a un costado */
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar h3 {
+    margin-bottom: 1rem;
+  }
+
+  .category-list {
+    display: flex; /* Lista horizontal */
+    flex-wrap: nowrap; /* No rompe línea */
+    overflow-x: auto; /* Scroll horizontal si son muchos */
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    /* Ocultar scrollbar en algunos navegadores */
+    scrollbar-width: none; 
+  }
+
+  .category-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-list li {
+    flex: 0 0 auto; /* No se deforman */
+    padding: 0.5rem 1.25rem !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 25px !important;
+    border-left: 1px solid var(--border) !important; /* Reseteamos el borde lateral */
+    background: white;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .category-list li:hover {
+    padding-left: 1.25rem !important; /* Evitamos el desplazamiento lateral en mobile */
+    border-color: var(--primary) !important;
+  }
+
+  .category-list li.active {
+    background: var(--accent) !important;
+    color: white !important;
+    border-color: var(--accent) !important;
+    padding-left: 1.25rem !important;
+    border-left: 1px solid var(--accent) !important;
+  }
+
+  .category-all {
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border) !important;
+    padding-bottom: 0.5rem !important;
+  }
+}
+</file>
+
+<file path="src/style/Form.css">
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.form {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form h2 {
+  text-align: left;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.form input {
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s, ring 0.2s;
+  background: #fdfdfd;
+}
+
+.form input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form button {
+  padding: 0.875rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 0.5rem;
+}
+
+.form button:hover {
+  opacity: 0.9;
+}
+
+.form-error {
+  color: #ef4444;
+  background: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.form-link {
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.form-link a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+</file>
+
+<file path="src/components/AdminProducts.jsx">
+import { useState, useEffect } from 'react'
+import '../style/AdminProducts.css';
+
+const API = 'http://localhost:8080'
+
+const AdminProducts = () => {
+  const [productos, setProductos] = useState([])
+  const [listaCategorias, setListaCategorias] = useState([])
+  const [form, setForm] = useState({ nombre: '', precio: '', categoria: '', descripcion: '', stock: '', imagen: '' })
+  const [editing, setEditing] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  const token = () => localStorage.getItem('token')
+
+  const headers = () => ({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token()}`
+  })
+
+  // Función unificada para traer productos y categorías de forma eficiente
+  const fetchProductsAndCategories = async () => {
+    try {
+      // 1. Traer Productos
+      const resProd = await fetch(`${API}/api/productos`, { headers: headers() })
+      const dataProd = await resProd.json()
+      setProductos(Array.isArray(dataProd) ? dataProd : dataProd.products || [])
+
+      // 2. Traer Categorías
+      const resCat = await fetch(`${API}/api/categorias`, { headers: headers() })
+      if (!resCat.ok) throw new Error('Error al cargar categorías')
+      const dataCat = await resCat.json()
+      setListaCategorias(dataCat)
+
+      // Si hay categorías y no estamos editando, pre-seleccionamos el ID de la primera
+      if (dataCat.length > 0 && !editing) {
+        setForm(prev => ({ ...prev, categoria: dataCat[0].id_categoria || dataCat[0].id }))
+      }
+
+    } catch (err) {
+      setError(err.message || 'Error al cargar datos')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // Un solo useEffect para la carga inicial
+  useEffect(() => { 
+    fetchProductsAndCategories() 
+  }, [])
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const resetForm = () => {
+    const primeraCat = listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : ''
+    setForm({ nombre: '', precio: '', categoria: primeraCat, descripcion: '', stock: '', imagen: '' })
+    setEditing(null)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    const method = editing ? 'PUT' : 'POST'
+    const url = editing
+      ? `${API}/api/productos/${editing.id}`
+      : `${API}/api/productos`
+
+    const idCategoriaSeleccionada = Number(form.categoria);
+
+    // Armamos el objeto dinámico con la categoría seleccionada en el menú
+    const bodyRequest = {
+      nombre: form.nombre,
+      descripcion: form.descripcion,
+      precio: Number(form.precio),
+      stock: Number(form.stock),
+      imagen: form.imagen,
+      categoriaIds: idCategoriaSeleccionada > 0 
+        ? [idCategoriaSeleccionada] 
+        : [listaCategorias[0]?.id_categoria || listaCategorias[0]?.id || 1]
+    }
+
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: headers(),
+        body: JSON.stringify(bodyRequest)
+      })
+      if (!res.ok) throw new Error('Error al guardar producto')
+      resetForm()
+      fetchProductsAndCategories() // Refresca la lista de productos en pantalla
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  const handleEdit = (producto) => {
+    const categoriaActual = producto.categoriaIds && producto.categoriaIds.length > 0
+      ? producto.categoriaIds[0]
+      : (listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : '')
+
+    setForm({
+      nombre: producto.nombre,
+      precio: producto.precio,
+      categoria: categoriaActual,
+      descripcion: producto.descripcion,
+      stock: producto.stock,
+      imagen: producto.imagen || ''
+    })
+    setEditing(producto)
+  }
+
+  const handleDelete = async (id) => {
+    if (!confirm('¿Estás seguro de eliminar este producto?')) return
+    try {
+      const res = await fetch(`${API}/api/productos/${id}`, {
+        method: 'DELETE',
+        headers: headers()
+      })
+      if (!res.ok) throw new Error('Error al eliminar producto')
+      fetchProductsAndCategories()
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  if (loading) return <p className="loading">Cargando...</p>
+
+  return (
+    <div className="admin-container">
+      <h2>Gestión de Productos</h2>
+      {error && <p className="error">{error}</p>}
+
+      <form onSubmit={handleSubmit} className="admin-form">
+        <h3>{editing ? 'Editar Producto' : 'Nuevo Producto'}</h3>
+        <input name="nombre" placeholder="Nombre" value={form.nombre} onChange={handleChange} required />
+        <input name="precio" placeholder="Precio" type="number" step="0.01" value={form.precio} onChange={handleChange} required />
+        
+        {/* Menú desplegable dinámico conectado a la BD */}
+        <select name="categoria" value={form.categoria} onChange={handleChange} required>
+          {listaCategorias.length === 0 && <option value="">No hay categorías cargadas</option>}
+          {listaCategorias.map(cat => {
+            const idCat = cat.id_categoria || cat.id;
+            return (
+              <option key={idCat} value={idCat}>
+                {cat.nombre}
+              </option>
+            )
+          })}
+        </select>
+        
+        <input name="descripcion" placeholder="Descripción" value={form.descripcion} onChange={handleChange} required />
+        <input name="stock" placeholder="Stock" type="number" value={form.stock} onChange={handleChange} required />
+        <input name="imagen" placeholder="URL de imagen" value={form.imagen} onChange={handleChange} />
+        <div className="form-actions">
+          <button type="submit">{editing ? 'Actualizar' : 'Crear'}</button>
+          {editing && <button type="button" onClick={resetForm}>Cancelar</button>}
+        </div>
+      </form>
+
+      <div className="admin-table">
+        <h3>Productos ({productos.length})</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Categoría</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {productos.map(p => (
+              <tr key={p.id}>
+                <td>
+                  {p.imagen ? (
+                    <img src={p.imagen} alt={p.nombre} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                  ) : (
+                    '📷 N/A'
+                  )}
+                </td>
+                <td>{p.nombre}</td>
+                <td>${p.precio}</td>
+                <td>{p.categorias ? p.categorias.join(', ') : 'Sin categoría'}</td>
+                <td>{p.stock}</td>
+                <td className="actions">
+                  <button className="btn-edit" onClick={() => handleEdit(p)}>Editar</button>
+                  <button className="btn-delete" onClick={() => handleDelete(p.id)}>Eliminar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {productos.length === 0 && <p className="empty">No hay productos</p>}
+      </div>
+    </div>
+  )
+}
+
+export default AdminProducts
+</file>
+
+<file path="src/components/Login.jsx">
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import '../style/Form.css';
+
+const API = 'http://localhost:8080'
+
+const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    try {
+      const res = await fetch(`${API}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
+
+      const data = await res.text()
+
+      if (!res.ok) throw new Error(data || 'Credenciales inválidas')
+
+      localStorage.setItem('token', data)
+
+      navigate('/')
+
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  return (
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <h2>Iniciar Sesión</h2>
+        {error && <p className="form-error">{error}</p>}
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Ingresar</button>
+        <p className="form-link">
+          ¿No tenés cuenta? <Link to="/register">Registrate</Link>
+        </p>
+      </form>
+    </div>
+  )
+}
+
+export default Login
+</file>
+
+<file path="src/components/ProductList.jsx">
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import defaultImage from '../assets/imgXdefault.jpg';
+
+const ProductList = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // const response = await fetch(`http://localhost:3000/productos`);
+        const response = await fetch('http://localhost:8080/api/productos', {
+          // Especificamos el método HTTP a utilizar
+          method: 'GET',
+          
+          headers: {
+            // Indica al servidor que esperamos recibir JSON como respuesta
+            'Accept': 'application/json',
+            
+            // Indica al servidor que estamos enviando datos en formato JSON
+            'Content-Type': 'application/json',
+            
+            // Envía el token JWT si existe en localStorage (necesario para rutas protegidas)
+            'Authorization': localStorage.getItem('token')
+          },
+          
+          // Permite el envío de cookies y credenciales de autenticación
+          // Esto es necesario porque en el backend tienes configuration.setAllowCredentials(true)
+          credentials: 'include',
+          
+          // Especifica que esta es una petición CORS (Cross-Origin Resource Sharing)
+          // Útil cuando el frontend y backend están en diferentes puertos/dominios
+          mode: 'cors'
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al cargar los productos');
+        }
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // --- Manejo de estados de carga y error ---
+  // Si 'loading' es true, se muestra un mensaje de carga.
+  // Esto previene que el usuario vea una pantalla vacía o con datos incompletos
+  // mientras se esperan los datos de la API.
+  if (loading) return <div>Cargando productos...</div>;
+
+  // Si 'error' tiene un valor (no es null), significa que la petición falló.
+  // Se muestra un mensaje de error al usuario en lugar del componente principal.
+  // Esto asegura que la aplicación no se rompa y el usuario esté informado del problema.
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <h1>Lista de Productos</h1>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem', padding: '1rem' }}>
+        {products.map(product => (
+          <Link 
+            to={`/products/${product.id}`} 
+            key={product.id}
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <div style={{ 
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              padding: '1rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+              transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+              ':hover': {
+                transform: 'translateY(-5px)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }
+            }}>
+              <img 
+              // operador lógico ||
+                src={product.imagen || defaultImage}
+                alt={product.nombre}
+                style={{ 
+                  width: '100%',
+                  height: '200px',
+                  objectFit: 'cover',
+                  borderRadius: '4px'
+                }}
+              />
+              <h3 style={{ margin: '0.5rem 0' }}>{product.nombre}</h3>
+              <p style={{ color: '#2D3277', fontSize: '1.25rem', fontWeight: 'bold', margin: '0' }}>
+                ${product.precio.toLocaleString('es-AR')}
+              </p>
+              <p style={{ color: '#666', margin: '0' }}>{product.descripcion}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ProductList;
+</file>
+
+<file path="src/components/Register.jsx">
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import '../style/Form.css'
+
+const API = 'http://localhost:8080'
+
+const Register = () => {
+  const [nombre, setNombre] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    if (password !== confirm) {
+      setError('Las contraseñas no coinciden')
+      return
+    }
+    try {
+      const res = await fetch(`${API}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, apellido: '', email, password })
+      })
+
+      // Primero leemos la respuesta como TEXTO para evitar que rompa el JSON
+      const data = await res.text()
+
+
+      if (!res.ok) {
+        // Si el backend tiró error (ej: EmailException), mostramos ese texto
+       throw new Error(data || 'Error al registrarse')
+      }
+
+      // Si todo salió bien:
+      alert(data) // Va a mostrar el cartel de "Usuario registrado exitosamente"
+    
+      // Como tu backend de registro NO genera token (solo lo hace el login),
+      // mandamos al usuario a la pantalla de login para que inicie sesión.
+      navigate('/login')
+    
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  return (
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <h2>Registrarse</h2>
+        {error && <p className="form-error">{error}</p>}
+        <input
+          type="text"
+          placeholder="Nombre completo"
+          value={nombre}
+          onChange={e => setNombre(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirmar contraseña"
+          value={confirm}
+          onChange={e => setConfirm(e.target.value)}
+          required
+        />
+        <button type="submit">Crear cuenta</button>
+        <p className="form-link">
+          ¿Ya tenés cuenta? <Link to="/login">Iniciá sesión</Link>
+        </p>
+      </form>
+    </div>
+  )
+}
+
+export default Register
+</file>
+
+<file path="src/hooks/context/FavoriteProvider.jsx">
+import React, { useState, useContext, createContext } from 'react';
+
+
+const FavoriteContext = createContext();
+
+// POR SI NECESITAN VER ALGO DE COMO FUNCIONA UN CONTEXT, 
+// PERO LA LOGICA DE FAVORITOS AHORA ESTA EN EL SLICE DE REDUX, 
+// ASI QUE NO SE USA ESTE PROVIDER EN NINGUNA PARTE DE LA APP
+
+export function useFavorite() {
+  const context = useContext(FavoriteContext);
+  if (context === undefined) {
+    throw new Error('useFavorite debe ser usado dentro de un FavoriteProvider');
+  }
+  return context;
+}
+
+export function FavoriteProvider({ children }) {
+    const [favoriteItems, setFavoriteItems] = useState([]);
+
+    const addToFavorites = (product) => {
+        setFavoriteItems(prev => [...prev, product]);
+        console.log('Producto agregado a favoritos:', product);
+    };
+
+    const value = { favoriteItems, addToFavorites };
+
+
+    return (
+        <FavoriteContext.Provider value={value}>
+            {children}
+        </FavoriteContext.Provider>
+    );
+}
+</file>
+
+<file path="src/store/slices/favoriteSlice.js">
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+
+// createAsyncThunk crear acciones asincrónicas, genera las acciones pending, fulfilled y rejected para manejar el estado de la petición
+export const fetchFavoriteItems = createAsyncThunk(
+  'favorite/fetchFavoriteItems', // Cambiado de 'cart' a 'favorite'
+  async () => {
+    const response = await fetch('http://localhost:8080/api/favoritos', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      },
+      credentials: 'include',
+      mode: 'cors'
+    });
+    if (!response.ok) throw new Error('Error al obtener los favoritos');
+    
+    return await response.json();
+  }
+);
+
+export const addFavoriteAsync = createAsyncThunk(
+  'favorite/addFavoriteAsync',
+  async (productoId, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/favoritos/productos/${productoId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      });
+
+      if (!response.ok) throw new Error('Error al agregar a favoritos');
+      
+      // Actualizamos la lista llamando al backend otra vez
+      dispatch(fetchFavoriteItems());
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeFavoriteAsync = createAsyncThunk(
+  'favorite/removeFavoriteAsync',
+  async (productoId, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/favoritos/productos/${productoId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      });
+
+      if (!response.ok) throw new Error('Error al eliminar de favoritos');
+      
+      dispatch(fetchFavoriteItems());
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const clearFavoritesAsync = createAsyncThunk(
+  'favorite/clearFavoritesAsync',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await fetch('http://localhost:8080/api/favoritos', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      });
+
+      if (!response.ok) throw new Error('Error al vaciar los favoritos');
+      
+      dispatch(fetchFavoriteItems());
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+const favoriteSlice = createSlice({
+    name: 'favorite',
+    initialState: {
+        items: [],
+        loading: false,
+        error: null
+    },
+    
+
+    reducers: {},
+
+  // extraReducers maneja las acciones generadas por createAsyncThunk (fetchCartItems) para actualizar el estado de carga y error al obtener los items del carrito desde la API
+  // reducers acciones externas
+  // builder es un objeto que permite agregar casos para manejar las acciones generadas por createAsyncThunk
+  extraReducers: (builder) => {
+    builder
+    //fetchFavoriteItems genera tres acciones automáticamente: pending (cuando la petición está en curso), 
+    // fulfilled (cuando la petición se completa exitosamente) y rejected (cuando la petición falla)
+      .addCase(fetchFavoriteItems.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      //action en este caso trae el payload con los items del carrito obtenidos desde la API. También se actualiza el estado de carga y error.
+      .addCase(fetchFavoriteItems.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      // action en este caso trae el error generado al intentar obtener los items del carrito desde la API. También se actualiza el estado de carga y error.
+      .addCase(fetchFavoriteItems.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
+});
+
+export const { addToFavorite, removeFavorite, clearFavorites } = favoriteSlice.actions;
+export default favoriteSlice.reducer;
+</file>
+
+<file path="src/style/ProductDetail.css">
+.product-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.btn-back:hover {
+  color: var(--primary);
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.product-image {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-description h1 {
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.product-description .description {
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.product-description .price {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.btn-add-cart {
+  background-color: var(--accent);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  width: 100%;
+}
+
+.btn-add-cart:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 850px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+
+.btn-details {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.btn-details:hover {
+  opacity: 0.9;
+}
+</file>
+
+<file path="src/App.css">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-secondary);
+  color: var(--text-main);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.025em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.main-content {
+  min-height: calc(100vh - 140px);
+  padding: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: white;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+</file>
+
+<file path="src/index.css">
+:root {
+  --primary: #1a1a1a;
+  --accent: #2563eb;
+  --bg-main: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --radius: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ecommerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "ecommerce",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.12.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-redux": "^9.3.0",
+    "react-router-dom": "^7.15.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "vite": "^8.0.10"
+  }
+}
+</file>
+
+<file path="README.md">
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+</file>
+
+<file path="src/components/Carrito.jsx">
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart, clearCart, fetchCartItems, updateQuantity } from '../store/slices/cartSlice';
+import { styles } from '../style/CartRedux.styles.js';
+import defaultImage from '../assets/imgXdefault.jpg';
+
+// hace exactamente lo mismo que Cart.jsx pero usando Redux en lugar de useContext para manejar el estado del carrito
+const Carrito = () => {
+  const dispatch = useDispatch();
+  
+  // Obtener items, loading y error del estado global
+  // se suscribe a cambios en state.cart.items, cada vez que se modifica el estado del carrito (agregar, eliminar, limpiar), 
+  // el componente CartRedux se re renderiza automáticamente con el nuevo estado del carrito
+  const cartItems = useSelector((state) => state.cart.items);
+  // se suscribe a cambios en state.cart.loading y error, cada vez que se modifica el estado de carga del carrito (al obtener los items desde la API),
+  //  el componente CartRedux se re renderiza automáticamente con el nuevo estado de carga, mostrando el mensaje de "Cargando carrito..." mientras se obtienen los items desde la API
+  const loading = useSelector((state) => state.cart.loading);
+  const error = useSelector((state) => state.cart.error);
+
+  const totalCompra = useSelector(state => state.cart.total) || 0;
+
+  // Al montar el componente, se dispara la acción asincrónica para obtener los items del carrito
+  // dispatch(fetchCartItems()) envía la acción fetchCartItems a Redux, que a su vez ejecuta la función asincrónica definida en createAsyncThunk 
+  // para obtener los items del carrito desde la API.
+  useEffect(() => {
+    dispatch(fetchCartItems());
+    // dispatch esta en el array de dependencias para evitar warnings de React, aunque en este caso no es necesario porque dispatch no cambia, pero es una buena práctica incluirlo.
+  }, [dispatch]);
+
+
+  //TODO: ssanchez - llamar a la api de cartSlice
+  const handleRemoveFromCart = (productId) => {
+    // dispara el reducer internto
+    dispatch(removeFromCart(productId));
+  };
+
+  //TODO: ssanchez - llamar a la api de cartSlice
+  const handleClearCart = () => {
+    // dispara reducer internto
+    dispatch(clearCart());
+  };
+
+  const handleUpdateQuantity = (item, operacion) => {
+    // Calculamos cómo quedaría la cantidad
+    const nuevaCantidad = item.cantidad + operacion;
+    
+    if (nuevaCantidad > 0) {
+      dispatch(updateQuantity({ 
+        itemId: item.id, 
+        cantidad: nuevaCantidad, 
+        productoId: item.id_producto 
+      })); 
+    } else {
+      // si llega a 0, eliminamos el producto del carrito
+      dispatch(removeFromCart(item.id));
+    }
+  };
+
+  // cuando se ejecuta handleRemoveFromCart o handleClearCart, el estado del carrito se actualiza en el store global de Redux.
+  // Esto hace que el componente CartRedux se vuelva a renderizar automáticamente con el nuevo estado del carrito, mostrando los cambios en la interfaz de usuario.
+  //const total = calculateTotal();
+
+  // Mostrar estado de carga
+  if (loading) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p>Cargando carrito...</p>
+      </div>
+    );
+  }
+
+  // Mostrar error si existe
+  if (error) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p style={{ color: '#ff4444' }}>Error: {error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+      <h1>Carrito de Compras</h1>
+      
+      {cartItems.length > 0 && (
+        <p>Tienes {cartItems.length} productos en el carrito</p>
+      )}
+
+      {cartItems.length === 0 ? (
+        <p>Tu carrito está vacío</p>
+      ) : (
+        <>
+          <div style={{ marginBottom: '2rem' }}>
+            {cartItems.map(item => (
+              <div
+                key={item.id}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '100px 1fr auto',
+                  gap: '1rem',
+                  alignItems: 'center',
+                  padding: '1rem',
+                  borderBottom: '1px solid #eee'
+                }}
+              >
+                <img
+                  // Propiedad "imagen" (del Backend)
+                  src={item.imagen || defaultImage}
+                  alt={item.nombreProducto}
+                  style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '4px' }}
+                />
+                <div>
+                  {/* Propiedad "nombreProducto" (del Backend) */}
+                  <h3 style={{ margin: '0 0 0.5rem 0' }}>{item.nombreProducto}</h3>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px', margin: '10px 0' }}>
+                    <button
+                      onClick={() => handleUpdateQuantity(item, -1)} 
+                      style={{ padding: '5px 10px', cursor: 'pointer', borderRadius: '4px', border: '1px solid #ccc' }}
+                    >
+                      -
+                    </button>
+
+                    {/* Propiedad "cantidad" (del Backend) */}
+                    <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+                      {item.cantidad}
+                    </span>
+
+                    <button
+                      onClick={() => handleUpdateQuantity(item, 1)} 
+                      style={{ padding: '5px 10px', cursor: 'pointer', borderRadius: '4px', border: '1px solid #ccc' }}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <p style={{ margin: '0.5rem 0', color: '#2D3277', fontWeight: 'bold' }}>
+                    {/* Propiedades "precioUnitario" y "cantidad" (del Backend) */}
+                    Subtotal: ${(item.precioUnitario * item.cantidad).toLocaleString('es-AR')}
+                  </p>
+                </div>
+                
+                <button
+                  onClick={() => handleRemoveFromCart(item.id)} 
+                  style={{
+                    padding: '0.5rem', background: 'none', border: '1px solid #ff4444',
+                    color: '#ff4444', borderRadius: '4px', cursor: 'pointer'
+                  }}
+                >
+                  Eliminar
+                </button>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+      
+      <div style={{
+        backgroundColor: '#f9f9f9', padding: '2rem', borderRadius: '8px',
+        marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end'
+      }}>
+        <h2 style={{ margin: '0 0 1rem 0' }}>
+          Total a Pagar: <span style={{ color: '#2D3277' }}>${totalCompra.toLocaleString('es-AR')}</span>
+        </h2>
+
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+          <button
+            onClick={handleClearCart} 
+            style={{ padding: '0.5rem 1rem', backgroundColor: 'transparent', border: '1px solid #ff4444', color: '#ff4444', borderRadius: '4px', cursor: 'pointer' }}
+          >
+            Vaciar Carrito  
+          </button>
+          <Link to="/" style={{ backgroundColor: '#ccc', color: '#333', padding: '0.5rem 1rem', border: 'none', borderRadius: '4px', cursor: 'pointer', textDecoration: 'none' }}>
+            Seguir comprando
+          </Link>
+          <Link to="/checkout" style={{ backgroundColor: '#4CAF50', color: 'white', padding: '0.5rem 2rem', border: 'none', borderRadius: '4px', cursor: 'pointer', textDecoration: 'none', fontWeight: 'bold' }}>
+            Pagar
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Carrito;
+</file>
+
+<file path="src/store/index.js">
+import { configureStore } from '@reduxjs/toolkit';
+import favoriteReducer from './slices/favoriteSlice';
+import productReducer from './slices/productosSlice';
+import cartReducer from './slices/cartSlice';
+import categoriaReducer from './slices/categoriaSlice';
+
+export const store = configureStore({
+    reducer: {
+        favorite: favoriteReducer,
+        products : productReducer,
+        cart: cartReducer,
+        categories: categoriaReducer,
+    },
+
+});
+</file>
+
+<file path="src/main.jsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import './index.css'
+import App from './App.jsx'
+import { store } from './store/index.js'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>,
+)
+</file>
+
+<file path="src/components/FavoriteList.jsx">
+import React, { useEffect } from 'react';
+import ProductCard from './ProductCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeFavorite, fetchFavoriteItems, clearFavorites } from '../store/slices/favoriteSlice'
+import "../style/ProductCatalog.css" // Reutilizamos estilos de la grilla
+
+
+const FavoritesList = () => {
+  const dispatch = useDispatch()
+  const favoriteItems = useSelector(state => state.favorite.items)
+  const loading = useSelector((state) => state.favorite.loading);
+  const error = useSelector((state) => state.favorite.error);
+
+  // Al montar el componente, se dispara la acción asincrónica para obtener los items del carrito
+  // dispatch(fetchFavoriteItems()) envía la acción fetchFavoriteItems a Redux, que a su vez ejecuta la función asincrónica definida en createAsyncThunk 
+  // para obtener los items del carrito desde la API.
+  useEffect(() => {
+    dispatch(fetchFavoriteItems());
+    // dispatch esta en el array de dependencias para evitar warnings de React, aunque en este caso no es necesario porque dispatch no cambia, pero es una buena práctica incluirlo.
+  }, [dispatch]);
+
+  // Función para formatear el precio (igual que en Catalog)
+  const formatearPrecio = (numero) => {
+    return Number(numero).toLocaleString('es-AR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+  }
+
+  //TODO: ssanchez - llamar a la api de cartSlice
+  const handleRemoveFromFavorite = (productId) => {
+    // dispara el reducer internto
+    dispatch(removeFavorite(productId));
+  };
+
+  //TODO: ssanchez - llamar a la api de cartSlice
+  const handleClearFavorites = () => {
+    // dispara reducer internto
+    dispatch(clearFavorites());
+  };
+
+  // Mostrar estado de carga
+  if (loading) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p>Cargando favoritos...</p>
+      </div>
+    );
+  }
+    // Mostrar error si existe
+  if (error) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p style={{ color: '#ff4444' }}>Error: {error}</p>
+      </div>
+    );
+  }
+  return (
+    <div className="catalog-container">
+      <h2>Mis favoritos</h2>
+      <div className="product-grid">
+        {favoriteItems.length === 0 ? (
+          <p>Aún no tienes productos favoritos.</p>
+        ) : (
+          favoriteItems.map(producto => (
+            <ProductCard
+              key={producto.id}
+              producto={producto}
+              precioFormateado={formatearPrecio(producto.precio)}
+            />
+          ))
+        )}
+      <button onClick={handleClearFavorites} className="clear-favorites-button">Limpiar favoritos</button>
+      </div>
+    </div>
+  )
+}
+
+export default FavoritesList
+</file>
+
+<file path="src/components/ProductDetail.jsx">
+import { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import '../style/ProductDetail.css'
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/slices/cartSlice';
+
+const API = 'http://localhost:8080'
+
+function ProductDetail() {
+  const { id } = useParams()
+  const [product, setProduct] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [cantidad, setCantidad] = useState(1);
+
+const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch(`${API}/api/productos/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        setProduct(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error(err)
+        setLoading(false)
+      })
+  }, [id]) 
+
+
+  if (loading) return <p>Cargando...</p>
+
+  if (!product) {
+    return (
+      <div className="product-detail-container">
+        <h1>Producto no encontrado</h1>
+        <Link to="/" className="btn-back">
+          Volver a Productos
+        </Link>
+      </div>
+    )
+  }
+
+  const handleAddToCart = () => {
+    console.log(product)
+    dispatch(addToCart({ productoId: product.id, cantidad: cantidad }));
+  };
+
+  return (
+    <div className="product-detail-container">
+      <Link to="/" className="btn-back">
+        ← Volver a Productos
+      </Link>
+      <div className="product-detail">
+        <div className="product-image">
+          <img src={product.imagenUrl || `https://via.placeholder.com/400?text=${product.nombre}`} alt={product.nombre} />
+        </div>
+        <div className="product-description">
+          <h1>{product.nombre}</h1>
+          <p className="description">{product.descripcion}</p>
+          <p className="price">${product.precio}</p>
+          
+          {/* NUEVO: Controles de cantidad */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px' }}>
+            <span style={{ fontWeight: 'bold' }}>Cantidad:</span>
+            <button 
+              onClick={() => setCantidad(c => Math.max(1, c - 1))}
+              style={{ padding: '5px 15px', fontSize: '1.2rem', cursor: 'pointer' }}
+            >
+              -
+            </button>
+            <span style={{ fontSize: '1.2rem', minWidth: '30px', textAlign: 'center' }}>
+              {cantidad}
+            </span>
+            <button 
+              onClick={() => setCantidad(c => c + 1)}
+              style={{ padding: '5px 15px', fontSize: '1.2rem', cursor: 'pointer' }}
+            >
+              +
+            </button>
+          </div>
+          
+          {/* pasamos la cantidad seleccionada */}
+          <button 
+            className="btn-add-to-cart" 
+            onClick={handleAddToCart} 
+            style={{
+              backgroundColor: '#2D3277', color: 'white', padding: '1rem',
+              border: 'none', borderRadius: '4px', cursor: 'pointer',
+              width: '100%', fontSize: '1.1rem', fontWeight: 'bold'
+            }}
+          >
+            Agregar al Carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ProductDetail
+</file>
+
+<file path="src/style/ProductCard.css">
+.product-card {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+  }
+
+  .badge, .badge-promo {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a1a1a;
+    backdrop-filter: blur(4px);
+    box-shadow: var(--shadow);
+  }
+
+  .badge-promo {
+    background: #ef4444;
+    color: white;
+    left: auto;
+    right: 12px;
+  }
+  
+  .product-image-container {
+    aspect-ratio: 1;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #fdfdfd;
+    margin-bottom: 1rem;
+  }
+  
+  .card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .product-card:hover .card__image {
+    transform: scale(1.08);
+  }
+  
+  .product-title {
+    margin: 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.25;
+    flex-grow: 1;
+  }
+  
+  .product-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0.5rem 0 1.25rem 0;
+  }
+
+.btn-details {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    transition: opacity 0.2s;
+}
+
+.btn-details:hover {
+    opacity: 0.9;
+}
+
+.btn-favorite {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: #666;
+  z-index: 10;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.1);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.btn-favorite.active {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+/* --- RESPONSIVE / MOBILE --- */
+@media (max-width: 600px) {
+    .product-card {
+        padding: 0.75rem; /* Menos padding interno */
+    }
+
+    .product-title {
+        font-size: 0.9rem; /* Fuente más pequeña */
+        margin: 0.25rem 0;
+    }
+
+    .product-price {
+        font-size: 1rem;
+        margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .btn-details {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        width: 100%;
+    }
+
+    .badge, .badge-promo {
+        top: 8px;
+        left: 8px;
+        padding: 2px 8px;
+        font-size: 0.65rem;
+    }
+}
+</file>
+
+<file path="src/style/ProductCatalog.css">
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .catalog-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .category-list li {
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    border-left: 1px solid var(--border);
+  }
+
+  .category-list li.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    padding-left: 1rem;
+  }
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.error {
+  color: #ef4444;
+}
+
+.producto-categoria {
+  font-size: 12px;
+  color: #888;
+  margin: 8px 0 0 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.producto-descripcion {
+  font-size: 13px;
+  color: #666;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.producto-stock {
+  font-size: 13px;
+  color: #27ae60;
+  margin: 8px 0;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en mobile para que no se vean gigantes */
+    gap: 12px; /* Espacio más reducido */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* Seguimos con 2 columnas */
+    gap: 10px;
+  }
+}
+</file>
+
+<file path="src/components/ProductCard.jsx">
+import '../style/ProductCard.css';
+import { useDispatch, useSelector } from 'react-redux'
+import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
+import { Link } from 'react-router-dom'
+import Carrito from './Carrito';
+
+const ProductCard = ({producto, precioFormateado}) => {
+  const dispatch = useDispatch()
+  const favoriteItems = useSelector(state => state.favorite.items)
+
+  const isFavorite = favoriteItems.some(item => item.id === producto.id)
+
+  const handleAddToFavorite = () => {
+    if (!isFavorite) {
+      dispatch(addToFavorite(producto))
+    }
+    else {
+      dispatch(removeFavorite(producto.id))
+    }
+  }
+
+
+  return (
+    <div className="product-card">
+      <div className="product-image-container">
+        <img 
+          src={producto.imagenUrl} 
+          alt={`${producto.nombre}'s product`}
+          className="card__image"
+        />
+      </div>
+      <h3 className="product-title">{producto.nombre}</h3>
+      <div className="product-price">${precioFormateado}</div>
+
+      {producto.freeShipping && <span className="badge">✈️ Envío Gratis</span>}
+      {producto.promo && <span className="badge-promo">🔥 Promo</span>}
+      
+      <button 
+        className={`btn-favorite ${isFavorite ? 'active' : ''}`}
+        onClick={handleAddToFavorite}
+      >
+        <i className={isFavorite ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+      </button>
+    
+
+      <Link to={`/products/${producto.id}`} className="btn-details">
+                Ver Detalles
+      </Link>
+
+  
+    </div>
+  );
+};
+
+export default ProductCard;
+</file>
+
+<file path="src/App.jsx">
+import {BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import ProductCatalog from './components/ProductCatalog'
+import Login from './components/Login'
+import Register from './components/Register'
+import AdminProducts from './components/AdminProducts'
+import ProductDetail from './components/ProductDetail'
+import Carrito from './components/Carrito'
+import FavoritesList from './components/FavoriteList' 
+import Checkout from './components/Checkout'
+import Navbar from './components/Navbar'
+import './App.css'
+
+import { fetchCartItems } from './store/slices/cartSlice';
+// import ProductList from './ProductList.jsx';
+// import CartSummary from './CartSummary.jsx';
+
+function App() {
+  return (
+    <BrowserRouter>
+    <Navbar></Navbar>
+      {/* <nav className="navbar">
+        <Link to="/" className="nav-brand">E-commerce-UADE</Link>
+        <div className="nav-links">
+          <Link to="/"><i className="fa-solid fa-house" style={{color: 'rgb(26, 26, 26)'}}></i> Inicio</Link>
+          <Link to="/login"><i className="fa-solid fa-circle-user" style={{color: 'rgb(26, 26, 26)'}}></i> Iniciar Sesión</Link>
+          <Link to="/register"><i className="fa-solid fa-users" style={{color: 'rgb(26, 26, 26)'}}></i> Registrarse</Link>
+          <Link to="/admin"><i className="fa-solid fa-key" style={{color: 'rgb(26, 26, 26)'}}></i> Admin</Link>
+          <Link to="/carrito">
+            <i className="fa-solid fa-cart-shopping" style={{color: 'rgb(26, 26, 26)'}}></i> Carrito
+          </Link>
+          <Link to="/favorites">
+            <i className="fa-solid fa-heart" style={{color: 'rgb(26, 26, 26)'}}></i> Favoritos
+          </Link>
+        </div>
+      </nav> */}
+
+      <main className="main-content">
+        <Routes>
+          <Route path="/products" element={<ProductCatalog />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/" element={<ProductCatalog />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<AdminProducts />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/favorites" element={<FavoritesList />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </main>
+
+      <footer className="footer">
+        <p>API TPO</p>
+      </footer>
+    </BrowserRouter>
+  )
+}
+
+export default App
+</file>
+
+<file path="src/components/ProductCatalog.jsx">
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductsAsync, setSelectedCategory } from '../store/slices/productosSlice';
+import { fetchCategoriesAsync } from '../store/slices/categoriaSlice';
+import ProductCard from './ProductCard';
+import CategoryList from './CategoryList';
+import "../style/ProductCatalog.css";
+
+const ProductCatalog = () => {
+  const dispatch = useDispatch();
+  
+  const { 
+    items: productos, 
+    loading: prodLoading, 
+    error: prodError, 
+    selectedCategory 
+  } = useSelector(state => state.products);
+
+  const { 
+    items: categorias, 
+    loading: catLoading, 
+    error: catError 
+  } = useSelector(state => state.categories);
+
+  useEffect(() => { 
+    dispatch(fetchProductsAsync());
+    dispatch(fetchCategoriesAsync());
+  }, [dispatch]);
+
+  const handleCategorySelect = (categoryId) => {
+    dispatch(setSelectedCategory(categoryId));
+  };
+
+  const formatearPrecio = (numero) => {
+    if (numero === undefined || numero === null) return '0';
+    return Number(numero).toLocaleString('es-AR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+  }
+
+  // Filtrado
+  const categoriaEncontrada = selectedCategory 
+    ? categorias.find(cat => cat.id === selectedCategory || cat.id_categoria === selectedCategory) 
+    : null;
+
+  const productosFiltrados = categoriaEncontrada
+    ? productos.filter(producto => {
+        return producto.categorias && producto.categorias.includes(categoriaEncontrada.nombre);
+      })
+    : productos;
+
+  // Manejo de carga de cualquiera de los dos
+  if (prodLoading || catLoading) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p className="loading">Cargando catálogo...</p>
+      </div>
+    );
+  }
+
+  // Manejo de error de cualquiera de los dos
+  if (prodError || catError) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <p className="error" style={{ color: '#ff4444' }}>Error: {prodError || catError}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="catalog-container">
+      <h2>Catálogo de Productos</h2>
+      <div className="catalog-layout">
+        <CategoryList 
+          categories={categorias} 
+          onCategorySelect={handleCategorySelect}
+          selectedCategory={selectedCategory} 
+        />
+
+        <div className="catalog-main">
+          <div className="product-grid">
+            {productosFiltrados.length === 0 && <p>No hay productos disponibles para esta categoría.</p>}
+            {productosFiltrados.map(producto => (
+              <ProductCard
+                key={producto.id} 
+                producto={producto}
+                precioFormateado={formatearPrecio(producto.precio)}>
+              </ProductCard>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ProductCatalog;
+</file>
+
+</files>

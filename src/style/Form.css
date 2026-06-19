@@ -81,3 +81,58 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+/* 1. Estilos generales para igualar el select y la fecha al resto de los inputs */
+.form input[type="date"],
+.form select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Bordes redondeados modernos */
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* 2. Truco para el Desplegable (Select): Borrar la flecha por defecto y poner una moderna */
+.form select {
+  appearance: none; /* Borra el estilo feo del sistema operativo */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Dibuja una flecha (chevron) minimalista a la derecha */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+/* 3. Efecto al hacer clic (Focus) - Cambiá el color #2D3277 por el de tu página */
+.form input[type="date"]:focus,
+.form select:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: #2D3277; 
+  box-shadow: 0 0 0 3px rgba(45, 50, 119, 0.15); /* Resplandor suave alrededor */
+}
+
+/* 4. Estilizar el icono del calendario en el input de fecha */
+.form input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 5px;
+}
+
+.form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1; 
+}
+
+.form select:invalid,
+.form input[type="date"]:invalid {
+  color: #777;
+}

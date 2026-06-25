@@ -1,11 +1,10 @@
 
 import '../style/ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
-import { Link } from 'react-router-dom'
-import Carrito from './Carrito';
+import { addFavoriteAsync, removeFavoriteAsync } from '../store/slices/favoriteSlice'
+import { Link } from 'react-router-dom';
 
-const ProductCard = ({producto, precioFormateado}) => {
+const ProductCard = ({ producto, precioFormateado }) => {
   const dispatch = useDispatch()
   const favoriteItems = useSelector(state => state.favorite.items)
 
@@ -13,10 +12,10 @@ const ProductCard = ({producto, precioFormateado}) => {
 
   const handleAddToFavorite = () => {
     if (!isFavorite) {
-      dispatch(addToFavorite(producto))
+      dispatch(addFavoriteAsync(producto.id))
     }
     else {
-      dispatch(removeFavorite(producto.id))
+      dispatch(removeFavoriteAsync(producto.id))
     }
   }
 
@@ -24,8 +23,8 @@ const ProductCard = ({producto, precioFormateado}) => {
   return (
     <div className="product-card">
       <div className="product-image-container">
-        <img 
-          src={producto.imagenUrl} 
+        <img
+          src={producto.imagenUrl}
           alt={`${producto.nombre}'s product`}
           className="card__image"
         />
@@ -35,20 +34,20 @@ const ProductCard = ({producto, precioFormateado}) => {
 
       {producto.freeShipping && <span className="badge">✈️ Envío Gratis</span>}
       {producto.promo && <span className="badge-promo">🔥 Promo</span>}
-      
-      <button 
+
+      <button
         className={`btn-favorite ${isFavorite ? 'active' : ''}`}
         onClick={handleAddToFavorite}
       >
         <i className={isFavorite ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
       </button>
-    
+
 
       <Link to={`/products/${producto.id}`} className="btn-details">
-                Ver Detalles
+        Ver Detalles
       </Link>
 
-  
+
     </div>
   );
 };

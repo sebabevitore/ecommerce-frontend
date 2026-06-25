@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ProductCard from './ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeFavorite, fetchFavoriteItems, clearFavorites } from '../store/slices/favoriteSlice'
+import { removeFavoriteAsync, fetchFavoriteItems, clearFavoritesAsync } from '../store/slices/favoriteSlice'
 import "../style/ProductCatalog.css" // Reutilizamos estilos de la grilla
 
 
@@ -11,9 +11,9 @@ const FavoritesList = () => {
   const loading = useSelector((state) => state.favorite.loading);
   const error = useSelector((state) => state.favorite.error);
 
-  // Al montar el componente, se dispara la acción asincrónica para obtener los items del carrito
+  // Al montar el componente, se dispara la acción asincrónica para obtener los items del favoritos
   // dispatch(fetchFavoriteItems()) envía la acción fetchFavoriteItems a Redux, que a su vez ejecuta la función asincrónica definida en createAsyncThunk 
-  // para obtener los items del carrito desde la API.
+  // para obtener los items del favoritos desde la API.
   useEffect(() => {
     dispatch(fetchFavoriteItems());
     // dispatch esta en el array de dependencias para evitar warnings de React, aunque en este caso no es necesario porque dispatch no cambia, pero es una buena práctica incluirlo.
@@ -27,16 +27,14 @@ const FavoritesList = () => {
     });
   }
 
-  //TODO: ssanchez - llamar a la api de cartSlice
+  // Usar el remove de la api
   const handleRemoveFromFavorite = (productId) => {
-    // dispara el reducer internto
-    dispatch(removeFavorite(productId));
+    dispatch(removeFavoriteAsync(productId));
   };
 
-  //TODO: ssanchez - llamar a la api de cartSlice
+  // Usar el clear de la api
   const handleClearFavorites = () => {
-    // dispara reducer internto
-    dispatch(clearFavorites());
+    dispatch(clearFavoritesAsync());
   };
 
   // Mostrar estado de carga
@@ -47,7 +45,7 @@ const FavoritesList = () => {
       </div>
     );
   }
-    // Mostrar error si existe
+  // Mostrar error si existe
   if (error) {
     return (
       <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -70,7 +68,7 @@ const FavoritesList = () => {
             />
           ))
         )}
-      <button onClick={handleClearFavorites} className="clear-favorites-button">Limpiar favoritos</button>
+        <button onClick={handleClearFavorites} className="clear-favorites-button">Limpiar favoritos</button>
       </div>
     </div>
   )

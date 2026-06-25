@@ -6,7 +6,7 @@
 }
 
 .form {
-  background: white;
+  background: var(--bg-main);
   padding: 3rem;
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .form h2 {
@@ -25,6 +26,7 @@
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.025em;
+  transition: color 0.3s ease;
 }
 
 .form input {
@@ -32,8 +34,9 @@
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 1rem;
-  transition: border-color 0.2s, ring 0.2s;
-  background: #fdfdfd;
+  transition: border-color 0.2s, background-color 0.3s ease, color 0.3s ease;
+  background: var(--bg-secondary);
+  color: var(--text-main);
 }
 
 .form input:focus {
@@ -44,14 +47,14 @@
 
 .form button {
   padding: 0.875rem;
-  background: var(--primary);
+  background: var(--accent);
   color: white;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, background-color 0.3s ease;
   margin-top: 0.5rem;
 }
 
@@ -74,6 +77,7 @@
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   padding-top: 1.5rem;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .form-link a {
@@ -88,12 +92,12 @@
   width: 100%;
   padding: 12px 15px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 8px; /* Bordes redondeados modernos */
   font-size: 1rem;
   font-family: inherit;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
@@ -104,7 +108,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   /* Dibuja una flecha (chevron) minimalista a la derecha */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 15px center;
   background-size: 16px;
@@ -115,9 +119,9 @@
 .form input[type="date"]:focus,
 .form select:focus {
   outline: none;
-  background-color: #fff;
-  border-color: #2D3277; 
-  box-shadow: 0 0 0 3px rgba(45, 50, 119, 0.15); /* Resplandor suave alrededor */
+  background-color: var(--bg-main);
+  border-color: var(--accent); 
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); /* Resplandor suave alrededor */
 }
 
 /* 4. Estilizar el icono del calendario en el input de fecha */

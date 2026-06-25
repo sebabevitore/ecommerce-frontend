@@ -14,7 +14,7 @@ export const styles = {
     gap: '1rem',
     alignItems: 'center',
     padding: '1rem',
-    borderBottom: '1px solid #eee'
+    borderBottom: '1px solid var(--border)'
   },
   itemImage: {
     width: '100px',
@@ -27,7 +27,7 @@ export const styles = {
   },
   itemPrice: {
     margin: '0.5rem 0',
-    color: '#2D3277',
+    color: 'var(--accent)',
     fontWeight: 'bold'
   },
   removeButton: {
@@ -43,9 +43,10 @@ export const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '1rem',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: 'var(--bg-secondary)',
     borderRadius: '4px',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    border: '1px solid var(--border)'
   },
   clearButton: {
     padding: '0.5rem 1rem',
@@ -68,7 +69,7 @@ export const styles = {
     textDecoration: 'none'
   },
   shoppingLink: {
-    backgroundColor: '#2D3277',
+    backgroundColor: 'var(--accent)',
     color: 'white',
     padding: '0.5rem 1rem',
     border: 'none',

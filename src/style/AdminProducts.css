@@ -13,7 +13,7 @@
 }
 
 .admin-form {
-  background: white;
+  background: var(--bg-main);
   padding: 2rem;
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -22,6 +22,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-form h3 {
@@ -30,6 +31,7 @@
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .admin-form input,
@@ -38,7 +40,9 @@
   border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 0.95rem;
-  background-color: #fdfdfd;
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .admin-form input:focus {
@@ -60,24 +64,27 @@
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
+  transition: opacity 0.2s, background-color 0.3s ease, color 0.3s ease;
 }
 
 .form-actions button[type="submit"] {
-  background: var(--primary);
+  background: var(--accent);
   color: white;
 }
 
 .form-actions button[type="button"] {
-  background: #f3f4f6;
+  background: var(--bg-secondary);
   color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
 .admin-table {
-  background: white;
+  background: var(--bg-main);
   padding: 0;
   border-radius: 12px;
   border: 1px solid var(--border);
   overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-table h3 {
@@ -86,6 +93,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   border-bottom: 1px solid var(--border);
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .admin-table table {
@@ -94,7 +102,7 @@
 }
 
 .admin-table th {
-  background: #f9fafb;
+  background: var(--bg-secondary);
   padding: 0.75rem 1.5rem;
   text-align: left;
   font-size: 0.75rem;
@@ -103,12 +111,14 @@
   letter-spacing: 0.05em;
   color: var(--text-muted);
   border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .admin-table td {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--border);
   font-size: 0.95rem;
+  transition: border-color 0.3s ease;
 }
 
 .admin-table tr:last-child td {
@@ -122,8 +132,8 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  background: white;
-  transition: all 0.2s;
+  background: var(--bg-main);
+  transition: all 0.2s, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-edit {
@@ -131,7 +141,7 @@
 }
 
 .btn-edit:hover {
-  background: #eff6ff;
+  background: var(--bg-secondary);
   border-color: var(--accent);
 }
 
@@ -140,7 +150,7 @@
 }
 
 .btn-delete:hover {
-  background: #fef2f2;
+  background: rgba(239, 68, 68, 0.1);
   border-color: #ef4444;
 }
 

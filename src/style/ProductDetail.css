@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border-color 0.3s ease;
 }
 
 .product-image img {
@@ -99,17 +100,3 @@
 }
 
 
-.btn-details {
-  display: inline-block;
-  background-color: var(--primary);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-
-.btn-details:hover {
-  opacity: 0.9;
-}

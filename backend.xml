@@ -1,0 +1,3670 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.mvn/
+  wrapper/
+    maven-wrapper.properties
+src/
+  main/
+    java/
+      com/
+        uade/
+          ecommerce/
+            config/
+              SecurityConfig.java
+            controller/
+              AuthenticationController.java
+              CarritoController.java
+              CategoriaController.java
+              FavoritoController.java
+              PedidoController.java
+              ProductoController.java
+              UsuarioController.java
+            dto/
+              request/
+                CategoriaRequest.java
+                ItemCarritoRequest.java
+                ItemPedidoRequest.java
+                LoginRequest.java
+                PedidoRequest.java
+                ProductoRequest.java
+                UsuarioRegisterDTO.java
+              response/
+                CarritoResponse.java
+                CategoriaResponse.java
+                ItemCarritoResponse.java
+                ItemPedidoResponse.java
+                PedidoResponse.java
+                ProductoResponse.java
+            exception/
+              CantidadInvalidaException.java
+              CarritoNotFoundException.java
+              CarritoVacioException.java
+              EmailException.java
+              FavoriteNotFoundException.java
+              GlobalExceptionHandler.java
+              InsufficientPermissionsException.java
+              ItemCarritoNotFoundException.java
+              PrecioNegativoException.java
+              ProductoNotFoundException.java
+              UsuarioNotFoundException.java
+            model/
+              Carrito.java
+              Categoria.java
+              EstadoPedido.java
+              Favorito.java
+              ItemCarrito.java
+              LineaPedido.java
+              Pedido.java
+              Producto.java
+              Role.java
+              Sexo.java
+              Usuario.java
+            repository/
+              CarritoRepository.java
+              CategoriaRepository.java
+              FavoritoRepository.java
+              PedidoRepository.java
+              ProductoRepository.java
+              UsuarioRepository.java
+            security/
+              JwtFilter.java
+              JwtUtil.java
+            service/
+              AuthenticationService.java
+              CarritoService.java
+              CategoriaService.java
+              FavoritoService.java
+              PedidoService.java
+              ProductoService.java
+              UsuarioService.java
+            EcommerceApplication.java
+    resources/
+      application.properties
+  test/
+    java/
+      com/
+        uade/
+          ecommerce/
+            EcommerceApplicationTests.java
+.gitattributes
+.gitignore
+mvnw
+mvnw.cmd
+pom.xml
+README.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".mvn/wrapper/maven-wrapper.properties">
+wrapperVersion=3.3.4
+distributionType=only-script
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.14/apache-maven-3.9.14-bin.zip
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/CategoriaRequest.java">
+package com.uade.ecommerce.dto.request;
+
+import lombok.Data;
+
+@Data
+public class CategoriaRequest {
+    private String nombre; // No lleva ID porque el usuario no lo elige
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/LoginRequest.java">
+package com.uade.ecommerce.dto.request;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class LoginRequest {
+    private String email; // Email del usuario que intenta iniciar sesión
+    private String password; // Contraseña del usuario que intenta iniciar sesión
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/response/CarritoResponse.java">
+package com.uade.ecommerce.dto.response;
+
+import java.util.List;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
+public class CarritoResponse {
+    private List<ItemCarritoResponse> items;
+    private double total;
+
+    
+
+
+
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/response/CategoriaResponse.java">
+package com.uade.ecommerce.dto.response;
+
+import lombok.Data;
+
+@Data
+public class CategoriaResponse {
+    private Long id;
+    private String nombre;
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/response/ItemPedidoResponse.java">
+package com.uade.ecommerce.dto.response;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class ItemPedidoResponse { // DTO para representar cada item del pedido con su nombre, cantidad y precio unitario
+    private String nombreProducto; // Nombre del producto
+    private int cantidad; // Cantidad del producto en el pedido
+    private double precioUnitario; // Precio unitario del producto en el momento del pedido (puede ser diferente al precio actual del producto)
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/response/PedidoResponse.java">
+package com.uade.ecommerce.dto.response;
+
+import lombok.Builder;
+import lombok.Data;
+import java.util.List;
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+public class PedidoResponse { //DTO para representar un pedido con sus detalles
+    private Long id; // ID del pedido
+    private LocalDateTime fecha; // Fecha del pedido
+    private double total; // Total del pedido
+    private String estado; // Estado del pedido (e.g., "PENDIENTE", "ENVIADO", "ENTREGADO")
+    private List<ItemPedidoResponse> detalles; // Lista de detalles del pedido (nombre del producto, cantidad, precio unitario)
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/CarritoNotFoundException.java">
+package com.uade.ecommerce.exception;
+
+public class CarritoNotFoundException extends RuntimeException {
+    public CarritoNotFoundException(String mensaje) {
+        super(mensaje);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/CarritoVacioException.java">
+package com.uade.ecommerce.exception;
+
+public class CarritoVacioException extends RuntimeException {
+    public CarritoVacioException() {
+        super("El carrito está vacío, no se puede realizar el pedido.");
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/EmailException.java">
+package com.uade.ecommerce.exception;
+
+public class EmailException extends RuntimeException {
+    public EmailException() {
+        super("El email ya está registrado en el sistema.");
+    }    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/InsufficientPermissionsException.java">
+package com.uade.ecommerce.exception;
+
+public class InsufficientPermissionsException extends RuntimeException {
+    public InsufficientPermissionsException(String mensaje) {
+        super(mensaje);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/ItemCarritoNotFoundException.java">
+package com.uade.ecommerce.exception;
+
+public class ItemCarritoNotFoundException extends RuntimeException {
+    public ItemCarritoNotFoundException(Long id) {
+        super("No se encontró el item con id: " + id);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/EstadoPedido.java">
+package com.uade.ecommerce.model;
+
+public enum EstadoPedido {
+    PENDIENTE,
+    PAGADO,
+    ENVIADO,
+    ENTREGADO,
+    CANCELADO
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Sexo.java">
+package com.uade.ecommerce.model;
+
+public enum Sexo {
+    MASCULINO,
+    FEMENINO,
+    OTRO
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/repository/CategoriaRepository.java">
+package com.uade.ecommerce.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.uade.ecommerce.model.Categoria;
+
+public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/repository/PedidoRepository.java">
+package com.uade.ecommerce.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.uade.ecommerce.model.Pedido;
+
+public interface PedidoRepository extends JpaRepository<Pedido, Long>{
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/repository/ProductoRepository.java">
+package com.uade.ecommerce.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.uade.ecommerce.model.Producto;
+
+@Repository
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/security/JwtUtil.java">
+package com.uade.ecommerce.security;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.SecretKey;
+import java.util.Date;
+import java.util.Set;
+
+//tiene utilidades necesarias para implementar jwt
+//Instancia Única: Spring creará una sola instancia de la clase JwtUtil cuando se inicie la aplicación. 
+//Inyección de Dependencias: Permite que esta instancia sea inyectada automáticamente en otras clases que la necesiten
+//sin la necesidad  de  crearla manualmente.
+@Component
+public class JwtUtil {
+    /**
+     * Declarado en application.properties
+     * El "secret" es una cadena de texto confidencial que solo el servidor conoce.
+     * Se utiliza para firmar digitalmente cada token JWT.
+     * La firma garantiza que el token es auténtico y que no ha sido modificado por un tercero.
+     * El valor se inyecta desde el archivo `application.properties` a través de la clave `jwt.secret`.
+     */
+    @Value("${jwt.secret}")
+    private String secret;
+
+    /**
+     * Declarado en application.properties
+     * Define el tiempo de vida de un token en milisegundos.
+     * Después de este tiempo, el token expira y ya no es válido, obligando al usuario a autenticarse de nuevo.
+     * Es una medida de seguridad crucial para limitar la ventana de oportunidad en caso de que un token sea robado.
+     * El valor se inyecta desde el archivo `application.properties` a través de la clave `jwt.expiration`.
+     */
+    @Value("${jwt.expiration}")
+    private Long expiration;
+
+    /**
+     * Este método genera una clave secreta para firmar el token JWT.
+     * La clave se crea a partir de un 'secret' definido en las propiedades de la aplicación.
+     * se llama en generateToken y getClaims
+     * @return la clave secreta para firmar el token.
+     */
+    private SecretKey getSigningKey() {
+        // La clave debe tener al menos 256 bits para el algoritmo HS256
+        return Keys.hmacShaKeyFor(secret.getBytes());
+    }
+
+    /**
+     * Genera un token JWT para un usuario.
+     * El token incluye el nombre de usuario (subject), sus roles, la fecha de emisión y una fecha de expiración.
+     * Finalmente, se firma el token con la clave secreta.
+     * se llamada desde AuthenticationService al hacer login
+     * @param username el nombre de usuario.
+     * @param roles los roles del usuario.
+     * @return el token JWT como una cadena de texto.
+     */
+    public String generateToken(String username, Set<String> roles) {
+        return Jwts.builder()
+                .setSubject(username)
+                .claim("roles", String.join(",", roles))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    /**
+     * Extrae el nombre de usuario del token JWT.
+     * Lo hace parseando el token y obteniendo el "subject" (sujeto), que en este caso es el username.
+     * se llama desde JwtFilter para obtener el username y cargar los detalles del usuario
+     * @param token el token JWT.
+     * @return el nombre de usuario.
+     */
+    public String getUsername(String token) {
+        return getClaims(token).getSubject();
+    }
+
+    /**
+     * Extrae los roles del usuario del token JWT.
+     * Parsea el token para acceder a los "claims" (datos) y recupera los roles.
+     * se llama desde JwtFilter para obtener los roles y asignar las authorities
+     * @param token el token JWT.
+     * @return un conjunto de roles del usuario.
+     */
+    public Set<String> getRoles(String token) {
+        String roles = (String) getClaims(token).get("roles");
+        return Set.of(roles.split(","));
+    }
+
+    /**
+     * Valida un token JWT.
+     * Comprueba que el token no haya expirado y que la firma sea correcta.
+     * Si el token está manipulado o ha expirado, el método lanzará una excepción y devolverá false.
+     * se llama desde JwtFilter para validar el token antes de autenticar al usuario
+     * @param token el token JWT a validar.
+     * @return true si el token es válido, false en caso contrario.
+     */
+    public boolean validateToken(String token) {
+        //TODO: ssanchez- crear exception personalizada y manerjar con GlobalExceptionHandler   
+        try {
+            //este método es el que valida el token y extra la info del token: usarname, expiration, roles, etc.
+            Claims claims = getClaims(token);
+            //validacion expiración redundante, ya lo hace getClaims al parsear el token,
+            //se hace para que quede explicito e independiente de jwt
+            return !claims.getExpiration().before(new Date());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Valida el token y también extrae los "claims" (datos) del token JWT.
+       iss (Issuer)	El emisor del token (quién lo generó).	mi-ecommerce.com
+       sub (Subject)	El sujeto o principal, que en su caso es el nombre de usuario (username).	juan.perez
+       exp (Expiration)	El momento exacto en que el token expira. (Necesario para la seguridad).	1666352400 (timestamp)
+       iat (Issued At)	El momento en que el token fue emitido (creado).	1666316400 (timestamp)
+      
+     * Utiliza la clave de firma para verificar la integridad del token antes de extraer los datos.
+     * @param token el token JWT.
+     * @return los claims (datos) del token.
+     */
+    private Claims getClaims(String token) {
+  
+        return Jwts.parserBuilder()
+                // establece la clave secreta para verificar la firma del token
+                .setSigningKey(getSigningKey())
+                .build()
+                // valida el token y parsea sus claims 
+                // La firma del token: Asegura que el token no haya sido modificado. Si la firma es inválida, lanza una excepción. SignatureException
+                // El formato del token: Confirma que sea un JWT bien estructurado. MalformedJwtException
+                // La fecha de expiración: Si el token ya expiró, también lanza una excepción. ExpiredJwtException
+                .parseClaimsJws(token)
+                // estrae los datos si todo es correcto
+                .getBody();
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/EcommerceApplication.java">
+package com.uade.ecommerce;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EcommerceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(EcommerceApplication.class, args);
+	}
+
+}
+</file>
+
+<file path="src/test/java/com/uade/ecommerce/EcommerceApplicationTests.java">
+package com.uade.ecommerce;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class EcommerceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+</file>
+
+<file path=".gitattributes">
+/mvnw text eol=lf
+*.cmd text eol=crlf
+</file>
+
+<file path=".gitignore">
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+</file>
+
+<file path="mvnw">
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.4
+#
+# Optional ENV vars
+# -----------------
+#   JAVA_HOME - location of a JDK home dir, required when download maven via java source
+#   MVNW_REPOURL - repo url base for downloading maven distribution
+#   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+#   MVNW_VERBOSE - true: enable verbose log; debug: trace the mvnw script; others: silence the output
+# ----------------------------------------------------------------------------
+
+set -euf
+[ "${MVNW_VERBOSE-}" != debug ] || set -x
+
+# OS specific support.
+native_path() { printf %s\\n "$1"; }
+case "$(uname)" in
+CYGWIN* | MINGW*)
+  [ -z "${JAVA_HOME-}" ] || JAVA_HOME="$(cygpath --unix "$JAVA_HOME")"
+  native_path() { cygpath --path --windows "$1"; }
+  ;;
+esac
+
+# set JAVACMD and JAVACCMD
+set_java_home() {
+  # For Cygwin and MinGW, ensure paths are in Unix format before anything is touched
+  if [ -n "${JAVA_HOME-}" ]; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+      # IBM's JDK on AIX uses strange locations for the executables
+      JAVACMD="$JAVA_HOME/jre/sh/java"
+      JAVACCMD="$JAVA_HOME/jre/sh/javac"
+    else
+      JAVACMD="$JAVA_HOME/bin/java"
+      JAVACCMD="$JAVA_HOME/bin/javac"
+
+      if [ ! -x "$JAVACMD" ] || [ ! -x "$JAVACCMD" ]; then
+        echo "The JAVA_HOME environment variable is not defined correctly, so mvnw cannot run." >&2
+        echo "JAVA_HOME is set to \"$JAVA_HOME\", but \"\$JAVA_HOME/bin/java\" or \"\$JAVA_HOME/bin/javac\" does not exist." >&2
+        return 1
+      fi
+    fi
+  else
+    JAVACMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v java
+    )" || :
+    JAVACCMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v javac
+    )" || :
+
+    if [ ! -x "${JAVACMD-}" ] || [ ! -x "${JAVACCMD-}" ]; then
+      echo "The java/javac command does not exist in PATH nor is JAVA_HOME set, so mvnw cannot run." >&2
+      return 1
+    fi
+  fi
+}
+
+# hash string like Java String::hashCode
+hash_string() {
+  str="${1:-}" h=0
+  while [ -n "$str" ]; do
+    char="${str%"${str#?}"}"
+    h=$(((h * 31 + $(LC_CTYPE=C printf %d "'$char")) % 4294967296))
+    str="${str#?}"
+  done
+  printf %x\\n $h
+}
+
+verbose() { :; }
+[ "${MVNW_VERBOSE-}" != true ] || verbose() { printf %s\\n "${1-}"; }
+
+die() {
+  printf %s\\n "$1" >&2
+  exit 1
+}
+
+trim() {
+  # MWRAPPER-139:
+  #   Trims trailing and leading whitespace, carriage returns, tabs, and linefeeds.
+  #   Needed for removing poorly interpreted newline sequences when running in more
+  #   exotic environments such as mingw bash on Windows.
+  printf "%s" "${1}" | tr -d '[:space:]'
+}
+
+scriptDir="$(dirname "$0")"
+scriptName="$(basename "$0")"
+
+# parse distributionUrl and optional distributionSha256Sum, requires .mvn/wrapper/maven-wrapper.properties
+while IFS="=" read -r key value; do
+  case "${key-}" in
+  distributionUrl) distributionUrl=$(trim "${value-}") ;;
+  distributionSha256Sum) distributionSha256Sum=$(trim "${value-}") ;;
+  esac
+done <"$scriptDir/.mvn/wrapper/maven-wrapper.properties"
+[ -n "${distributionUrl-}" ] || die "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+
+case "${distributionUrl##*/}" in
+maven-mvnd-*bin.*)
+  MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/
+  case "${PROCESSOR_ARCHITECTURE-}${PROCESSOR_ARCHITEW6432-}:$(uname -a)" in
+  *AMD64:CYGWIN* | *AMD64:MINGW*) distributionPlatform=windows-amd64 ;;
+  :Darwin*x86_64) distributionPlatform=darwin-amd64 ;;
+  :Darwin*arm64) distributionPlatform=darwin-aarch64 ;;
+  :Linux*x86_64*) distributionPlatform=linux-amd64 ;;
+  *)
+    echo "Cannot detect native platform for mvnd on $(uname)-$(uname -m), use pure java version" >&2
+    distributionPlatform=linux-amd64
+    ;;
+  esac
+  distributionUrl="${distributionUrl%-bin.*}-$distributionPlatform.zip"
+  ;;
+maven-mvnd-*) MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/ ;;
+*) MVN_CMD="mvn${scriptName#mvnw}" _MVNW_REPO_PATTERN=/org/apache/maven/ ;;
+esac
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+[ -z "${MVNW_REPOURL-}" ] || distributionUrl="$MVNW_REPOURL$_MVNW_REPO_PATTERN${distributionUrl#*"$_MVNW_REPO_PATTERN"}"
+distributionUrlName="${distributionUrl##*/}"
+distributionUrlNameMain="${distributionUrlName%.*}"
+distributionUrlNameMain="${distributionUrlNameMain%-bin}"
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-${HOME}/.m2}"
+MAVEN_HOME="${MAVEN_USER_HOME}/wrapper/dists/${distributionUrlNameMain-}/$(hash_string "$distributionUrl")"
+
+exec_maven() {
+  unset MVNW_VERBOSE MVNW_USERNAME MVNW_PASSWORD MVNW_REPOURL || :
+  exec "$MAVEN_HOME/bin/$MVN_CMD" "$@" || die "cannot exec $MAVEN_HOME/bin/$MVN_CMD"
+}
+
+if [ -d "$MAVEN_HOME" ]; then
+  verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  exec_maven "$@"
+fi
+
+case "${distributionUrl-}" in
+*?-bin.zip | *?maven-mvnd-?*-?*.zip) ;;
+*) die "distributionUrl is not valid, must match *-bin.zip or maven-mvnd-*.zip, but found '${distributionUrl-}'" ;;
+esac
+
+# prepare tmp dir
+if TMP_DOWNLOAD_DIR="$(mktemp -d)" && [ -d "$TMP_DOWNLOAD_DIR" ]; then
+  clean() { rm -rf -- "$TMP_DOWNLOAD_DIR"; }
+  trap clean HUP INT TERM EXIT
+else
+  die "cannot create temp dir"
+fi
+
+mkdir -p -- "${MAVEN_HOME%/*}"
+
+# Download and Install Apache Maven
+verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+verbose "Downloading from: $distributionUrl"
+verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+# select .zip or .tar.gz
+if ! command -v unzip >/dev/null; then
+  distributionUrl="${distributionUrl%.zip}.tar.gz"
+  distributionUrlName="${distributionUrl##*/}"
+fi
+
+# verbose opt
+__MVNW_QUIET_WGET=--quiet __MVNW_QUIET_CURL=--silent __MVNW_QUIET_UNZIP=-q __MVNW_QUIET_TAR=''
+[ "${MVNW_VERBOSE-}" != true ] || __MVNW_QUIET_WGET='' __MVNW_QUIET_CURL='' __MVNW_QUIET_UNZIP='' __MVNW_QUIET_TAR=v
+
+# normalize http auth
+case "${MVNW_PASSWORD:+has-password}" in
+'') MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+has-password) [ -n "${MVNW_USERNAME-}" ] || MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+esac
+
+if [ -z "${MVNW_USERNAME-}" ] && command -v wget >/dev/null; then
+  verbose "Found wget ... using wget"
+  wget ${__MVNW_QUIET_WGET:+"$__MVNW_QUIET_WGET"} "$distributionUrl" -O "$TMP_DOWNLOAD_DIR/$distributionUrlName" || die "wget: Failed to fetch $distributionUrl"
+elif [ -z "${MVNW_USERNAME-}" ] && command -v curl >/dev/null; then
+  verbose "Found curl ... using curl"
+  curl ${__MVNW_QUIET_CURL:+"$__MVNW_QUIET_CURL"} -f -L -o "$TMP_DOWNLOAD_DIR/$distributionUrlName" "$distributionUrl" || die "curl: Failed to fetch $distributionUrl"
+elif set_java_home; then
+  verbose "Falling back to use Java to download"
+  javaSource="$TMP_DOWNLOAD_DIR/Downloader.java"
+  targetZip="$TMP_DOWNLOAD_DIR/$distributionUrlName"
+  cat >"$javaSource" <<-END
+	public class Downloader extends java.net.Authenticator
+	{
+	  protected java.net.PasswordAuthentication getPasswordAuthentication()
+	  {
+	    return new java.net.PasswordAuthentication( System.getenv( "MVNW_USERNAME" ), System.getenv( "MVNW_PASSWORD" ).toCharArray() );
+	  }
+	  public static void main( String[] args ) throws Exception
+	  {
+	    setDefault( new Downloader() );
+	    java.nio.file.Files.copy( java.net.URI.create( args[0] ).toURL().openStream(), java.nio.file.Paths.get( args[1] ).toAbsolutePath().normalize() );
+	  }
+	}
+	END
+  # For Cygwin/MinGW, switch paths to Windows format before running javac and java
+  verbose " - Compiling Downloader.java ..."
+  "$(native_path "$JAVACCMD")" "$(native_path "$javaSource")" || die "Failed to compile Downloader.java"
+  verbose " - Running Downloader.java ..."
+  "$(native_path "$JAVACMD")" -cp "$(native_path "$TMP_DOWNLOAD_DIR")" Downloader "$distributionUrl" "$(native_path "$targetZip")"
+fi
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+if [ -n "${distributionSha256Sum-}" ]; then
+  distributionSha256Result=false
+  if [ "$MVN_CMD" = mvnd.sh ]; then
+    echo "Checksum validation is not supported for maven-mvnd." >&2
+    echo "Please disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  elif command -v sha256sum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | sha256sum -c - >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  elif command -v shasum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | shasum -a 256 -c >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  else
+    echo "Checksum validation was requested but neither 'sha256sum' or 'shasum' are available." >&2
+    echo "Please install either command, or disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  fi
+  if [ $distributionSha256Result = false ]; then
+    echo "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised." >&2
+    echo "If you updated your Maven version, you need to update the specified distributionSha256Sum property." >&2
+    exit 1
+  fi
+fi
+
+# unzip and move
+if command -v unzip >/dev/null; then
+  unzip ${__MVNW_QUIET_UNZIP:+"$__MVNW_QUIET_UNZIP"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -d "$TMP_DOWNLOAD_DIR" || die "failed to unzip"
+else
+  tar xzf${__MVNW_QUIET_TAR:+"$__MVNW_QUIET_TAR"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -C "$TMP_DOWNLOAD_DIR" || die "failed to untar"
+fi
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+actualDistributionDir=""
+
+# First try the expected directory name (for regular distributions)
+if [ -d "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain" ]; then
+  if [ -f "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain/bin/$MVN_CMD" ]; then
+    actualDistributionDir="$distributionUrlNameMain"
+  fi
+fi
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if [ -z "$actualDistributionDir" ]; then
+  # enable globbing to iterate over items
+  set +f
+  for dir in "$TMP_DOWNLOAD_DIR"/*; do
+    if [ -d "$dir" ]; then
+      if [ -f "$dir/bin/$MVN_CMD" ]; then
+        actualDistributionDir="$(basename "$dir")"
+        break
+      fi
+    fi
+  done
+  set -f
+fi
+
+if [ -z "$actualDistributionDir" ]; then
+  verbose "Contents of $TMP_DOWNLOAD_DIR:"
+  verbose "$(ls -la "$TMP_DOWNLOAD_DIR")"
+  die "Could not find Maven distribution directory in extracted archive"
+fi
+
+verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+printf %s\\n "$distributionUrl" >"$TMP_DOWNLOAD_DIR/$actualDistributionDir/mvnw.url"
+mv -- "$TMP_DOWNLOAD_DIR/$actualDistributionDir" "$MAVEN_HOME" || [ -d "$MAVEN_HOME" ] || die "fail to move MAVEN_HOME"
+
+clean || :
+exec_maven "$@"
+</file>
+
+<file path="mvnw.cmd">
+<# : batch portion
+@REM ----------------------------------------------------------------------------
+@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM or more contributor license agreements.  See the NOTICE file
+@REM distributed with this work for additional information
+@REM regarding copyright ownership.  The ASF licenses this file
+@REM to you under the Apache License, Version 2.0 (the
+@REM "License"); you may not use this file except in compliance
+@REM with the License.  You may obtain a copy of the License at
+@REM
+@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM
+@REM Unless required by applicable law or agreed to in writing,
+@REM software distributed under the License is distributed on an
+@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+@REM KIND, either express or implied.  See the License for the
+@REM specific language governing permissions and limitations
+@REM under the License.
+@REM ----------------------------------------------------------------------------
+
+@REM ----------------------------------------------------------------------------
+@REM Apache Maven Wrapper startup batch script, version 3.3.4
+@REM
+@REM Optional ENV vars
+@REM   MVNW_REPOURL - repo url base for downloading maven distribution
+@REM   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+@REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
+@REM ----------------------------------------------------------------------------
+
+@IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
+@SET __MVNW_CMD__=
+@SET __MVNW_ERROR__=
+@SET __MVNW_PSMODULEP_SAVE=%PSModulePath%
+@SET PSModulePath=
+@FOR /F "usebackq tokens=1* delims==" %%A IN (`powershell -noprofile "& {$scriptDir='%~dp0'; $script='%__MVNW_ARG0_NAME__%'; icm -ScriptBlock ([Scriptblock]::Create((Get-Content -Raw '%~f0'))) -NoNewScope}"`) DO @(
+  IF "%%A"=="MVN_CMD" (set __MVNW_CMD__=%%B) ELSE IF "%%B"=="" (echo %%A) ELSE (echo %%A=%%B)
+)
+@SET PSModulePath=%__MVNW_PSMODULEP_SAVE%
+@SET __MVNW_PSMODULEP_SAVE=
+@SET __MVNW_ARG0_NAME__=
+@SET MVNW_USERNAME=
+@SET MVNW_PASSWORD=
+@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %*)
+@echo Cannot start maven from wrapper >&2 && exit /b 1
+@GOTO :EOF
+: end batch / begin powershell #>
+
+$ErrorActionPreference = "Stop"
+if ($env:MVNW_VERBOSE -eq "true") {
+  $VerbosePreference = "Continue"
+}
+
+# calculate distributionUrl, requires .mvn/wrapper/maven-wrapper.properties
+$distributionUrl = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionUrl
+if (!$distributionUrl) {
+  Write-Error "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+}
+
+switch -wildcard -casesensitive ( $($distributionUrl -replace '^.*/','') ) {
+  "maven-mvnd-*" {
+    $USE_MVND = $true
+    $distributionUrl = $distributionUrl -replace '-bin\.[^.]*$',"-windows-amd64.zip"
+    $MVN_CMD = "mvnd.cmd"
+    break
+  }
+  default {
+    $USE_MVND = $false
+    $MVN_CMD = $script -replace '^mvnw','mvn'
+    break
+  }
+}
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+if ($env:MVNW_REPOURL) {
+  $MVNW_REPO_PATTERN = if ($USE_MVND -eq $False) { "/org/apache/maven/" } else { "/maven/mvnd/" }
+  $distributionUrl = "$env:MVNW_REPOURL$MVNW_REPO_PATTERN$($distributionUrl -replace "^.*$MVNW_REPO_PATTERN",'')"
+}
+$distributionUrlName = $distributionUrl -replace '^.*/',''
+$distributionUrlNameMain = $distributionUrlName -replace '\.[^.]*$','' -replace '-bin$',''
+
+$MAVEN_M2_PATH = "$HOME/.m2"
+if ($env:MAVEN_USER_HOME) {
+  $MAVEN_M2_PATH = "$env:MAVEN_USER_HOME"
+}
+
+if (-not (Test-Path -Path $MAVEN_M2_PATH)) {
+    New-Item -Path $MAVEN_M2_PATH -ItemType Directory | Out-Null
+}
+
+$MAVEN_WRAPPER_DISTS = $null
+if ((Get-Item $MAVEN_M2_PATH).Target[0] -eq $null) {
+  $MAVEN_WRAPPER_DISTS = "$MAVEN_M2_PATH/wrapper/dists"
+} else {
+  $MAVEN_WRAPPER_DISTS = (Get-Item $MAVEN_M2_PATH).Target[0] + "/wrapper/dists"
+}
+
+$MAVEN_HOME_PARENT = "$MAVEN_WRAPPER_DISTS/$distributionUrlNameMain"
+$MAVEN_HOME_NAME = ([System.Security.Cryptography.SHA256]::Create().ComputeHash([byte[]][char[]]$distributionUrl) | ForEach-Object {$_.ToString("x2")}) -join ''
+$MAVEN_HOME = "$MAVEN_HOME_PARENT/$MAVEN_HOME_NAME"
+
+if (Test-Path -Path "$MAVEN_HOME" -PathType Container) {
+  Write-Verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+  exit $?
+}
+
+if (! $distributionUrlNameMain -or ($distributionUrlName -eq $distributionUrlNameMain)) {
+  Write-Error "distributionUrl is not valid, must end with *-bin.zip, but found $distributionUrl"
+}
+
+# prepare tmp dir
+$TMP_DOWNLOAD_DIR_HOLDER = New-TemporaryFile
+$TMP_DOWNLOAD_DIR = New-Item -Itemtype Directory -Path "$TMP_DOWNLOAD_DIR_HOLDER.dir"
+$TMP_DOWNLOAD_DIR_HOLDER.Delete() | Out-Null
+trap {
+  if ($TMP_DOWNLOAD_DIR.Exists) {
+    try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+    catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+  }
+}
+
+New-Item -Itemtype Directory -Path "$MAVEN_HOME_PARENT" -Force | Out-Null
+
+# Download and Install Apache Maven
+Write-Verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+Write-Verbose "Downloading from: $distributionUrl"
+Write-Verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+$webclient = New-Object System.Net.WebClient
+if ($env:MVNW_USERNAME -and $env:MVNW_PASSWORD) {
+  $webclient.Credentials = New-Object System.Net.NetworkCredential($env:MVNW_USERNAME, $env:MVNW_PASSWORD)
+}
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$webclient.DownloadFile($distributionUrl, "$TMP_DOWNLOAD_DIR/$distributionUrlName") | Out-Null
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+$distributionSha256Sum = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionSha256Sum
+if ($distributionSha256Sum) {
+  if ($USE_MVND) {
+    Write-Error "Checksum validation is not supported for maven-mvnd. `nPlease disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties."
+  }
+  Import-Module $PSHOME\Modules\Microsoft.PowerShell.Utility -Function Get-FileHash
+  if ((Get-FileHash "$TMP_DOWNLOAD_DIR/$distributionUrlName" -Algorithm SHA256).Hash.ToLower() -ne $distributionSha256Sum) {
+    Write-Error "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised. If you updated your Maven version, you need to update the specified distributionSha256Sum property."
+  }
+}
+
+# unzip and move
+Expand-Archive "$TMP_DOWNLOAD_DIR/$distributionUrlName" -DestinationPath "$TMP_DOWNLOAD_DIR" | Out-Null
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+$actualDistributionDir = ""
+
+# First try the expected directory name (for regular distributions)
+$expectedPath = Join-Path "$TMP_DOWNLOAD_DIR" "$distributionUrlNameMain"
+$expectedMvnPath = Join-Path "$expectedPath" "bin/$MVN_CMD"
+if ((Test-Path -Path $expectedPath -PathType Container) -and (Test-Path -Path $expectedMvnPath -PathType Leaf)) {
+  $actualDistributionDir = $distributionUrlNameMain
+}
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if (!$actualDistributionDir) {
+  Get-ChildItem -Path "$TMP_DOWNLOAD_DIR" -Directory | ForEach-Object {
+    $testPath = Join-Path $_.FullName "bin/$MVN_CMD"
+    if (Test-Path -Path $testPath -PathType Leaf) {
+      $actualDistributionDir = $_.Name
+    }
+  }
+}
+
+if (!$actualDistributionDir) {
+  Write-Error "Could not find Maven distribution directory in extracted archive"
+}
+
+Write-Verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+Rename-Item -Path "$TMP_DOWNLOAD_DIR/$actualDistributionDir" -NewName $MAVEN_HOME_NAME | Out-Null
+try {
+  Move-Item -Path "$TMP_DOWNLOAD_DIR/$MAVEN_HOME_NAME" -Destination $MAVEN_HOME_PARENT | Out-Null
+} catch {
+  if (! (Test-Path -Path "$MAVEN_HOME" -PathType Container)) {
+    Write-Error "fail to move MAVEN_HOME"
+  }
+} finally {
+  try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+  catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+}
+
+Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/ItemPedidoRequest.java">
+package com.uade.ecommerce.dto.request;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class ItemPedidoRequest { // DTO para cada item del pedido
+    private Long productoId; // ID del producto
+    private int cantidad; // Cantidad del producto a comprar
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/UsuarioRegisterDTO.java">
+package com.uade.ecommerce.dto.request;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.uade.ecommerce.model.Sexo;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class UsuarioRegisterDTO {
+    private String nombre; // Nombre del usuario que se va a registrar
+    private String apellido; // Apellido del usuario que se va a registrar
+    private String email; // Email del usuario que se va a registrar 
+    private String password; // Contraseña del usuario que se va a registrar 
+    private Sexo sexo; // Sexo del usuario que se va a registrar 
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaNacimiento;  // Fecha de nacimiento del usuario que se va a registrar
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/CantidadInvalidaException.java">
+package com.uade.ecommerce.exception;
+
+public class CantidadInvalidaException extends RuntimeException {
+    public CantidadInvalidaException(String mensaje) {
+        super(mensaje);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Categoria.java">
+package com.uade.ecommerce.model;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Categoria {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_categoria;
+    private String nombre;
+
+    @ManyToMany (mappedBy = "categorias")
+    private List<Producto> productos = new ArrayList<>();
+
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Role.java">
+package com.uade.ecommerce.model;
+
+/**
+ * Enum que define los roles disponibles en el sistema.
+ * USER: puede comprar productos y publicar productos para vender
+ * ADMIN: tiene acceso completo al sistema, puede gestionar usuarios y productos
+ */
+public enum Role {
+    USER,   // Usuario regular que puede comprar  productos
+    ADMIN,   // Administrador con acceso total al sistema
+    VENDEDOR  // Usuario que puede publicar productos para vender
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/repository/CarritoRepository.java">
+package com.uade.ecommerce.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.uade.ecommerce.model.Carrito;
+
+public interface CarritoRepository extends JpaRepository<Carrito, Long> {
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/CarritoController.java">
+package com.uade.ecommerce.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.request.ItemCarritoRequest;
+import com.uade.ecommerce.dto.response.CarritoResponse;
+import com.uade.ecommerce.service.CarritoService;
+
+@RestController
+@RequestMapping("/api/carrito")
+public class CarritoController {
+    @Autowired
+    private CarritoService carritoService;
+
+    // GET carrito del usuario autenticado
+    @GetMapping
+    public ResponseEntity<CarritoResponse> getCarrito() {
+        CarritoResponse carrito = carritoService.getCarritoByUsuario();
+        return ResponseEntity.ok(carrito);
+    }
+
+    // POST agregar item al carrito
+    @PostMapping("/items")
+    public ResponseEntity<CarritoResponse> addItemToCart(@RequestBody ItemCarritoRequest request) {
+        CarritoResponse carrito = carritoService.addItemToCart(request);
+        return new ResponseEntity<>(carrito, HttpStatus.CREATED);
+    }
+
+    // PUT actualizar cantidad de un item
+    @PutMapping("/items/{itemId}")
+    public ResponseEntity<CarritoResponse> updateItemQuantity(
+            @PathVariable Long itemId,
+            @RequestBody ItemCarritoRequest request) {
+        CarritoResponse carrito = carritoService.updateItemQuantity(itemId, request.getCantidad());
+        return ResponseEntity.ok(carrito);
+    }
+
+    // DELETE eliminar un item del carrito
+    @DeleteMapping("/items/{itemId}")
+    public ResponseEntity<CarritoResponse> removeItemFromCart(@PathVariable Long itemId) {
+        CarritoResponse carrito = carritoService.removeItemFromCart(itemId);
+        return ResponseEntity.ok(carrito);
+    }
+
+    // DELETE vaciar carrito
+    @DeleteMapping
+    public ResponseEntity<Void> clearCart() {
+        carritoService.clearCart();
+        return ResponseEntity.noContent().build();
+    }
+
+    // POST realizar checkout (convertir carrito a pedido)
+    @PostMapping("/checkout")
+    public ResponseEntity<String> checkout() {
+        carritoService.checkoutCarrito();
+        return ResponseEntity.ok("Pedido creado exitosamente");
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/FavoritoController.java">
+package com.uade.ecommerce.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.response.ProductoResponse;
+import com.uade.ecommerce.service.FavoritoService;
+
+@RestController
+@RequestMapping("/api/favoritos")
+public class FavoritoController {
+
+    @Autowired
+    private FavoritoService favoritoService;
+
+    @GetMapping
+    public ResponseEntity<List<ProductoResponse>> getFavoritos(Authentication authentication) {
+        String emailUsuario = authentication.getName();
+        List<ProductoResponse> favoritos = favoritoService.getFavoritosByUsuario(emailUsuario);
+        return ResponseEntity.ok(favoritos);
+    }
+
+    // POST: Agregar un producto a la lista de favoritos
+    @PostMapping("/productos/{productoId}")
+    public ResponseEntity<List<ProductoResponse>> addProductoToFavoritos(
+            @PathVariable Long productoId, 
+            Authentication authentication) {
+        
+        String emailUsuario = authentication.getName();
+        List<ProductoResponse> favoritos = favoritoService.addProductoToFavoritos(productoId, emailUsuario);
+        return new ResponseEntity<>(favoritos, HttpStatus.CREATED); 
+    }
+
+    // DELETE: Eliminar un producto específico de la lista
+    @DeleteMapping("/productos/{productoId}")
+    public ResponseEntity<List<ProductoResponse>> removeProductoFromFavoritos(
+            @PathVariable Long productoId, 
+            Authentication authentication) {
+        
+        String emailUsuario = authentication.getName();
+        List<ProductoResponse> favoritos = favoritoService.removeProductoFromFavoritos(productoId, emailUsuario);
+        return ResponseEntity.ok(favoritos); // Devuelve la lista actualizada
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> clearFavoritos(Authentication authentication) {
+        String emailUsuario = authentication.getName();
+        favoritoService.clearFavoritos(emailUsuario);
+        return ResponseEntity.noContent().build(); // Devuelve 204 No Content
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/ItemCarritoRequest.java">
+package com.uade.ecommerce.dto.request;
+
+import lombok.Data;
+
+@Data
+public class ItemCarritoRequest {
+    private Long id_producto;
+    private int cantidad;
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/PedidoRequest.java">
+package com.uade.ecommerce.dto.request;
+
+import java.util.List;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+@Data
+@Builder
+public class PedidoRequest {
+    private Long id_usuario;
+    private List<ItemPedidoRequest> items;
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/response/ProductoResponse.java">
+package com.uade.ecommerce.dto.response;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductoResponse { //DTO para representar la respuesta de un producto con su ID, nombre, descripción, precio y categoría
+
+    private Long id; // ID del producto
+    private String nombre; // Nombre del producto
+    private String descripcion; // Descripción del producto
+    private double precio; // Precio del producto
+    private int stock; // Stock/cantidad disponible del producto
+    private List<String> categorias; // Lista de nombres de categorías a las que pertenece el producto (se asume que un producto puede pertenecer a varias categorías)
+    private String imagenUrl; // URL de la imagen del producto
+    private boolean freeShipping;
+    private boolean isPromo;
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/FavoriteNotFoundException.java">
+package com.uade.ecommerce.exception;
+
+public class FavoriteNotFoundException extends RuntimeException {
+    public FavoriteNotFoundException(String message) {
+        super(message);
+    }
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/PrecioNegativoException.java">
+package com.uade.ecommerce.exception;
+
+public class PrecioNegativoException extends IllegalArgumentException {
+    public PrecioNegativoException() {
+        super("El precio no puede ser negativo");
+    }
+
+    public PrecioNegativoException(String message) {
+        super(message);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/ProductoNotFoundException.java">
+package com.uade.ecommerce.exception;
+
+public class ProductoNotFoundException extends RuntimeException {
+    
+    public ProductoNotFoundException(Long id) {
+        super("No se encontró el producto con id: " + id);
+    }
+
+    // Constructor: Acepta cualquier String como mensaje.
+    public ProductoNotFoundException(String message) {
+        super(message);
+    }    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Favorito.java">
+package com.uade.ecommerce.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Favorito {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    // Relación bidireccional con Usuario (completa el mappedBy = "favorito" que ya tienes en Usuario.java)
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "favoritos_productos", // Nombre de la tabla intermedia en la BD
+        joinColumns = @JoinColumn(name = "favorito_id"), // Clave foránea de esta entidad (Favorito)
+        inverseJoinColumns = @JoinColumn(name = "producto_id") // Clave foránea de la otra entidad (Producto)
+    )
+    private List<Producto> productos = new ArrayList<>();
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/ItemCarrito.java">
+package com.uade.ecommerce.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class ItemCarrito {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item_carrito")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "carrito_id")
+    private Carrito carrito;
+
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+
+    private int cantidad;
+    private double precioUnitario;
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/LineaPedido.java">
+package com.uade.ecommerce.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class LineaPedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private int cantidad;
+    private double precioUnitario;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/repository/FavoritoRepository.java">
+package com.uade.ecommerce.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.uade.ecommerce.model.Favorito;
+
+public interface FavoritoRepository extends JpaRepository<Favorito, Long> {
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/repository/UsuarioRepository.java">
+package com.uade.ecommerce.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.uade.ecommerce.model.Usuario;
+
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+        Optional<Usuario> findByEmail(String email);
+
+        Boolean existsByEmail(String email);
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/security/JwtFilter.java">
+package com.uade.ecommerce.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Component
+//este filtro se ejecuta antes de llamar al controller
+//fue configurado en SecurityConfig en la instrucción `addFilterBefore`
+public class JwtFilter extends OncePerRequestFilter {
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    /**
+     * Este método se ejecuta en cada petición HTTP para verificar si existe un token JWT válido.
+     * Dónde se utiliza:
+     * - Se configura en `SecurityConfig` para que se ejecute antes que el filtro de autenticación de Spring Security.
+     * - Intercepta todas las peticiones entrantes a la API.
+     */
+    
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        // 1. Obtiene el encabezado "Authorization" de la petición.
+        // en header se almacen esto ej: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJycGVyZXpAZ21haWwuY29tIiwicm9sZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3NjEwMDc4MzIsImV4cCI6MTc2MTA5NDIzMn0.FcLd28t-inYFaz7Sbe4slGBafJoqZtChCszmsckCLB
+        String header = request.getHeader("Authorization");
+
+        // 2. Verifica si el encabezado existe y si comienza con "Bearer ".
+        if (header != null && header.startsWith("Bearer ")) {
+            //extrae la parte del JWT de la cabecera de autorización, eliminando el prefijo "Bearer ".
+            // ej token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJycGVyZXpAZ21haWwuY29tIiwicm9sZXMiOiJST0xFX1VTRVIiLCJpYXQiOjE3NjEwMDc4MzIsImV4cCI6MTc2MTA5NDIzMn0.FcLd28t-inYFaz7Sbe4slGBafJoqZtChCszmsckCLBU
+            String token = header.substring(7);
+            // 4. Valida el token usando `jwtUtil.validateToken()`.
+            if (jwtUtil.validateToken(token)) {
+                // 5. Si el token es válido, extrae el nombre de usuario y los roles del token.
+                String username = jwtUtil.getUsername(token);
+                Set<String> roles = jwtUtil.getRoles(token);
+
+                // transformar el conjunto de roles (cadenas de texto)  en la lista de autoridades (permisos) que Spring Security necesita para verificar si el usuario tiene acceso a un recurso.
+                var authorities = roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+                // usuario ya autenticado 
+                // crea un objeto de autenticación con los detalles del usuario y sus roles
+                var auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
+                // 8. Finalmente, pasa la petición al siguiente filtro en la cadena.
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+        }
+        
+        filterChain.doFilter(request, response);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/CategoriaService.java">
+package com.uade.ecommerce.service;
+
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uade.ecommerce.dto.request.CategoriaRequest;
+import com.uade.ecommerce.dto.response.CategoriaResponse;
+import com.uade.ecommerce.model.Categoria;
+import com.uade.ecommerce.repository.CategoriaRepository;
+
+@Service
+public class CategoriaService {
+    @Autowired
+    private CategoriaRepository repo;
+
+//    public List<CategoriaResponse> getCategorias() {
+//        return repo.findAll();
+//    }
+
+    public List<CategoriaResponse> getCategorias() {
+        // 1. Buscamos las entidades en la DB
+        List<Categoria> categorias = repo.findAll();
+        
+        // 2. Las transformamos a CategoriaResponse usando Stream
+        return categorias.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+//    public CategoriaResponse crearCategoria(CategoriaRequest request) {
+//        repo.save(request);
+//        return request;
+//    }
+
+    public CategoriaResponse crearCategoria(CategoriaRequest request) {
+        // 1. Convertimos el Request (DTO) a Entidad para que JPA la entienda
+        Categoria categoria = new Categoria();
+        categoria.setNombre(request.getNombre());
+
+        // 2. Guardamos la entidad
+        Categoria guardada = repo.save(categoria);
+
+        // 3. Devolvemos el DTO con el ID generado
+        return convertToDTO(guardada);
+    }
+
+//    public void eliminarCategoria(Long id) {
+//        if  (repo.existsById(id)){
+//            repo.deleteById(id);
+//      }
+//        else {
+//            throw new IllegalArgumentException("No existe la categoria con el id: " + id);
+//        }
+//    }
+
+    public void eliminarCategoria(Long id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("No existe la categoria con el id: " + id);
+        }
+    }
+
+    private CategoriaResponse convertToDTO(Categoria entidad) {
+        CategoriaResponse response = new CategoriaResponse();
+        // Ojo acá: usá el nombre exacto de tu atributo en la entidad Categoria
+        // Si lo dejaste como id_categoria, usá ese.
+        response.setId(entidad.getId_categoria()); 
+        response.setNombre(entidad.getNombre());
+        return response;
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/FavoritoService.java">
+package com.uade.ecommerce.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uade.ecommerce.dto.response.ProductoResponse;
+import com.uade.ecommerce.exception.ProductoNotFoundException;
+import com.uade.ecommerce.exception.UsuarioNotFoundException;
+import com.uade.ecommerce.exception.FavoriteNotFoundException;
+import com.uade.ecommerce.model.Favorito;
+import com.uade.ecommerce.model.Producto;
+import com.uade.ecommerce.model.Usuario;
+import com.uade.ecommerce.repository.FavoritoRepository;
+import com.uade.ecommerce.repository.ProductoRepository;
+import com.uade.ecommerce.repository.UsuarioRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class FavoritoService {
+
+    @Autowired
+    private FavoritoRepository favoritoRepo;
+
+    @Autowired
+    private UsuarioRepository usuarioRepo;
+
+    @Autowired
+    private ProductoRepository productoRepo;
+
+    private Favorito obtenerFavoritoValidado(String emailUsuario) {
+        Usuario usuario = usuarioRepo.findByEmail(emailUsuario)
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado"));
+                
+        Favorito favorito = usuario.getFavorito();
+        if (favorito == null) {
+            throw new FavoriteNotFoundException("Favorito no encontrado para el usuario");
+        }
+        return favorito;
+    }
+
+    // 1. Obtener la lista de favoritos
+    @Transactional
+    public List<ProductoResponse> getFavoritosByUsuario(String emailUsuario) {
+        Favorito favorito = obtenerFavoritoValidado(emailUsuario);
+        return convertToResponseList(favorito.getProductos());
+    }
+
+    // 2. Agregar un item a favoritos
+    @Transactional
+    public List<ProductoResponse> addProductoToFavoritos(Long idProducto, String emailUsuario) {
+        Favorito favorito = obtenerFavoritoValidado(emailUsuario);
+
+        Producto p = productoRepo.findById(idProducto)
+                    .orElseThrow(() -> new ProductoNotFoundException("No existe el producto con el id: " + idProducto));
+
+        // Verificamos que no esté ya agregado para evitar duplicados en la lista
+        boolean yaExiste = favorito.getProductos().stream()
+                .anyMatch(prod -> prod.getId_prod().equals(idProducto));
+
+        if (!yaExiste) {
+            favorito.getProductos().add(p);
+            favoritoRepo.save(favorito);
+        }
+
+        return convertToResponseList(favorito.getProductos());
+    }
+
+    // 3. Remover un item de favoritos
+    @Transactional
+    public List<ProductoResponse> removeProductoFromFavoritos(Long idProducto, String emailUsuario) {
+        Favorito favorito = obtenerFavoritoValidado(emailUsuario);
+
+        boolean removido = favorito.getProductos().removeIf(p -> p.getId_prod().equals(idProducto));
+        
+        if (!removido) {
+            throw new ProductoNotFoundException("El producto no estaba en tu lista de favoritos");
+        }
+
+        favoritoRepo.save(favorito);
+        
+        // Devolvemos la lista actualizada tras el borrado
+        return convertToResponseList(favorito.getProductos());
+    }
+
+    // 4. Vaciar la lista completa (Manual)
+    @Transactional
+    public void clearFavoritos(String emailUsuario) {
+        Favorito favorito = obtenerFavoritoValidado(emailUsuario);
+        favorito.getProductos().clear();
+        favoritoRepo.save(favorito);
+    }
+
+    // Método privado para mapear la lista de Productos a DTOs usando tu ProductoResponse
+    private List<ProductoResponse> convertToResponseList(List<Producto> productos) {
+        return productos.stream().map(p -> {
+            List<String> nombresCategorias = p.getCategorias().stream()
+                    .map(cat -> cat.getNombre())
+                    .toList();
+
+            return ProductoResponse.builder()
+                    .id(p.getId_prod())
+                    .nombre(p.getNombre())
+                    .descripcion(p.getDescripcion())
+                    .precio(p.getPrecio())
+                    .stock(p.getStock())
+                    .categorias(nombresCategorias.isEmpty() ? List.of("Sin categoría") : nombresCategorias)
+                    .imagenUrl(p.getImagenUrl())
+                    .freeShipping(p.isFreeShipping())
+                    .isPromo(p.isPromo())
+                    .build();
+        }).toList();
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/AuthenticationController.java">
+package com.uade.ecommerce.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.request.LoginRequest;
+import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
+import com.uade.ecommerce.service.AuthenticationService;
+
+import lombok.RequiredArgsConstructor;
+
+
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+public class AuthenticationController {
+    private final AuthenticationService authenticationService;
+
+    //http://localhost:8080/api/auth/register con metodo post http, enviar un body -> crear un usuario
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody UsuarioRegisterDTO request) {
+        //request tiene los datos del usuario a registrar, como nombre, email y contraseña
+        return ResponseEntity.ok(authenticationService.register(request));
+    }
+
+    //http://localhost:8080/api/auth/login con metodo post http, enviar un body -> loguear un usuario
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authenticationService.authenticate(request));
+    }
+
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/CategoriaController.java">
+package com.uade.ecommerce.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.request.CategoriaRequest;
+import com.uade.ecommerce.dto.response.CategoriaResponse;
+import com.uade.ecommerce.service.CategoriaService;
+
+@RestController
+@RequestMapping("/api/categorias")
+public class CategoriaController {
+
+    @Autowired
+    CategoriaService categoriaServ;
+
+//    @GetMapping()
+//    public List<Categoria> getCategorias() {
+//        return categoriaServ.getCategorias();
+//    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaResponse>> getCategorias() {
+        List<CategoriaResponse> lista = categoriaServ.getCategorias();
+        return ResponseEntity.ok(lista); // Devuelve 200 OK con la lista
+    }
+
+//    @PostMapping
+//    public Categoria addCategoria(@RequestBody Categoria categoria) {
+//        return categoriaServ.crearCategoria(categoria);
+//    }
+
+    @PostMapping
+    public ResponseEntity<CategoriaResponse> addCategoria(@RequestBody CategoriaRequest request) {
+        CategoriaResponse nueva = categoriaServ.crearCategoria(request);
+        return new ResponseEntity<>(nueva, HttpStatus.CREATED); // Devuelve 201 Created
+    }
+
+
+//    @DeleteMapping("/{id}")
+//    public void eliminarCategoria(@PathVariable Long id) {
+//        categoriaServ.eliminarCategoria(id);
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCategoria(@PathVariable Long id) {
+        categoriaServ.eliminarCategoria(id);
+        return ResponseEntity.noContent().build(); // Devuelve 204 No Content
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/response/ItemCarritoResponse.java">
+package com.uade.ecommerce.dto.response;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
+public class ItemCarritoResponse {
+    private Long id;
+    private Long id_producto;
+    private int cantidad;
+    private double precioUnitario;
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/UsuarioNotFoundException.java">
+package com.uade.ecommerce.exception;
+
+public class UsuarioNotFoundException extends RuntimeException {
+    public UsuarioNotFoundException(String mensaje) {
+        super(mensaje);
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Carrito.java">
+package com.uade.ecommerce.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Carrito {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_carrito") 
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemCarrito> items = new ArrayList<>();
+
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Pedido.java">
+package com.uade.ecommerce.model;
+
+
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDate fecha;
+    private Double precioTotal;
+    
+    @Enumerated(EnumType.STRING)
+    private EstadoPedido estado;
+
+    @ManyToOne 
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<LineaPedido> lineas;
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/UsuarioService.java">
+package com.uade.ecommerce.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
+import com.uade.ecommerce.exception.UsuarioNotFoundException;
+import com.uade.ecommerce.model.Usuario;
+import com.uade.ecommerce.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+    @Autowired
+    private UsuarioRepository repo;
+
+//    public List<Usuario> getUsuarios() {
+//        return repo.findAll();
+//    }    
+
+    public List<UsuarioRegisterDTO> getUsuarios() {
+        return repo.findAll().stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+
+//    public Usuario crearUsuario(Usuario usuario) {
+//        repo.save(usuario);
+//        return usuario;
+//    }    
+
+    public UsuarioRegisterDTO crearUsuario(UsuarioRegisterDTO dto) {
+        // 1. Pasamos del DTO a la Entidad (lo que se guarda en MySQL)
+        Usuario usuario = new Usuario();
+        usuario.setNombre(dto.getNombre());
+        usuario.setApellido(dto.getApellido());
+        usuario.setEmail(dto.getEmail());
+        usuario.setPassword(dto.getPassword());
+        usuario.setSexo(dto.getSexo());
+        usuario.setFechaNacimiento(dto.getFechaNacimiento());
+        
+        // 2. Guardamos en la base de datos
+        Usuario guardado = repo.save(usuario);
+        
+        // 3. Devolvemos el DTO
+        return convertToDTO(guardado);
+    }
+
+    public void eliminarUsuario(Long id) {
+        if (!repo.existsById(id)) {
+            throw new UsuarioNotFoundException("No existe el usuario con el id: " + id);
+        }
+        repo.deleteById(id);
+    }
+
+    private UsuarioRegisterDTO convertToDTO(Usuario usuario) {
+        return UsuarioRegisterDTO.builder()
+                .nombre(usuario.getNombre())
+                .apellido(usuario.getApellido())
+                .email(usuario.getEmail())
+                .sexo(usuario.getSexo())
+                .fechaNacimiento(usuario.getFechaNacimiento())
+                .build();
+    }
+
+}
+</file>
+
+<file path="pom.xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.0.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.uade</groupId>
+	<artifactId>ecommerce</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name/>
+	<description/>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>21</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-h2console</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- For Spring Security and JWT -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- For testing Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+        <!-- JWT handling  -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+</file>
+
+<file path="README.md">
+# UADE-Ecommerce-AppInteractivas
+TPO - UADE - APLICACIONES INTERACTIVAS - Ecommerce (Grupo 2)
+
+## 📝 Descripción del Proyecto
+Este proyecto consiste en el desarrollo del **Backend** para una aplicación de E-Commerce, enfocada en la transformación digital de las ventas online. 
+La solución implementa una arquitectura robusta para gestionar usuarios, categorias y el flujo completo de compra y venta de productos
+
+Desarrollado para la materia **Aplicaciones Interactivas** en **UADE**, Primer Cuatrimestre 2026.
+
+## 👥 Integrantes
+* **Ian Ozafran**
+* **Sebastian Bevitore**
+* **Carolina Barrionuevo**
+* **Mia Colombo**
+
+## 🚀 Requerimientos del Sistema
+
+### 🔐 Gestión de Usuarios
+* **Registro:** `/api/usuarios` (POST) para registrar usuarios.
+* **Login:** `/api/auth/login` (POST) para autenticación mediante mail y contraseña.
+
+### 📦 Catálogo de Productos
+* **Listados:** Acceso a productos y categorías disponibles.
+
+### 🛠️ Gestión de Productos (Vendedor)
+* **Publicaciones:** Alta de productos, descripción y categoría.
+* **Administración:** El creador del producto puede manejar el stock disponible.
+
+## 🏗️ Especificaciones Técnicas
+Para cumplir con los requisitos de entrega, el proyecto incluye:
+* **Capa de Persistencia:** Implementada a partir del modelo de negocio entregado.
+* **API Rest:** Desarrollada para acceder a la totalidad de la información, permitiendo consultas completas o filtradas.
+
+---
+✨ *Trabajo Práctico Obligatorio - Fundación UADE 2026*
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/PedidoController.java">
+package com.uade.ecommerce.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.request.PedidoRequest;
+import com.uade.ecommerce.dto.response.PedidoResponse;
+import com.uade.ecommerce.service.PedidoService;
+
+@RestController
+@RequestMapping("/api/pedidos")
+public class PedidoController {
+    @Autowired
+    private PedidoService pedidoServ;
+
+//    @GetMapping()
+//    public List<Pedido> getPedido() {
+//        return pedidoServ.getPedidos();
+//    }
+
+    @GetMapping
+    public ResponseEntity<List<PedidoResponse>> getPedidos() {
+        List<PedidoResponse> lista = pedidoServ.getPedidos();
+        return ResponseEntity.ok(lista); // Retorna 200 OK
+    }
+
+//    @PostMapping
+//    public Pedido addPedido(@RequestBody Pedido pedido) {
+//        return pedidoServ.crearPedido(pedido);
+//    }
+
+    @PostMapping
+    public ResponseEntity<PedidoResponse> addPedido(@RequestBody PedidoRequest pedidoRequest) {
+        PedidoResponse nuevo = pedidoServ.crearPedido(pedidoRequest);
+        return new ResponseEntity<>(nuevo, HttpStatus.CREATED); // 201 Created
+    }
+
+//    @DeleteMapping("/{id}")
+//    public void eliminarPedido(@PathVariable Long id) {
+//        pedidoServ.eliminarPedido(id);
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarPedido(@PathVariable Long id) {
+        pedidoServ.eliminarPedido(id);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/dto/request/ProductoRequest.java">
+package com.uade.ecommerce.dto.request;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class ProductoRequest { //DTO para representar la solicitud de creación o actualización de un producto con su nombre, descripción, precio y categoría
+
+    private String nombre; // Nombre del producto que se va a crear o actualizar
+    private String descripcion; // Descripción del producto que se va a crear o actualizar
+    private double precio; // Precio del producto que se va a crear o actualizar
+    private int stock; // Stock/cantidad disponible del producto
+    private List<Long> categoriaIds;
+    private String imagenUrl; // URL de la imagen del producto
+    private boolean freeShipping;
+    private boolean isPromo;
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Producto.java">
+package com.uade.ecommerce.model;
+
+
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_prod;
+    private String nombre;
+    private String descripcion;
+    private double precio;
+    private int stock;
+    private String imagenUrl;
+    private boolean freeShipping;
+    private boolean isPromo;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "productos_categorias",
+        joinColumns = @JoinColumn(name = "producto_id"),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias = new ArrayList<>();
+    
+
+}
+</file>
+
+<file path="src/main/resources/application.properties">
+spring.application.name=e-commerce
+ 
+# H2 Database (se reinicia al parar la app)
+# spring.datasource.url=jdbc:h2:mem:testdb
+# spring.datasource.driverClassName=org.h2.Driver
+# spring.datasource.username=sa
+# spring.datasource.password=
+# spring.h2.console.enabled=true
+# spring.h2.console.path=/h2-console
+ 
+ 
+# 1. Configuración de la Fuente de Datos
+spring.datasource.url=jdbc:mysql://localhost:3306/ecommerce_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=
+ 
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+ 
+# 3. JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=update
+# spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# Configuración de Seguridad JWT
+jwt.secret=esta_es_una_clave_secreta_super_larga_para_uade_2026
+jwt.expiration=3600000
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/UsuarioController.java">
+package com.uade.ecommerce.controller;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
+import com.uade.ecommerce.service.UsuarioService;
+
+@RestController
+@RequestMapping("/api/usuarios")
+public class UsuarioController {
+    @Autowired
+    private UsuarioService usuarioService;
+
+//    @GetMapping()
+//    public List<Usuario> getUsuarios() {
+//        return usuarioService.getUsuarios();
+//    }
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioRegisterDTO>> getUsuarios() {
+        List<UsuarioRegisterDTO> lista = usuarioService.getUsuarios();
+        return ResponseEntity.ok(lista); // Retorna 200 OK
+    }
+
+//    @PostMapping
+//    public Usuario addUsuario(@RequestBody Usuario usuario) {
+//        return usuarioService.crearUsuario(usuario);
+//    }
+
+    @PostMapping
+    public ResponseEntity<UsuarioRegisterDTO> addUsuario(@RequestBody UsuarioRegisterDTO usuario) {
+        UsuarioRegisterDTO nuevo = usuarioService.crearUsuario(usuario);
+        return ResponseEntity.ok(nuevo); // Retorna 200 OK
+    }
+
+//    @DeleteMapping("/{id}")
+//    public void eliminarUsuario(@PathVariable Long id) {
+//        usuarioService.eliminarUsuario(id);
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarUsuario(@PathVariable Long id) {
+        usuarioService.eliminarUsuario(id);
+        return ResponseEntity.noContent().build(); // Retorna 204 No Content
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/AuthenticationService.java">
+package com.uade.ecommerce.service;
+
+import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.uade.ecommerce.dto.request.LoginRequest;
+import com.uade.ecommerce.dto.request.UsuarioRegisterDTO;
+import com.uade.ecommerce.exception.EmailException;
+import com.uade.ecommerce.model.Carrito;
+import com.uade.ecommerce.model.Favorito;
+import com.uade.ecommerce.model.Role;
+import com.uade.ecommerce.model.Usuario;
+import com.uade.ecommerce.repository.CarritoRepository;
+import com.uade.ecommerce.repository.FavoritoRepository;
+import com.uade.ecommerce.repository.UsuarioRepository;
+import com.uade.ecommerce.security.JwtUtil;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class AuthenticationService {
+    private final CarritoRepository carritoRepository; // porque al crear el usuario, se le va a crear un carrito vacio. 
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final FavoritoRepository favoritoRepository;
+    private final JwtUtil jwtUtil;
+    
+    public String register(UsuarioRegisterDTO request) {
+
+
+        //    * FLUJO DE EJECUCIÓN:
+        //    * 1. Valida que el email no esté duplicado en el sistema
+        //    * 2. Construye una nueva entidad Usuario con el patrón Builder
+        //    * 3. Encripta la contraseña usando BCrypt (algoritmo seguro resistente a ataques de fuerza bruta)
+        //    * 4. Asigna automáticamente el rol de usuario básico (USER)
+        //    * 5. Persiste el usuario en la base de datos dentro de una transacción
+        //    * 6. Retorna un mensaje de confirmación
+        if(usuarioRepository.existsByEmail(request.getEmail())) {
+            throw new EmailException();
+        }
+
+
+        //BUILDER
+        Usuario usuario = Usuario.builder()
+                // 2.1) Asigna el nombre completo del usuario desde el request
+                .nombre(request.getNombre())
+                // 2.2) Asigna el apellido del usuario desde el request
+                .apellido(request.getApellido())
+                // 2.3) Asigna el email del usuario (ya validado como único en PASO 1)
+                .email(request.getEmail())
+                // 2.4) ENCRIPTACIÓN DE LA CONTRASEÑA (PASO CRÍTICO DE SEGURIDAD)
+                //      Se utiliza passwordEncoder (PasswordEncoder de Spring Security) 
+                //      para codificar la contraseña usando el algoritmo BCrypt
+                //      IMPORTANTE: La contraseña NUNCA se almacena en texto plano en la BD
+                //      Características de seguridad de BCrypt:
+                //      - Resistente a ataques de fuerza bruta (computacionalmente costoso)
+                //      - El mismo password se codifica diferente en cada llamada
+                //      - Al verificar en login, compara el hash almacenado con el nuevo hash generado
+                .password(passwordEncoder.encode(request.getPassword()))
+                // 2.5) Asigna el rol de usuario a todos los registros nuevos
+                //      Todos los usuarios nuevos tienen rol USER (permisos limitados)
+                //      Solo administradores pueden asignar roles especiales (ADMIN, MODERATOR, etc.)
+                //      Esto sigue el principio de "least privilege" (menor nivel de privilegios)
+                .role(Role.USER)
+                .fechaNacimiento(request.getFechaNacimiento())
+                .sexo(request.getSexo())
+                // 2.6) Finaliza la construcción y retorna la instancia Usuario 
+                //      con todos los campos configurados y listos para usar
+                .build();
+
+        // GUARDADO
+        usuarioRepository.save(usuario);
+
+        // CREACIÓN DE CARRITO ASOCIADO AL USUARIO
+        Carrito carrito = new Carrito();
+        carrito.setUsuario(usuario);
+        carritoRepository.save(carrito);
+
+        // CREACIÓN DE FAVORITO ASOCIADO AL USUARIO
+        Favorito favorito = new Favorito();
+        favorito.setUsuario(usuario);
+        favoritoRepository.save(favorito);
+
+        return "Usuario registrado exitosamente";
+    }
+
+        /**
+     * Método que autentica un usuario existente y genera un token JWT.
+     * 
+     * Este método implementa el flujo completo de autenticación:
+     * 1. Valida las credenciales (email y contraseña) contra la base de datos
+     * 2. Verifica que el usuario existe y que la contraseña es correcta
+     * 3. Extrae los roles/permisos del usuario autenticado
+     * 4. Genera un token JWT con la información de autenticación
+     * 5. Retorna el token al cliente para futuras solicitudes autenticadas
+     * 
+     * FLUJO DE SEGURIDAD:
+     * - Se utiliza Spring Security AuthenticationManager para validar credenciales
+     * - Las contraseñas se comparan de manera segura usando BCrypt
+     * - El token JWT se genera con email y roles del usuario
+     * - El cliente debe incluir este token en el header Authorization de futuras solicitudes
+     * 
+     * @param request objeto LoginRequest que contiene:
+     *                - email: identificador único del usuario
+     *                - password: contraseña en texto plano (será encriptada internamente para validación)
+     * @return token JWT (JSON Web Token) que el cliente debe usar para autenticarse en solicitudes futuras
+     * @throws UsernameNotFoundException si el usuario (email) no existe en la base de datos
+     * @throws BadCredentialsException si la contraseña proporcionada es incorrecta
+     * @throws NoSuchElementException si no se encuentra el usuario después de la autenticación exitosa
+     */
+
+    public String authenticate(LoginRequest request){
+
+        // ==================== PASO 1: VALIDACIÓN DE CREDENCIALES ====================
+        //esto guarda las credenciales para que las lea el AuthenticationManager
+        UsernamePasswordAuthenticationToken credenciales = new UsernamePasswordAuthenticationToken(
+            request.getEmail(), 
+            request.getPassword()
+        ); 
+        // El AuthenticationManager se encarga de validar las credenciales contra la base de datos
+        authenticationManager.authenticate(credenciales); // esto lanza excepciones si algo esta mal. 
+
+        // ==================== PASO 2: OBTENER USUARIO AUTENTICADO ====================
+        Usuario user = usuarioRepository.findByEmail(request.getEmail()).orElseThrow();
+
+        // ==================== PASO 3: EXTRAER ROLES/PERMISOS ====================
+                // Obtiene la lista de roles/permisos del usuario autenticado
+        //
+        // user.getAuthorities():
+        // - Retorna una Collection<? extends GrantedAuthority>
+        // - GrantedAuthority representa un permiso o rol del usuario
+        // - Ejemplo: ROLE_USER, ROLE_ADMIN, ROLE_MODERATOR
+        //
+        // Flujo de transformación (Stream API):
+        // 1. user.getAuthorities().stream() - convierte la colección en un stream
+        // 2. .map(grantedAuthority -> grantedAuthority.getAuthority()) - extrae el nombre del rol (String)
+        //    * Transforma cada GrantedAuthority en su representación como String
+        //    * Ejemplo: [GrantedAuthority("ROLE_USER")] -> ["ROLE_USER"]
+        // 3. .collect(Collectors.toSet()) - recolecta los resultados en un Set<String>
+        //    * Set evita duplicados (aunque normalmente un usuario no tiene roles duplicados)
+        //    * Ejemplo salida: {"ROLE_USER", "ROLE_ADMIN"}
+        Set<String> roles = user.getAuthorities().stream()
+                .map(grantedAuthority -> grantedAuthority.getAuthority())
+                .collect(Collectors.toSet());
+        
+        // ==================== PASO 4: GENERACIÓN DEL TOKEN JWT ====================
+        // Genera un token JWT (JSON Web Token) que será enviado al cliente
+        //
+        // JWT (JSON Web Token):
+        // - Formato estándar para tokens de autenticación
+        // - Estructura: [header].[payload].[signature]
+        // - Es un token autofirmado (contiene su propia validación mediante firma)
+        // - No se requiere consultar BD en cada solicitud para validarlo (validación local)
+        // - Contiene información encriptada sobre el usuario (email, roles)
+        // - Tiene expiration time (vencimiento después de cierto tiempo)
+        // - El cliente lo debe incluir en el header Authorization para futuras solicitudes
+        //
+        // jwtUtil.generateToken(email, roles):
+        // - Crea un token JWT con el email y los roles del usuario
+        // - Firma el token con una clave secreta definida en la aplicación
+        // - El servidor podrá verificar este token en futuras solicitudes sin consultar BD
+        // - Solo tokens con firma válida serán aceptados (previene manipulación)
+        return jwtUtil.generateToken(user.getEmail(), roles);
+    }
+    
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/controller/ProductoController.java">
+package com.uade.ecommerce.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uade.ecommerce.dto.request.ProductoRequest;
+import com.uade.ecommerce.dto.response.ProductoResponse;
+import com.uade.ecommerce.service.ProductoService;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+
+@RestController
+@RequestMapping("/api/productos")
+public class ProductoController {
+    @Autowired
+    ProductoService prodService;
+
+//    @GetMapping()
+//    public List<Producto> getProductos() {
+//        return prodService.getProductos();
+//    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductoResponse>> getProductos() {
+        List<ProductoResponse> lista = prodService.getProductos();
+        return ResponseEntity.ok(lista); // Retorna 200 OK
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductoResponse> getProductoById(@PathVariable Long id) {
+        ProductoResponse producto = prodService.getProductoById(id);
+        return ResponseEntity.ok(producto);
+    }
+
+//    @PostMapping
+//    public Producto addProducto(@RequestBody Producto producto) {
+//        return prodService.crearProducto(producto);
+//    }
+
+    @PostMapping
+    public ResponseEntity<ProductoResponse> addProducto(@RequestBody ProductoRequest productoRequest) {
+        ProductoResponse nuevo = prodService.crearProducto(productoRequest);
+        return new ResponseEntity<>(nuevo, HttpStatus.CREATED); // Retorna 201 Created
+    }
+
+//    @DeleteMapping("/{id}")
+//    public void eliminarProducto(@PathVariable Long id) {
+//        prodService.eliminarProducto(id);
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarProducto(@PathVariable Long id) {
+        prodService.eliminarProducto(id);
+        return ResponseEntity.noContent().build(); // Retorna 204 No Content
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductoResponse> updateProducto(@PathVariable Long id, @RequestBody ProductoRequest productoRequest) {
+    // Le pasamos el ID y el DTO al service
+    ProductoResponse actualizado = prodService.updateProducto(id, productoRequest);
+    
+    if (actualizado != null) {
+        return ResponseEntity.ok(actualizado); // 200 OK si lo encontró y actualizó
+    } else {
+        return ResponseEntity.notFound().build(); // 404 si el ID no existía
+    }
+}
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/exception/GlobalExceptionHandler.java">
+package com.uade.ecommerce.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+//TODO: ssanchez - es buena práctica crear excepciones personalizadas para cada error específico, y manejarlas en un controlador de excepciones global con @ControllerAdvice, para centralizar el manejo de errores y evitar repetir código en cada controlador. Por ejemplo, se podría crear una excepción ProductoNotFoundException para manejar el caso cuando no se encuentra un producto, y otra excepción PrecioNegativoException para manejar el caso cuando se intenta guardar un producto con precio negativo. Luego, en el controlador de excepciones global, se podrían manejar estas excepciones y devolver una respuesta adecuada al cliente, como un código de estado HTTP 404 (Not Found) para ProductoNotFoundException, o un código de estado HTTP 400 (Bad Request) para PrecioNegativoException.
+// Anotación que indica que esta clase manejará excepciones de forma global para todos los controladores.
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    // Anotación que indica que este método manejará las excepciones de tipo ProductoNotFoundException.
+    @ExceptionHandler(ProductoNotFoundException.class)
+    // Este método se ejecuta cuando se lanza una ProductoNotFoundException.
+    public ResponseEntity<String> manejarProductoNoEncontrado(ProductoNotFoundException ex) {
+
+        // Devuelve una respuesta con el código de estado HTTP 404 (Not Found) y un cuerpo con el mensaje "Producto no encontrado :)"
+        //representa la respuesta HTTP completa que se envía desde tu controlador al cliente (navegador, aplicación móvil, etc.).
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        //not_found es el código de error
+        //body va el json con el mensaje de error
+        
+    }
+
+    @ExceptionHandler(InsufficientPermissionsException.class)
+    public ResponseEntity<String> handlePermissions(InsufficientPermissionsException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(PrecioNegativoException.class)
+    public ResponseEntity<String> manejarPrecioNegativo(PrecioNegativoException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> manejarArgumentoInvalido(IllegalArgumentException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> manejarErroresGenerales(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + ex.getMessage());
+    }
+
+    @ExceptionHandler(EmailException.class)
+    public ResponseEntity<String> manejarEmailException(EmailException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UsuarioNotFoundException.class)
+    public ResponseEntity<String> manejarUsuarioNoEncontrado(UsuarioNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CarritoNotFoundException.class)
+    public ResponseEntity<String> manejarCarritoNoEncontrado(CarritoNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ItemCarritoNotFoundException.class)
+    public ResponseEntity<String> manejarItemCarritoNoEncontrado(ItemCarritoNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CarritoVacioException.class)
+    public ResponseEntity<String> manejarCarritoVacio(CarritoVacioException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(CantidadInvalidaException.class)
+    public ResponseEntity<String> manejarCantidadInvalida(CantidadInvalidaException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(FavoriteNotFoundException.class)
+    public ResponseEntity<String> manejarFavoritoNoEncontrado(FavoriteNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/model/Usuario.java">
+package com.uade.ecommerce.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Usuario implements UserDetails{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario") 
+    private Long id; 
+
+    private String nombre;
+    private String apellido;
+    @Column(unique = true)
+    private String email;
+    private String password;
+    private boolean activo;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
+    private LocalDate fechaNacimiento;
+
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    @OneToOne(mappedBy = "usuario")
+    private Carrito carrito;
+
+    @OneToOne(mappedBy = "usuario")
+    private Favorito favorito;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + (role != null ? role.name() : "USER")));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    //estado de la cuenta
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+
+    
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/ProductoService.java">
+package com.uade.ecommerce.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uade.ecommerce.dto.request.ProductoRequest;
+import com.uade.ecommerce.dto.response.ProductoResponse;
+import com.uade.ecommerce.exception.ProductoNotFoundException;
+import com.uade.ecommerce.model.Categoria;
+import com.uade.ecommerce.model.Producto;
+import com.uade.ecommerce.repository.CategoriaRepository;
+import com.uade.ecommerce.repository.ProductoRepository;
+
+@Service
+public class ProductoService {
+    @Autowired
+    private ProductoRepository repo;
+
+    @Autowired
+    private CategoriaRepository categoriaRepo;
+
+//    public List<Producto> getProductos() {
+//        return repo.findAll();
+//    }
+
+    public List<ProductoResponse> getProductos() {
+        return repo.findAll().stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+
+    public ProductoResponse getProductoById(Long id) {
+        return repo.findById(id)
+                .map(this::convertToDTO)
+                .orElseThrow(() -> new ProductoNotFoundException("No existe el producto con el id: " + id));
+    }
+
+//    public Producto crearProducto(Producto producto) {
+//        repo.save(producto);
+//        return producto;
+//    }
+
+    public ProductoResponse crearProducto(ProductoRequest request) {
+        Producto producto = new Producto();
+        producto.setNombre(request.getNombre());
+        producto.setDescripcion(request.getDescripcion());
+        producto.setPrecio(request.getPrecio());
+        producto.setStock(request.getStock());
+        producto.setImagenUrl(request.getImagenUrl());
+        producto.setFreeShipping(request.isFreeShipping());
+        producto.setPromo(request.isPromo());
+        
+        // BUSCAMOS LAS CATEGORÍAS POR ID
+        if (request.getCategoriaIds() != null && !request.getCategoriaIds().isEmpty()) {
+            List<Categoria> categoriasExistentes = categoriaRepo.findAllById(request.getCategoriaIds());
+            producto.setCategorias(categoriasExistentes);
+        }
+            
+        Producto guardado = repo.save(producto);
+        return convertToDTO(guardado);
+    }
+
+//    public void eliminarProducto(Long id) {
+//        if  (repo.existsById(id)){
+//            repo.deleteById(id);
+//        }
+//        else {
+//            throw new IllegalArgumentException("No existe el producto con el id: " + id);
+//        }
+
+    public void eliminarProducto(Long id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+        } else {
+            throw new ProductoNotFoundException("No existe el producto con el id: " + id);
+        }
+    }
+
+    public ProductoResponse updateProducto(Long id, ProductoRequest request) {
+        // 1. Buscamos si existe
+        Producto productoExistente = repo.findById(id)
+                .orElseThrow(() -> new ProductoNotFoundException("No existe el producto con el id: " + id));
+
+        // 2. Mapeamos los datos del DTO a la Entidad
+        productoExistente.setNombre(request.getNombre());
+        productoExistente.setDescripcion(request.getDescripcion());
+        productoExistente.setStock(request.getStock());
+        productoExistente.setPrecio(request.getPrecio());
+        productoExistente.setImagenUrl(request.getImagenUrl());
+        productoExistente.setFreeShipping(request.isFreeShipping());
+        productoExistente.setPromo(request.isPromo());
+        
+        // 3. Guardamos y convertimos a respuesta
+        Producto actualizado = repo.save(productoExistente);
+        return convertToDTO(actualizado);
+    }
+
+    private ProductoResponse convertToDTO(Producto p) {
+        // Transformamos la lista de objetos Categoria en una lista de Strings (sus nombres)
+        List<String> nombresCategorias = p.getCategorias().stream()
+                .map(cat -> cat.getNombre())
+                .toList();
+
+        return ProductoResponse.builder()
+                .id(p.getId_prod())
+                .nombre(p.getNombre())
+                .descripcion(p.getDescripcion())
+                .precio(p.getPrecio())
+                .stock(p.getStock())
+                // Si la lista está vacía, devolvemos una lista con "Sin categoría" o vacía
+                .categorias(nombresCategorias.isEmpty() ? List.of("Sin categoría") : nombresCategorias)
+                .imagenUrl(p.getImagenUrl())
+                .freeShipping(p.isFreeShipping())
+                .isPromo(p.isPromo())
+                .build();
+    }
+
+    public void descontarStock(Producto p, int cantidad) {
+        if (p.getStock() < cantidad) {
+            throw new IllegalArgumentException("No hay suficiente stock para el producto: " + p.getNombre());
+        }
+        p.setStock(p.getStock() - cantidad);
+        repo.save(p);
+    }
+
+
+    
+
+
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/PedidoService.java">
+package com.uade.ecommerce.service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import com.uade.ecommerce.model.EstadoPedido;
+
+import com.uade.ecommerce.dto.request.ItemPedidoRequest;
+import com.uade.ecommerce.dto.request.PedidoRequest;
+import com.uade.ecommerce.dto.response.ItemPedidoResponse;
+import com.uade.ecommerce.dto.response.PedidoResponse;
+import com.uade.ecommerce.exception.ProductoNotFoundException;
+import com.uade.ecommerce.exception.UsuarioNotFoundException;
+import com.uade.ecommerce.model.LineaPedido;
+import com.uade.ecommerce.model.Pedido;
+import com.uade.ecommerce.model.Producto;
+import com.uade.ecommerce.model.Usuario;
+import com.uade.ecommerce.repository.PedidoRepository;
+import com.uade.ecommerce.repository.ProductoRepository;
+import com.uade.ecommerce.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
+
+@Service
+public class PedidoService {
+
+    @Autowired
+    private UsuarioRepository usuarioRepo;
+
+    @Autowired
+    private PedidoRepository repo;
+
+    @Autowired
+    private ProductoRepository productoRepo;
+
+    @Autowired 
+    private ProductoService productoService;
+
+
+//    public List<Pedido> getPedidos() {
+//        return repo.findAll();
+//    }
+
+    public List<PedidoResponse> getPedidos() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = usuarioRepo.findByEmail(email)
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado con email: " + email));
+
+        return repo.findAll().stream()
+                .filter(pedido -> pedido.getUsuario().equals(usuario))
+                .map(this::convertToPedidoDTO) // Transformamos cada Pedido en PedidoResponse
+                .toList();
+    }
+
+
+//    public Pedido crearPedido(Pedido pedido) {
+//        repo.save(pedido);
+//        return pedido;
+//    }    
+
+@Transactional
+public PedidoResponse crearPedido(PedidoRequest request) {
+    // 1. Obtenemos el email del usuario logueado desde el contexto de Seguridad
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+    Usuario usuario = usuarioRepo.findByEmail(email)
+            .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado"));
+
+    // 2. Creamos el objeto Pedido principal
+    Pedido pedido = new Pedido();
+    pedido.setUsuario(usuario);
+    pedido.setFecha(LocalDate.now());
+    pedido.setEstado(EstadoPedido.PENDIENTE);
+
+    // 3. Transformamos cada item del Request en una LineaPedido
+    List<LineaPedido> lineas = new ArrayList<>();
+    double totalPedido = 0;
+
+    for (ItemPedidoRequest itemReq : request.getItems()) {
+        Producto p = productoRepo.findById(itemReq.getProductoId())
+                .orElseThrow(() -> new ProductoNotFoundException(itemReq.getProductoId()));
+        
+        productoService.descontarStock(p, itemReq.getCantidad()); // Descontamos el stock del producto
+        
+        LineaPedido linea = new LineaPedido();
+        linea.setProducto(p);
+        linea.setCantidad(itemReq.getCantidad());
+        linea.setPrecioUnitario(p.getPrecio());
+        linea.setPedido(pedido);
+
+        lineas.add(linea);
+        totalPedido += (p.getPrecio() * itemReq.getCantidad());
+    }
+
+    // 4. Guardamos todo
+    pedido.setLineas(lineas);
+    pedido.setPrecioTotal(totalPedido);
+    Pedido pedidoGuardado = repo.save(pedido);
+
+    // 5. Mapeamos a la respuesta
+    List<ItemPedidoResponse> detalles = pedidoGuardado.getLineas().stream().map(l ->
+        ItemPedidoResponse.builder()
+            .nombreProducto(l.getProducto().getNombre())
+            .cantidad(l.getCantidad())
+            .precioUnitario(l.getPrecioUnitario())
+            .build()
+    ).toList();
+
+    return PedidoResponse.builder()
+        .id(pedidoGuardado.getId())
+        .fecha(pedidoGuardado.getFecha().atStartOfDay())
+        .total(totalPedido)
+        .estado(pedidoGuardado.getEstado().name())
+        .detalles(detalles)
+        .build();
+    }
+
+
+    public void eliminarPedido(Long id) {
+        if  (repo.existsById(id)){
+            repo.deleteById(id);
+        }
+        else {
+            throw new IllegalArgumentException("No existe el pedido con el id: " + id);
+        }
+    }
+
+    private PedidoResponse convertToPedidoDTO(Pedido pedido) {
+    return PedidoResponse.builder()
+            .id(pedido.getId())
+            .fecha(pedido.getFecha().atStartOfDay())
+            .total(pedido.getLineas().stream().mapToDouble(l -> l.getPrecioUnitario() * l.getCantidad()).sum())
+            .estado(pedido.getEstado().name())
+            .detalles(pedido.getLineas().stream().map(l -> 
+                ItemPedidoResponse.builder()
+                    .nombreProducto(l.getProducto().getNombre())
+                    .cantidad(l.getCantidad())
+                    .precioUnitario(l.getPrecioUnitario())
+                    .build()
+            ).toList())
+            .build();
+    }
+
+
+
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/service/CarritoService.java">
+package com.uade.ecommerce.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import com.uade.ecommerce.dto.request.ItemCarritoRequest;
+import com.uade.ecommerce.dto.request.ItemPedidoRequest;
+import com.uade.ecommerce.dto.request.PedidoRequest;
+import com.uade.ecommerce.dto.response.CarritoResponse;
+import com.uade.ecommerce.dto.response.ItemCarritoResponse;
+import com.uade.ecommerce.exception.CantidadInvalidaException;
+import com.uade.ecommerce.exception.CarritoNotFoundException;
+import com.uade.ecommerce.exception.CarritoVacioException;
+import com.uade.ecommerce.exception.ItemCarritoNotFoundException;
+import com.uade.ecommerce.exception.ProductoNotFoundException;
+import com.uade.ecommerce.exception.UsuarioNotFoundException;
+import com.uade.ecommerce.model.Carrito;
+import com.uade.ecommerce.model.ItemCarrito;
+import com.uade.ecommerce.model.Producto;
+import com.uade.ecommerce.model.Usuario;
+import com.uade.ecommerce.repository.CarritoRepository;
+import com.uade.ecommerce.repository.ProductoRepository;
+import com.uade.ecommerce.repository.UsuarioRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class CarritoService {
+    @Autowired
+    private CarritoRepository carritoRepo;
+    @Autowired
+    private ProductoRepository productoRepo;
+    @Autowired
+    private UsuarioRepository usuarioRepo;
+    @Autowired
+    private PedidoService pedidoService;
+
+    // Obtener usuario autenticado desde el contexto de seguridad
+    private Usuario getUsuarioAutenticado() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return usuarioRepo.findByEmail(email)
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado"));
+    }
+
+    // Obtener carrito del usuario autenticado
+    @Transactional
+    public CarritoResponse getCarritoByUsuario() {
+        Usuario usuario = getUsuarioAutenticado();
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null) {
+            throw new CarritoNotFoundException("Carrito no encontrado para el usuario");
+        }
+        return convertToCarritoResponse(carrito);
+    }
+
+    //no va a tener creacion de carrito porque se crea desde la creacion de usuario.
+
+    @Transactional
+    // logica para agregar item al carrito del usuario autenticado
+    public CarritoResponse addItemToCart(ItemCarritoRequest request)  {
+
+        // 1. VALIDAR CANTIDAD (Nueva validación)
+        if (request.getCantidad() <= 0) {
+            throw new CantidadInvalidaException("La cantidad a agregar debe ser mayor a 0. Se recibió: " + request.getCantidad());
+        }
+
+        //obtener usuario autenticado y su carrito
+        Usuario usuario = getUsuarioAutenticado();
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null) {
+            throw new CarritoNotFoundException("Carrito no encontrado para el usuario");
+        }
+
+        //buscar producto
+        Producto p = productoRepo.findById(request.getId_producto())
+                    .orElseThrow(() -> new ProductoNotFoundException(request.getId_producto()));
+
+        //revisar si hay stock suficiente
+        if (!validarStock(p, request.getCantidad())) {
+            throw new CantidadInvalidaException("La cantidad a agregar no puede ser mayor al stock disponible. Stock actual: " + p.getStock() + ", cantidad a agregar: " + request.getCantidad());
+        }
+        // buscar si el prod ya esta en el carrito
+        ItemCarrito itemExistente = null;
+        List<ItemCarrito> items = carrito.getItems();
+        for(ItemCarrito item : items) {
+            // se los compara por ID
+            if(item.getProducto().getId_prod().equals(request.getId_producto())) {
+                itemExistente = item;
+                break; // Salir del loop una vez encontrado
+            }
+        }
+
+        if(itemExistente != null) {
+            // si ya esta, se actualiza la cantidad y el precio unitario
+            // primero validar si la cantidad total (actual + nueva) no supera el stock disponible
+            int cantidadTotal = itemExistente.getCantidad() + request.getCantidad();
+            if(!validarStock(p, cantidadTotal)) {
+                throw new CantidadInvalidaException("La cantidad total del producto en el carrito debe ser mayor a 0. Cantidad actual: " + itemExistente.getCantidad() + ", cantidad a agregar: " + request.getCantidad());
+            }
+            itemExistente.setCantidad(itemExistente.getCantidad() + request.getCantidad());
+            itemExistente.setPrecioUnitario(p.getPrecio()); // Usar precio actual del producto
+        } else {
+            // si no lo encuentra, se crea un nuevo item carrito
+            itemExistente = ItemCarrito.builder()
+                .producto(p)
+                .cantidad(request.getCantidad())
+                .precioUnitario(p.getPrecio())  // Usar precio actual del producto
+                .carrito(carrito)
+                .build();
+
+            // se agrega el nuevo item a la lista de items del carrito
+            items.add(itemExistente);
+        }
+        // se guarda el carrito con el nuevo item o la cantidad actualizada
+        carritoRepo.save(carrito);
+
+        // crear y retornar la respuesta
+        return convertToCarritoResponse(carrito);
+
+    }
+    
+
+    // Actualizar cantidad de un item en el carrito
+    @Transactional
+    public CarritoResponse updateItemQuantity(Long itemId, int nuevaCantidad) {
+        ItemCarrito item = new ItemCarrito();
+        item.setId(itemId);
+        
+        // Validar que la cantidad sea mayor a 0
+        if (nuevaCantidad <= 0) {
+            throw new CantidadInvalidaException("La cantidad debe ser mayor a 0");
+        }
+
+        // Buscar el item en la BD
+        ItemCarrito itemEncontrado = null;
+        Usuario usuario = getUsuarioAutenticado();
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null) {
+            throw new CarritoNotFoundException("Carrito no encontrado para el usuario");
+        }
+
+        for (ItemCarrito it : carrito.getItems()) {
+            if (it.getId().equals(itemId)) {
+                itemEncontrado = it;
+                break;
+            }
+        }
+
+        if (itemEncontrado == null) {
+            throw new ItemCarritoNotFoundException(itemId);
+        }
+
+        if (!validarStock(itemEncontrado.getProducto(), nuevaCantidad)) {
+            throw new CantidadInvalidaException("La cantidad solicitada excede el stock disponible. Stock actual: " + itemEncontrado.getProducto().getStock());
+        }
+
+        itemEncontrado.setCantidad(nuevaCantidad);
+        carritoRepo.save(carrito);
+
+        return convertToCarritoResponse(carrito);
+    }
+
+    // Remover un item del carrito
+    @Transactional
+    public CarritoResponse removeItemFromCart(Long itemId) {
+        Usuario usuario = getUsuarioAutenticado();
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null) {
+            throw new CarritoNotFoundException("Carrito no encontrado para el usuario");
+        }
+
+        ItemCarrito itemAEliminar = carrito.getItems().stream()
+                .filter(item -> item.getId().equals(itemId))
+                .findFirst()
+                .orElseThrow(() -> new ItemCarritoNotFoundException(itemId));
+
+        carrito.getItems().remove(itemAEliminar);
+        carritoRepo.save(carrito);
+
+        return convertToCarritoResponse(carrito);
+    }
+
+    // Vaciar carrito
+    @Transactional
+    public void clearCart() {
+        Usuario usuario = getUsuarioAutenticado();
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null) {
+            throw new CarritoNotFoundException("Carrito no encontrado para el usuario");
+        }
+
+        carrito.getItems().clear();
+        carritoRepo.save(carrito);
+    }
+
+    // Checkout: convertir carrito a pedido
+    @Transactional
+    public void checkoutCarrito() {
+        Usuario usuario = getUsuarioAutenticado();
+        Carrito carrito = usuario.getCarrito();
+        if (carrito == null) {
+            throw new CarritoNotFoundException("Carrito no encontrado para el usuario");
+        }
+
+        if (carrito.getItems().isEmpty()) {
+            throw new CarritoVacioException();
+        }
+
+
+        // transformar items del carrito a ItemPedidoRequest.
+        List<ItemPedidoRequest> itemsCarrito = carrito.getItems().stream().map(i -> ItemPedidoRequest.builder()
+                .productoId(i.getProducto().getId_prod())
+                .cantidad(i.getCantidad())
+                .build()).toList();
+        // transformar el carrito a PedidoRequest (para que lo maneje PedidoService)
+        PedidoRequest pedidoRequest = PedidoRequest.builder()
+                .id_usuario(usuario.getId())
+                .items(itemsCarrito)
+                .build();
+        
+        // delegar la creacion del pedido al service de Pedido
+        pedidoService.crearPedido(pedidoRequest);
+
+        // Vaciar carrito después del checkout
+        carrito.getItems().clear();
+        carritoRepo.save(carrito);
+    }
+
+    // Convertir Carrito a CarritoResponse
+    private CarritoResponse convertToCarritoResponse(Carrito carrito) {
+        return CarritoResponse.builder()
+                .items(carrito.getItems().stream().map(i -> ItemCarritoResponse.builder()
+                        .id(i.getId())
+                        .id_producto(i.getProducto().getId_prod())
+                        .cantidad(i.getCantidad())
+                        .precioUnitario(i.getPrecioUnitario())
+                        .build()).toList())
+                .total(carrito.getItems().stream()
+                        .mapToDouble(i -> i.getCantidad() * i.getPrecioUnitario()).sum())
+                .build();
+    }
+
+    private boolean validarStock (Producto producto, int cantidadSolicitada) {
+        return producto.getStock() >= cantidadSolicitada;
+    }
+}
+</file>
+
+<file path="src/main/java/com/uade/ecommerce/config/SecurityConfig.java">
+package com.uade.ecommerce.config;
+
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.uade.ecommerce.repository.UsuarioRepository;
+import com.uade.ecommerce.security.JwtFilter;
+
+import lombok.RequiredArgsConstructor;
+// Indica que esta clase contiene configuraciones de Spring
+@Configuration
+// Habilita la seguridad web de Spring Security
+@EnableWebSecurity
+
+// Esto no es Spring Security: Genera un constructor con los campos final requeridos lombok 
+@RequiredArgsConstructor
+public class SecurityConfig {
+
+
+  private final JwtFilter jwtFilter;
+  // Inyección del repositorio de usuarios
+  // pueden utilizar también @Autowired
+  private final UsuarioRepository usuarioRepository;
+
+  // Cargar los datos del usuario desde tu sistema a través de UsuarioRepository
+  // lo utiliza AuthenticationService. para buscar el email
+  @Bean
+  public UserDetailsService userDetailsService() {
+    return username -> usuarioRepository.findByEmail(username)
+        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+  }
+
+  // Recibe las credenciales del usuario (a través del UsernamePasswordAuthenticationToken)
+  // Usa el UserDetailsService para buscar el usuario en la base de datos
+  // Usa el PasswordEncoder para verificar si la contraseña proporcionada coincide con la almacenada
+  // Si todo es correcto, crea un token de autenticación; si no, lanza una excepción  
+  // @Bean
+  // public AuthenticationProvider authenticationProvider() {
+  //   DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+  //   authProvider.setPasswordEncoder(passwordEncoder());
+  //   authProvider.setUserDetailsService(userDetailsService());
+  //   return authProvider;
+  // }
+
+  /**
+  * AuthenticationManager es el componente central de autenticación en Spring Security.
+  * 
+  * Funcionamiento:
+  * 1. Recibe un objeto Authentication (UsernamePasswordAuthenticationToken en nuestro caso)
+  * 2. Delega la autenticación a una cadena de AuthenticationProvider configurados
+  * 3. Por defecto, usa DaoAuthenticationProvider que:
+  *  - Utiliza UserDetailsService para cargar el usuario de la base de datos
+  *  - Emplea PasswordEncoder para verificar la contraseña
+  *  - Compara las credenciales proporcionadas con las almacenadas
+  * 
+  * Proceso de autenticación:
+  * - Entrada: Credenciales sin verificar (username/password)
+  * - Proceso: Validación de credenciales
+  * - Salida: Authentication completamente autenticado con authorities
+  * 
+  * Si la autenticación falla, lanza AuthenticationException
+  */
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    return config.getAuthenticationManager();
+  }
+
+  // Define el codificador de contraseñas que se usará para encriptar y verificar passwords
+  // este encoder lo utiliza AuthenticationService.authenticate para verificar la pass, la encripta y compara con la pass de db
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  // Configura las reglas de seguridad para las diferentes rutas de la API
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    // http
+    //     .csrf(csrf -> csrf.disable())
+    //     .authorizeHttpRequests(auth -> auth
+    //         // .requestMatchers("/api/productos/**").permitAll()
+    //         .requestMatchers("/api/auth/**").permitAll()
+    //         .anyRequest().authenticated());
+
+    // return http.build();
+
+    http
+        .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        .csrf(csrf -> csrf.disable())
+        
+        .headers(headers -> headers
+            .contentSecurityPolicy(csp -> csp
+                // Esta directiva dice: "Solo acepta scripts e imágenes de mi propio dominio ('self')"
+                .policyDirectives("default-src 'self'; script-src 'self'; frame-ancestors 'none';")
+            )
+        )
+
+        .authorizeHttpRequests(auth -> auth
+            // Rutas públicas que no requieren autenticación
+            //el controller /api/auth puede ser solicitado por cualquier usuario
+            .requestMatchers("/api/auth/**").permitAll()
+            //el endpoint /api/productos con metodo get es público, cualquiera puede ver los productos
+            .requestMatchers(HttpMethod.GET, "/api/productos/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/categorias/**").permitAll()
+            
+            //gestion de productos: solo admin o vendedor
+            .requestMatchers(HttpMethod.POST, "/api/productos/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_VENDEDOR")
+            .requestMatchers(HttpMethod.PUT, "/api/productos/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_VENDEDOR")
+            .requestMatchers(HttpMethod.DELETE, "/api/productos/**").hasAuthority("ROLE_ADMIN")
+
+            // Rutas exclusivas para administradores
+            // Gestión de categorías: Solo ADMIN
+            .requestMatchers(HttpMethod.POST, "/api/categorias/**").hasAuthority("ROLE_ADMIN")
+            .requestMatchers(HttpMethod.DELETE, "/api/categorias/**").hasAuthority("ROLE_ADMIN")
+
+            // Gestión de usuarios: Solo ADMIN
+            .requestMatchers("/api/usuarios/**").hasAuthority("ROLE_ADMIN")
+            // verifica que el usuario esté autenticado y tenga el rol ADMIN
+            .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+
+            // Carrito, pedidos, favoritos: Cualquier usuario AUTENTICADO (USER, VENDEDOR, ADMIN)
+            .requestMatchers("/api/carrito/**", "/api/pedidos/**", "/api/favoritos/**").authenticated()
+
+            // Cualquier otra ruta requiere autenticación
+            // con esta linea abarca requiere que todos los endpoints esten autenticados
+            // no seía necesario post, put, delete /api/productos , api/pedidos
+            .anyRequest().authenticated())
+
+            // insertar un filtro personalizado (su JwtFilter) en la cadena de filtros
+            // se ejecuta cada vez que se hace una solicitud a un endpoint
+            // Funcionamiento
+            // Llegada de la Solicitud: Un cliente envía una solicitud HTTP (por ejemplo, GET /api//products).
+            // Cadena de Filtros: Spring intercepta la solicitud y la pasa a través de una larga cadena de filtros de seguridad.
+            // Ejecución del JwtFilter: Como usted lo insertó al inicio de la cadena, su JwtFilter es uno de los primeros en ejecutarse.
+            // Su método doFilterInternal se ejecuta.
+            // Si el token es válido: El filtro establece la autenticación en el SecurityContext y llama a filterChain.doFilter(request, response) para pasar la solicitud al siguiente filtro y, finalmente, al controlador.
+            // Si el token falta o es inválido: El filtro rechaza la solicitud o deja que la cadena continúe si el endpoint es público.
+             // Llegada al Controlador: Si el filtro permite el paso, la solicitud finalmente llega a su controlador.
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+    return http.build();
+  }
+
+      @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+}
+</file>
+
+</files>

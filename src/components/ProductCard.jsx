@@ -3,7 +3,7 @@ import '../style/ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
 import { Link } from 'react-router-dom'
-import Carrito from './Carrito';
+
 
 const ProductCard = ({producto, precioFormateado}) => {
   const dispatch = useDispatch()

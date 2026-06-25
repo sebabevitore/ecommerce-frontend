@@ -31,10 +31,6 @@ const Navbar = () => {
       <Link to="/" className="nav-brand">E-commerce-UADE</Link>
       <div className="nav-links">
         
-        <Link to="/">
-          <i className="fa-solid fa-house"></i> Inicio
-        </Link>
-        
         {isAuthenticated ? (
           <>
             <Link to="/admin">

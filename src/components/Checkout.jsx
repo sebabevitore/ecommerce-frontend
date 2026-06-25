@@ -14,7 +14,7 @@ const Checkout = () => {
 
   // total a pagar
   const totalCompra = cartItems.reduce((total, item) => {
-    return total + (item.precio * (item.quantity || 1));
+    return total + (item.precioUnitario * (item.cantidad || 1));
   }, 0);
 
   const handleConfirmarCompra = () => {
@@ -59,7 +59,8 @@ const Checkout = () => {
                 <strong style={{ color: '#2D3277' }}>{item.quantity}x</strong> {item.nombre}
               </span>
               <span style={{ fontWeight: 'bold' }}>
-                ${(item.precio * item.quantity).toLocaleString('es-AR')}
+                {item.cantidad}x {item.nombreProducto}
+                ${(item.precioUnitario * item.cantidad).toLocaleString('es-AR')}
               </span>
             </li>
           ))}

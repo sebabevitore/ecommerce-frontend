@@ -106,7 +106,7 @@ const Carrito = () => {
               >
                 <img
                   // Propiedad "imagen" (del Backend)
-                  src={item.imagen || defaultImage}
+                  src={item.imagenUrl || defaultImage}
                   alt={item.nombreProducto}
                   style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '4px' }}
                 />

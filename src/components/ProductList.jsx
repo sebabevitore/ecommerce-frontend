@@ -86,7 +86,7 @@ const ProductList = () => {
             }}>
               <img 
               // operador lógico ||
-                src={product.imagen || defaultImage}
+                src={product.imagenUrl || defaultImage}
                 alt={product.nombre}
                 style={{ 
                   width: '100%',

@@ -6,7 +6,7 @@ const API = 'http://localhost:8080'
 const AdminProducts = () => {
   const [productos, setProductos] = useState([])
   const [listaCategorias, setListaCategorias] = useState([])
-  const [form, setForm] = useState({ nombre: '', precio: '', categoria: '', descripcion: '', stock: '', imagen: '' })
+  const [form, setForm] = useState({ nombre: '', precio: '', categoria: '', descripcion: '', stock: '', imagenUrl: '', freeShipping: false, isPromo: false })
   const [editing, setEditing] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -50,12 +50,16 @@ const AdminProducts = () => {
   }, [])
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    const { name, value, type, checked } = e.target
+    setForm({ ...form, [name]: type === 'checkbox' ? checked : value })
   }
 
   const resetForm = () => {
     const primeraCat = listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : ''
-    setForm({ nombre: '', precio: '', categoria: primeraCat, descripcion: '', stock: '', imagen: '' })
+    setForm({ 
+      nombre: '', precio: '', categoria: primeraCat, descripcion: '', stock: '', imagenUrl: '',
+      freeShipping: false, isPromo: false   // 👈 agregar esto
+    })
     setEditing(null)
   }
 
@@ -75,7 +79,9 @@ const AdminProducts = () => {
       descripcion: form.descripcion,
       precio: Number(form.precio),
       stock: Number(form.stock),
-      imagen: form.imagen,
+      imagenUrl: form.imagenUrl,
+      freeShipping: form.freeShipping,
+      promo: form.isPromo, 
       categoriaIds: idCategoriaSeleccionada > 0 
         ? [idCategoriaSeleccionada] 
         : [listaCategorias[0]?.id_categoria || listaCategorias[0]?.id || 1]
@@ -106,7 +112,9 @@ const AdminProducts = () => {
       categoria: categoriaActual,
       descripcion: producto.descripcion,
       stock: producto.stock,
-      imagen: producto.imagen || ''
+      imagenUrl: producto.imagenUrl || '',
+      freeShipping: producto.freeShipping || false,
+      isPromo: producto.promo || false
     })
     setEditing(producto)
   }
@@ -152,7 +160,28 @@ const AdminProducts = () => {
         
         <input name="descripcion" placeholder="Descripción" value={form.descripcion} onChange={handleChange} required />
         <input name="stock" placeholder="Stock" type="number" value={form.stock} onChange={handleChange} required />
-        <input name="imagen" placeholder="URL de imagen" value={form.imagen} onChange={handleChange} />
+        <input name="imagenUrl" placeholder="URL de imagen" value={form.imagenUrl} onChange={handleChange} />
+
+        <label className="checkbox-label">
+          <input 
+            type="checkbox" 
+            name="freeShipping" 
+            checked={form.freeShipping} 
+            onChange={handleChange} 
+          />
+          ✈️ Envío Gratis
+        </label>
+
+        <label className="checkbox-label">
+          <input 
+            type="checkbox" 
+            name="isPromo" 
+            checked={form.isPromo} 
+            onChange={handleChange} 
+          />
+          🔥 Promo
+        </label>
+
         <div className="form-actions">
           <button type="submit">{editing ? 'Actualizar' : 'Crear'}</button>
           {editing && <button type="button" onClick={resetForm}>Cancelar</button>}
@@ -169,6 +198,7 @@ const AdminProducts = () => {
               <th>Precio</th>
               <th>Categoría</th>
               <th>Stock</th>
+              <th>Envío/Promo</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -176,8 +206,8 @@ const AdminProducts = () => {
             {productos.map(p => (
               <tr key={p.id}>
                 <td>
-                  {p.imagen ? (
-                    <img src={p.imagen} alt={p.nombre} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                  {p.imagenUrl ? (
+                    <img src={p.imagenUrl} alt={p.nombre} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
                   ) : (
                     '📷 N/A'
                   )}
@@ -186,6 +216,11 @@ const AdminProducts = () => {
                 <td>${p.precio}</td>
                 <td>{p.categorias ? p.categorias.join(', ') : 'Sin categoría'}</td>
                 <td>{p.stock}</td>
+                <td>
+                  {p.freeShipping && <span title="Envío gratis">✈️</span>}{' '}
+                  {p.promo && <span title="Promo">🔥</span>}
+                  {!p.freeShipping && !p.promo && '—'}
+                </td>
                 <td className="actions">
                   <button className="btn-edit" onClick={() => handleEdit(p)}>Editar</button>
                   <button className="btn-delete" onClick={() => handleDelete(p.id)}>Eliminar</button>

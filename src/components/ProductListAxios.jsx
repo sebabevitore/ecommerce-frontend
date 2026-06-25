@@ -100,7 +100,7 @@ const ProductListAxios = () => {
               }
             }}>
               <img 
-                src={product.imagen || defaultImage}
+                src={product.imagenUrl || defaultImage}
                 alt={product.nombre}
                 style={{ 
                   width: '100%',

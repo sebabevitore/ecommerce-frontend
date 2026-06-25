@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { fetchCartItems, clearCart } from '../store/slices/cartSlice';
 import { logout } from '../store/slices/authSlice';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/context/ThemeContext';
 
 const Navbar = () => {
   const navigate = useNavigate();

@@ -55,21 +55,31 @@ const FavoritesList = () => {
   }
   return (
     <div className="catalog-container">
-      <h2>Mis favoritos</h2>
-      <div className="product-grid">
-        {favoriteItems.length === 0 ? (
-          <p>Aún no tienes productos favoritos.</p>
-        ) : (
-          favoriteItems.map(producto => (
+      <div className="favorites-header">
+        <h2>Mis favoritos</h2>
+        {favoriteItems.length > 0 && (
+          <button onClick={handleClearFavorites} className="clear-favorites-btn">
+            <i className="fa-solid fa-trash-can"></i> Limpiar favoritos
+          </button>
+        )}
+      </div>
+
+      {favoriteItems.length === 0 ? (
+        <div className="empty-favorites-container">
+          <i className="fa-regular fa-heart empty-heart-icon"></i>
+          <h3>Aún no tenés productos favoritos</h3>
+        </div>
+      ) : (
+        <div className="product-grid">
+          {favoriteItems.map(producto => (
             <ProductCard
               key={producto.id}
               producto={producto}
               precioFormateado={formatearPrecio(producto.precio)}
             />
-          ))
-        )}
-        <button onClick={handleClearFavorites} className="clear-favorites-button">Limpiar favoritos</button>
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

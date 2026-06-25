@@ -28,7 +28,7 @@ export const fetchFavoriteItems = createAsyncThunk(
 
 export const addFavoriteAsync = createAsyncThunk(
   'favorite/addFavoriteAsync',
-  async (productoId, { getState, dispatch, rejectWithValue }) => {
+  async (productoId, { getState, rejectWithValue }) => {
     try {
       const response = await fetch(`http://localhost:8080/api/favoritos/productos/${productoId}`, {
         method: 'POST',
@@ -36,9 +36,8 @@ export const addFavoriteAsync = createAsyncThunk(
       });
 
       if (!response.ok) throw new Error('Error al agregar a favoritos');
-
-      // Actualizamos la lista llamando al backend otra vez
-      dispatch(fetchFavoriteItems());
+      
+      return await response.json();
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -47,7 +46,7 @@ export const addFavoriteAsync = createAsyncThunk(
 
 export const removeFavoriteAsync = createAsyncThunk(
   'favorite/removeFavoriteAsync',
-  async (productoId, { getState, dispatch, rejectWithValue }) => {
+  async (productoId, { getState, rejectWithValue }) => {
     try {
       const response = await fetch(`http://localhost:8080/api/favoritos/productos/${productoId}`, {
         method: 'DELETE',
@@ -55,8 +54,8 @@ export const removeFavoriteAsync = createAsyncThunk(
       });
 
       if (!response.ok) throw new Error('Error al eliminar de favoritos');
-
-      dispatch(fetchFavoriteItems());
+      
+      return await response.json();
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -65,7 +64,7 @@ export const removeFavoriteAsync = createAsyncThunk(
 
 export const clearFavoritesAsync = createAsyncThunk(
   'favorite/clearFavoritesAsync',
-  async (_, { getState, dispatch, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
       const response = await fetch('http://localhost:8080/api/favoritos', {
         method: 'DELETE',
@@ -73,8 +72,8 @@ export const clearFavoritesAsync = createAsyncThunk(
       });
 
       if (!response.ok) throw new Error('Error al vaciar los favoritos');
-
-      dispatch(fetchFavoriteItems());
+      
+      return [];
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -97,22 +96,34 @@ const favoriteSlice = createSlice({
   // builder es un objeto que permite agregar casos para manejar las acciones generadas por createAsyncThunk
   extraReducers: (builder) => {
     builder
-      //fetchFavoriteItems genera tres acciones automáticamente: pending (cuando la petición está en curso), 
-      // fulfilled (cuando la petición se completa exitosamente) y rejected (cuando la petición falla)
+      // GET FAVORITOS
       .addCase(fetchFavoriteItems.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      //action en este caso trae el payload con los items del carrito obtenidos desde la API. También se actualiza el estado de carga y error.
       .addCase(fetchFavoriteItems.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = Array.isArray(action.payload) ? action.payload : [];
         state.loading = false;
         state.error = null;
       })
-      // action en este caso trae el error generado al intentar obtener los items del carrito desde la API. También se actualiza el estado de carga y error.
       .addCase(fetchFavoriteItems.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload || action.error.message;
+      })
+      
+      // AGREGAR A FAVORITOS
+      .addCase(addFavoriteAsync.fulfilled, (state, action) => {
+        state.items = Array.isArray(action.payload) ? action.payload : [];
+      })
+      
+      // REMOVER DE FAVORITOS
+      .addCase(removeFavoriteAsync.fulfilled, (state, action) => {
+        state.items = Array.isArray(action.payload) ? action.payload : [];
+      })
+      
+      // VACIAR FAVORITOS
+      .addCase(clearFavoritesAsync.fulfilled, (state, action) => {
+        state.items = [];
       });
   }
 });

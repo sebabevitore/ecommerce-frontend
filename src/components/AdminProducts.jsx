@@ -6,7 +6,7 @@ const API = 'http://localhost:8080'
 const AdminProducts = () => {
   const [productos, setProductos] = useState([])
   const [listaCategorias, setListaCategorias] = useState([])
-  const [form, setForm] = useState({ nombre: '', precio: '', categoria: '', descripcion: '', stock: '', imagen: '' })
+  const [form, setForm] = useState({ nombre: '', precio: '', categoria: '', descripcion: '', stock: '', imagenUrl: '' })
   const [editing, setEditing] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -55,7 +55,7 @@ const AdminProducts = () => {
 
   const resetForm = () => {
     const primeraCat = listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : ''
-    setForm({ nombre: '', precio: '', categoria: primeraCat, descripcion: '', stock: '', imagen: '' })
+    setForm({ nombre: '', precio: '', categoria: primeraCat, descripcion: '', stock: '', imagenUrl: '' })
     setEditing(null)
   }
 
@@ -75,7 +75,9 @@ const AdminProducts = () => {
       descripcion: form.descripcion,
       precio: Number(form.precio),
       stock: Number(form.stock),
-      imagen: form.imagen,
+      imagenUrl: form.imagenUrl,
+      freeShipping: false,
+      isPromo: false,
       categoriaIds: idCategoriaSeleccionada > 0 
         ? [idCategoriaSeleccionada] 
         : [listaCategorias[0]?.id_categoria || listaCategorias[0]?.id || 1]
@@ -87,7 +89,16 @@ const AdminProducts = () => {
         headers: headers(),
         body: JSON.stringify(bodyRequest)
       })
-      if (!res.ok) throw new Error('Error al guardar producto')
+      if (!res.ok) {
+        let errorMsg = 'Error al guardar producto';
+        try {
+          const errData = await res.json();
+          errorMsg = errData.message || errorMsg;
+        } catch (e) {
+          // If response is not JSON
+        }
+        throw new Error(errorMsg);
+      }
       resetForm()
       fetchProductsAndCategories() // Refresca la lista de productos en pantalla
     } catch (err) {
@@ -96,9 +107,12 @@ const AdminProducts = () => {
   }
 
   const handleEdit = (producto) => {
-    const categoriaActual = producto.categoriaIds && producto.categoriaIds.length > 0
-      ? producto.categoriaIds[0]
-      : (listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : '')
+    let categoriaActual = listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : ''
+    if (producto.categorias && producto.categorias.length > 0) {
+      const nombreCat = producto.categorias[0]
+      const catObj = listaCategorias.find(c => c.nombre === nombreCat)
+      if (catObj) categoriaActual = catObj.id_categoria || catObj.id
+    }
 
     setForm({
       nombre: producto.nombre,
@@ -106,7 +120,7 @@ const AdminProducts = () => {
       categoria: categoriaActual,
       descripcion: producto.descripcion,
       stock: producto.stock,
-      imagen: producto.imagen || ''
+      imagenUrl: producto.imagenUrl || ''
     })
     setEditing(producto)
   }
@@ -118,7 +132,16 @@ const AdminProducts = () => {
         method: 'DELETE',
         headers: headers()
       })
-      if (!res.ok) throw new Error('Error al eliminar producto')
+      if (!res.ok) {
+        let errorMsg = 'Error al eliminar producto';
+        try {
+          const errData = await res.json();
+          errorMsg = errData.message || errorMsg;
+        } catch (e) {
+          // If response is not JSON
+        }
+        throw new Error(errorMsg);
+      }
       fetchProductsAndCategories()
     } catch (err) {
       setError(err.message)
@@ -152,7 +175,7 @@ const AdminProducts = () => {
         
         <input name="descripcion" placeholder="Descripción" value={form.descripcion} onChange={handleChange} required />
         <input name="stock" placeholder="Stock" type="number" value={form.stock} onChange={handleChange} required />
-        <input name="imagen" placeholder="URL de imagen" value={form.imagen} onChange={handleChange} />
+        <input name="imagenUrl" placeholder="URL de imagen" value={form.imagenUrl} onChange={handleChange} />
         <div className="form-actions">
           <button type="submit">{editing ? 'Actualizar' : 'Crear'}</button>
           {editing && <button type="button" onClick={resetForm}>Cancelar</button>}
@@ -176,8 +199,8 @@ const AdminProducts = () => {
             {productos.map(p => (
               <tr key={p.id}>
                 <td>
-                  {p.imagen ? (
-                    <img src={p.imagen} alt={p.nombre} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                  {p.imagenUrl ? (
+                    <img src={p.imagenUrl} alt={p.nombre} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
                   ) : (
                     '📷 N/A'
                   )}

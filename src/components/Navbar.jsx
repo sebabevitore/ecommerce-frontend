@@ -39,6 +39,9 @@ const Navbar = () => {
         
         {isAuthenticated ? (
           <>
+            <Link to="/mi-cuenta">
+              <i className="fa-solid fa-user"></i> Mi Cuenta
+            </Link>
             <Link to="/admin">
               <i className="fa-solid fa-key"></i> Admin
             </Link>

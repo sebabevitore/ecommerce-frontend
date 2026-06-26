@@ -49,6 +49,12 @@ const ProductCatalog = () => {
         return producto.categorias && producto.categorias.includes(categoriaEncontrada.nombre);
       })
     : productos;
+  // ordenar alfabeticamente
+  const productosOrdenados = [...productosFiltrados].sort((a, b) =>
+    a.nombre.localeCompare(b.nombre)
+  );
+    
+    
 
   // Manejo de carga de cualquiera de los dos
   if (prodLoading || catLoading) {
@@ -80,8 +86,8 @@ const ProductCatalog = () => {
 
         <div className="catalog-main">
           <div className="product-grid">
-            {productosFiltrados.length === 0 && <p>No hay productos disponibles para esta categoría.</p>}
-            {productosFiltrados.map(producto => (
+            {productosOrdenados.length === 0 && <p>No hay productos disponibles para esta categoría.</p>}
+            {productosOrdenados.map(producto => (
               <ProductCard
                 key={producto.id} 
                 producto={producto}

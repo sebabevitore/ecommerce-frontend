@@ -8,15 +8,18 @@ import UserOrders from './components/UserOrders'
 import Carrito from './components/Carrito'
 import FavoritesList from './components/FavoriteList' 
 import Checkout from './components/Checkout'
+import Navbar from './components/Navbar'
 import './App.css'
 
+import { fetchCartItems } from './store/slices/cartSlice';
 // import ProductList from './ProductList.jsx';
 // import CartSummary from './CartSummary.jsx';
 
 function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar">
+    <Navbar></Navbar>
+      {/* <nav className="navbar">
         <Link to="/" className="nav-brand">E-commerce-UADE</Link>
         <div className="nav-links">
           <Link to="/">Inicio</Link>
@@ -35,10 +38,11 @@ function App() {
             <i className="fa-solid fa-heart" style={{color: 'rgb(26, 26, 26)'}}></i> Favoritos
           </Link>
         </div>
-      </nav>
+      </nav> */}
 
       <main className="main-content">
         <Routes>
+          <Route path="/products" element={<ProductCatalog />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/" element={<ProductCatalog />} />
           <Route path="/login" element={<Login />} />

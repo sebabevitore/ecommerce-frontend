@@ -83,6 +83,30 @@ export const clearCart = createAsyncThunk(
     }
 );
 
+// PROCESAR COMPRA (CHECKOUT)
+export const checkoutCart = createAsyncThunk(
+    'cart/checkoutCart',
+    async (pedidoPayload, { rejectWithValue }) => {
+        try {
+            const response = await fetch('http://localhost:8080/api/pedidos', {
+                method: 'POST',
+                headers: getAuthHeaders(),
+                body: JSON.stringify(pedidoPayload)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.text();
+                throw new Error(errorData || 'Error al procesar la compra (posible falta de stock)');
+            }
+
+            // Dependiendo de lo que devuelva tu backend (si devuelve el PedidoResponse o nada)
+            // Si devuelve 200/201 sin body, podés simplemente retornar true
+            return true; 
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 // SLICE (ESTADO Y REDUCERS)
 
@@ -128,6 +152,20 @@ const cartSlice = createSlice({
         .addCase(removeFromCart.fulfilled, (state, action) => {
             state.items = action.payload.items;
             state.total = action.payload.total;
+        })
+        
+        .addCase(checkoutCart.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(checkoutCart.fulfilled, (state) => {
+            state.loading = false;
+            // Si la compra fue un éxito, vaciamos el carrito localmente
+            state.items = [];
+            state.total = 0;
+        })
+        .addCase(checkoutCart.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload || action.error.message;
         })
 
         //VACIAR CARRITO

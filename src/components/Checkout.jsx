@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCart } from '../store/slices/cartSlice';
-
-//FALTA VALIDAR STOCK Y CREAR PEDIDO EN BD
+import { checkoutCart, clearCart } from '../store/slices/cartSlice';
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -11,25 +9,40 @@ const Checkout = () => {
   
   // Traemos los items del carrito desde Redux
   const cartItems = useSelector(state => state.cart.items);
+  
+  // Obtenemos el total directamente de Redux (backend lo calcula y lo manda)
+  // Si no lo tenés en el estado, lo calculamos igual abajo.
+  const cartTotal = useSelector(state => state.cart.total);
 
   // total a pagar
   const totalCompra = cartItems.reduce((total, item) => {
     return total + (item.precioUnitario * (item.cantidad || 1));
   }, 0);
 
-  const handleConfirmarCompra = () => {
-    // FALTA DESCONTAR STOCK Y CREAR PEDIDO EN BD
+  const handleConfirmarCompra = async () => {
+    // 1. Armamos el DTO 
+    const pedidoPayload = {
+      items: cartItems.map(item => ({
+        productoId: item.id_producto,
+        cantidad: item.cantidad     
+      }))
+    };
 
-    alert('¡Compra confirmada con éxito! 🎉');
-    
-    // Vaciamos el carrito
-    dispatch(clearCart());
-    
-    // Redirigimos al usuario a la página principal
-    navigate('/');
+    try {
+      //Despachamos la acción de Redux y usamos .unwrap() 
+      await dispatch(checkoutCart(pedidoPayload)).unwrap();
+
+      await dispatch(clearCart()).unwrap();
+      alert('¡Compra confirmada con éxito! 🎉');
+      navigate('/');
+
+    } catch (error) {
+      console.error("Error en el checkout:", error);
+      alert(`No se pudo completar la compra: ${error}`);
+    }
   };
 
-  //si carrito vacio
+  // Renderizado si el carrito está vacío
   if (cartItems.length === 0) {
     return (
       <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -56,7 +69,8 @@ const Checkout = () => {
               style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', borderBottom: '1px solid #ddd', paddingBottom: '0.5rem' }}
             >
               <span>
-                <strong style={{ color: '#2D3277' }}>{item.quantity}x</strong> {item.nombre}
+                {/* Usamos cantidad y nombreProducto según tu JSON */}
+                <strong style={{ color: '#2D3277' }}>{item.cantidad}x</strong> {item.nombreProducto}
               </span>
               <span style={{ fontWeight: 'bold' }}>
                 {item.cantidad}x {item.nombreProducto}

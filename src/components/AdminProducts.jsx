@@ -89,7 +89,16 @@ const AdminProducts = () => {
         headers: headers(),
         body: JSON.stringify(bodyRequest)
       })
-      if (!res.ok) throw new Error('Error al guardar producto')
+      if (!res.ok) {
+        let errorMsg = 'Error al guardar producto';
+        try {
+          const errData = await res.json();
+          errorMsg = errData.message || errorMsg;
+        } catch (e) {
+          // If response is not JSON
+        }
+        throw new Error(errorMsg);
+      }
       resetForm()
       fetchProductsAndCategories() 
     } catch (err) {
@@ -98,9 +107,12 @@ const AdminProducts = () => {
   }
 
   const handleEdit = (producto) => {
-    const categoriaActual = producto.categoriaIds && producto.categoriaIds.length > 0
-      ? producto.categoriaIds[0]
-      : (listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : '')
+    let categoriaActual = listaCategorias.length > 0 ? (listaCategorias[0].id_categoria || listaCategorias[0].id) : ''
+    if (producto.categorias && producto.categorias.length > 0) {
+      const nombreCat = producto.categorias[0]
+      const catObj = listaCategorias.find(c => c.nombre === nombreCat)
+      if (catObj) categoriaActual = catObj.id_categoria || catObj.id
+    }
 
     setForm({
       nombre: producto.nombre,
@@ -122,7 +134,16 @@ const AdminProducts = () => {
         method: 'DELETE',
         headers: headers()
       })
-      if (!res.ok) throw new Error('Error al eliminar producto')
+      if (!res.ok) {
+        let errorMsg = 'Error al eliminar producto';
+        try {
+          const errData = await res.json();
+          errorMsg = errData.message || errorMsg;
+        } catch (e) {
+          // If response is not JSON
+        }
+        throw new Error(errorMsg);
+      }
       fetchProductsAndCategories()
     } catch (err) {
       setError(err.message)

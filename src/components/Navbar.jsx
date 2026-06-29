@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { fetchCartItems, clearCart } from '../store/slices/cartSlice';
+import { fetchFavoriteItems } from '../store/slices/favoriteSlice';
 import { logout } from '../store/slices/authSlice';
-import { useTheme } from '../context/ThemeContext';
+import { useTheme } from '../hooks/context/ThemeContext';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Navbar = () => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(fetchCartItems());
+      dispatch(fetchFavoriteItems());
     }
   }, [isAuthenticated, dispatch]);
 
@@ -33,6 +35,9 @@ const Navbar = () => {
         
         {isAuthenticated ? (
           <>
+            <Link to="/mi-cuenta">
+              <i className="fa-solid fa-user"></i> Mi Cuenta
+            </Link>
             <Link to="/admin">
               <i className="fa-solid fa-key"></i> Admin
             </Link>

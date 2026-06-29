@@ -8,6 +8,7 @@ import Carrito from './components/Carrito'
 import FavoritesList from './components/FavoriteList' 
 import Checkout from './components/Checkout'
 import Navbar from './components/Navbar'
+import MiCuenta from './components/MiCuenta'
 import './App.css'
 
 import { fetchCartItems } from './store/slices/cartSlice';
@@ -45,6 +46,7 @@ function App() {
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/favorites" element={<FavoritesList />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/mi-cuenta" element={<MiCuenta />} />
         </Routes>
       </main>
 

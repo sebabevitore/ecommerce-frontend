@@ -9,6 +9,7 @@ import FavoritesList from './components/FavoriteList'
 import Checkout from './components/Checkout'
 import Navbar from './components/Navbar'
 import MiCuenta from './components/MiCuenta'
+import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 import { fetchCartItems } from './store/slices/cartSlice';
@@ -42,11 +43,11 @@ function App() {
           <Route path="/" element={<ProductCatalog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/admin" element={<AdminProducts />} />
-          <Route path="/carrito" element={<Carrito />} />
-          <Route path="/favorites" element={<FavoritesList />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/mi-cuenta" element={<MiCuenta />} />
+          <Route path="/admin" element={<ProtectedRoute><AdminProducts /></ProtectedRoute>} />
+          <Route path="/carrito" element={<ProtectedRoute><Carrito /></ProtectedRoute>} />
+          <Route path="/favorites" element={<ProtectedRoute><FavoritesList /></ProtectedRoute>} />
+          <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+          <Route path="/mi-cuenta" element={<ProtectedRoute><MiCuenta /></ProtectedRoute>} />
         </Routes>
       </main>
 

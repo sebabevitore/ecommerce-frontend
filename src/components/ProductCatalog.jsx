@@ -5,6 +5,8 @@ import { fetchCategoriesAsync } from '../store/slices/categoriaSlice';
 import ProductCard from './ProductCard';
 import CategoryList from './CategoryList';
 import "../style/ProductCatalog.css";
+import Spinner from './Spinner';
+
 
 const ProductCatalog = () => {
   const dispatch = useDispatch();
@@ -60,7 +62,7 @@ const ProductCatalog = () => {
   if (prodLoading || catLoading) {
     return (
       <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <p className="loading">Cargando catálogo...</p>
+        <Spinner className="loading">Cargando catálogo...</Spinner>
       </div>
     );
   }

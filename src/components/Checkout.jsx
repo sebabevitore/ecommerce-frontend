@@ -14,9 +14,9 @@ const Checkout = () => {
   // Si no lo tenés en el estado, lo calculamos igual abajo.
   const cartTotal = useSelector(state => state.cart.total);
 
-  // Total a pagar calculado en el frontend por las dudas
-  const totalCompra = cartTotal || cartItems.reduce((total, item) => {
-    return total + (item.precioUnitario * item.cantidad);
+  // total a pagar
+  const totalCompra = cartItems.reduce((total, item) => {
+    return total + (item.precioUnitario * (item.cantidad || 1));
   }, 0);
 
   const handleConfirmarCompra = async () => {
@@ -73,7 +73,7 @@ const Checkout = () => {
                 <strong style={{ color: '#2D3277' }}>{item.cantidad}x</strong> {item.nombreProducto}
               </span>
               <span style={{ fontWeight: 'bold' }}>
-                {/* Multiplicamos precioUnitario por cantidad */}
+                {item.cantidad}x {item.nombreProducto}
                 ${(item.precioUnitario * item.cantidad).toLocaleString('es-AR')}
               </span>
             </li>

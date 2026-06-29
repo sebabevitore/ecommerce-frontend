@@ -11,6 +11,7 @@ function ProductDetail() {
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [cantidad, setCantidad] = useState(1);
+  const [mensaje, setMensaje] = useState(null);
 
 const dispatch = useDispatch();
 
@@ -26,6 +27,15 @@ const dispatch = useDispatch();
         setLoading(false)
       })
   }, [id]) 
+  
+  useEffect(() => {
+    if (mensaje) {
+      const timer = setTimeout(() => setMensaje(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [mensaje]);
+
+  if (loading) return <p>Cargando...</p>
 
 
   if (loading) return <p>Cargando...</p>
@@ -41,9 +51,13 @@ const dispatch = useDispatch();
     )
   }
 
-  const handleAddToCart = () => {
-    console.log(product)
-    dispatch(addToCart({ productoId: product.id, cantidad: cantidad }));
+  const handleAddToCart = async () => {
+    try {
+      await dispatch(addToCart({ productoId: product.id, cantidad: cantidad })).unwrap();
+      setMensaje({ tipo: 'success', texto: 'Producto agregado exitosamente ✅' });
+    } catch (err) {
+      setMensaje({ tipo: 'error', texto: err.message || 'Error al agregar el producto' });
+    }
   };
 
   return (
@@ -51,6 +65,21 @@ const dispatch = useDispatch();
       <Link to="/" className="btn-back">
         ← Volver a Productos
       </Link>
+      
+      {mensaje && (
+        <div style={{
+          padding: '0.75rem 1rem',
+          marginBottom: '1rem',
+          borderRadius: '4px',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          backgroundColor: mensaje.tipo === 'success' ? '#dcfce7' : '#fee2e2',
+          color: mensaje.tipo === 'success' ? '#16a34a' : '#dc2626',
+        }}>
+          {mensaje.texto}
+        </div>
+      )}
+      
       <div className="product-detail">
         <div className="product-image">
           <img src={product.imagenUrl || `https://via.placeholder.com/400?text=${product.nombre}`} alt={product.nombre} />

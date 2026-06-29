@@ -1,8 +1,9 @@
 
 import '../style/ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { addFavoriteAsync, removeFavoriteAsync } from '../store/slices/favoriteSlice'
-import { Link } from 'react-router-dom';
+import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
+import { Link } from 'react-router-dom'
+
 
 const ProductCard = ({ producto, precioFormateado }) => {
   const dispatch = useDispatch()

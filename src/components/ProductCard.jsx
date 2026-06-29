@@ -1,7 +1,7 @@
 
 import '../style/ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { addToFavorite, removeFavorite } from '../store/slices/favoriteSlice'
+import { addFavoriteAsync, removeFavoriteAsync } from '../store/slices/favoriteSlice'
 import { Link } from 'react-router-dom'
 
 

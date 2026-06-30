@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const MiCuenta = () => {
   const [usuario, setUsuario] = useState(null);
@@ -6,9 +7,9 @@ const MiCuenta = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const getAuthHeaders = () => {
-    const token = localStorage.getItem('token');
+  const token = useSelector(state => state.auth.token);
 
+  const getAuthHeaders = () => {
     return {
       'Accept': 'application/json',
       'Content-Type': 'application/json',

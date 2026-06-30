@@ -38,7 +38,6 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
       state.error = null;
-      localStorage.removeItem('token'); // Mantenemos esto por compatibilidad con tus otras APIs
     },
     clearError: (state) => {
       state.error = null;
@@ -55,8 +54,6 @@ const authSlice = createSlice({
         state.token = action.payload; 
         state.isAuthenticated = true;
         state.error = null;
-        // Puente de compatibilidad para tus otros fetch que leen directamente el localStorage
-        localStorage.setItem('token', action.payload);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;

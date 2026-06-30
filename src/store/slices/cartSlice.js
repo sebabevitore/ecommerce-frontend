@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const API_URL = 'http://localhost:8080/api/carrito';
 
-const getAuthHeaders = () => {
-    const token = localStorage.getItem('token');
+const getAuthHeaders = (getState) => {
+    const token = getState().auth.token;
     return {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -17,10 +17,10 @@ const getAuthHeaders = () => {
 // Traer el carrito del backend 
 export const fetchCartItems = createAsyncThunk(
     'cart/fetchCartItems',
-    async () => {
+    async (_, { getState }) => {
         const response = await fetch(API_URL, {
             method: 'GET',
-            headers: getAuthHeaders(),
+            headers: getAuthHeaders(getState),
         });
         if (!response.ok) throw new Error('Error al obtener el carrito');
         // El backend devuelve { items: [...], total: 0.0 }
@@ -31,10 +31,10 @@ export const fetchCartItems = createAsyncThunk(
 // Agregar item
 export const addToCart = createAsyncThunk(
     'cart/addToCart',
-    async ({ productoId, cantidad }) => {
+    async ({ productoId, cantidad }, { getState }) => {
         const response = await fetch(`${API_URL}/items`, {
             method: 'POST',
-            headers: getAuthHeaders(),
+            headers: getAuthHeaders(getState),
             // mandamos id_producto tal como lo pide ItemCarritoRequest.java
             body: JSON.stringify({ id_producto: productoId, cantidad: cantidad })
         });
@@ -45,10 +45,10 @@ export const addToCart = createAsyncThunk(
 //actualizar cantidad (sumar o restar)
 export const updateQuantity = createAsyncThunk(
     'cart/updateQuantity',
-    async ({ itemId, cantidad, productoId }) => {
+    async ({ itemId, cantidad, productoId }, { getState }) => {
         const response = await fetch(`${API_URL}/items/${itemId}`, {
             method: 'PUT',
-            headers: getAuthHeaders(),
+            headers: getAuthHeaders(getState),
             // segun body del DTO
             body: JSON.stringify({ id_producto: productoId, cantidad: cantidad })
         });
@@ -60,10 +60,10 @@ export const updateQuantity = createAsyncThunk(
 // Eliminar un producto por completo
 export const removeFromCart = createAsyncThunk(
     'cart/removeFromCart',
-    async (itemId) => {
+    async (itemId, { getState }) => {
         const response = await fetch(`${API_URL}/items/${itemId}`, {
             method: 'DELETE',
-            headers: getAuthHeaders(),
+            headers: getAuthHeaders(getState),
         });
         if (!response.ok) throw new Error('Error al eliminar producto');
         return await response.json();
@@ -72,10 +72,10 @@ export const removeFromCart = createAsyncThunk(
 
 export const clearCart = createAsyncThunk(
     'cart/clearCart',
-    async () => {
+    async (_, { getState }) => {
         const response = await fetch(API_URL, {
             method: 'DELETE',
-            headers: getAuthHeaders(),
+            headers: getAuthHeaders(getState),
         });
         if (!response.ok) throw new Error('Error al vaciar el carrito');
         // Como tu controller devuelve ResponseEntity.noContent() (vacío), nosotros retornamos la estructura inicial limpia
@@ -86,11 +86,11 @@ export const clearCart = createAsyncThunk(
 // PROCESAR COMPRA (CHECKOUT)
 export const checkoutCart = createAsyncThunk(
     'cart/checkoutCart',
-    async (pedidoPayload, { rejectWithValue }) => {
+    async (pedidoPayload, { rejectWithValue, getState }) => {
         try {
             const response = await fetch('http://localhost:8080/api/pedidos', {
                 method: 'POST',
-                headers: getAuthHeaders(),
+                headers: getAuthHeaders(getState),
                 body: JSON.stringify(pedidoPayload)
             });
 

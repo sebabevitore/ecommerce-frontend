@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import '../style/AdminProducts.css';
 
 const API = 'http://localhost:8080'
@@ -11,11 +12,11 @@ const AdminProducts = () => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const token = () => localStorage.getItem('token')
+  const token = useSelector((state) => state.auth.token)
 
   const headers = () => ({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token()}`
+    'Authorization': `Bearer ${token}`
   })
 
   const fetchProductsAndCategories = async () => {
@@ -135,7 +136,7 @@ const AdminProducts = () => {
         headers: headers()
       })
       if (!res.ok) {
-        let errorMsg = 'Error al eliminar producto';
+        let errorMsg = `Error al eliminar producto (Status: ${res.status})`;
         try {
           const errData = await res.json();
           errorMsg = errData.message || errorMsg;

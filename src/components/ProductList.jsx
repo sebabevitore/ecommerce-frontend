@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import defaultImage from '../assets/imgXdefault.jpg';
 
@@ -6,6 +7,7 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = useSelector(state => state.auth.token);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,8 +24,8 @@ const ProductList = () => {
             // Indica al servidor que estamos enviando datos en formato JSON
             'Content-Type': 'application/json',
             
-            // Envía el token JWT si existe en localStorage (necesario para rutas protegidas)
-            'Authorization': localStorage.getItem('token')
+            // Envía el token JWT si existe (necesario para rutas protegidas)
+            'Authorization': token ? `Bearer ${token}` : ''
           },
           
           // Permite el envío de cookies y credenciales de autenticación
